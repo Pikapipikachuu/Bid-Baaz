@@ -38,7 +38,7 @@
 @media(max-width:430px){.standings-heading{align-items:flex-start;flex-direction:column}.showdown-toggle{align-self:flex-start}.battle-panel{padding:15px}}
 
 /* User-provided Marvel Arena banner and character portraits */
-.marvel-card{position:relative;isolation:isolate;background:linear-gradient(90deg,rgba(12,17,27,.90),rgba(12,17,27,.58) 58%,rgba(12,17,27,.35)),url("assets/marvel-banner.png") center 58%/cover no-repeat!important;border-color:#8d5260!important;text-shadow:0 2px 8px #000b}
+.marvel-card{position:relative;isolation:isolate;background:linear-gradient(90deg,rgba(12,17,27,.90),rgba(12,17,27,.58) 58%,rgba(12,17,27,.35)),url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/marvel-banner.png") center 58%/cover no-repeat!important;border-color:#8d5260!important;text-shadow:0 2px 8px #000b}
 .marvel-card>*{position:relative;z-index:1}
 .marvel-card strong{font-size:clamp(19px,2.3vw,25px)!important}
 .portrait-wrap img{border-radius:10px;object-fit:contain;background:#080a0e;max-height:170px}
@@ -50,7 +50,7 @@
   overflow:hidden;
   background:
     linear-gradient(90deg,rgba(9,14,22,.86),rgba(9,14,22,.42) 58%,rgba(9,14,22,.20)),
-    url("assets/ipl-auction-banner.png") center 48%/cover no-repeat!important;
+    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/ipl-auction-banner.png") center 48%/cover no-repeat!important;
   border-color:#b77d3c!important;
   text-shadow:0 2px 8px #000c;
 }
