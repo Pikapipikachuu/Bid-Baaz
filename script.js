@@ -1,3 +1,4 @@
+
 const $=id=>document.getElementById(id), screens=["homeScreen","settingsScreen","auctionScreen","resultsScreen"];
 const state={mode:"marvel",budget:200,opponents:3,difficulty:"easy",teams:[],lots:[],lotIndex:0,current:null,bid:0,leader:null,passed:new Set(),closed:false,deadline:0,timer:null,aiTimer:null,results:[],battleRun:0,lastCountdown:null,aiThinking:false,paused:false,remaining:5,speed:1,skipMode:false,fixtures:[],matchDetails:[]};
 const marvel=[
