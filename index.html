@@ -1,25 +1,618 @@
-<!doctype html>
-<html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#101827"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><link rel="manifest" href="manifest.json"><link rel="icon" href="icons/icon-192.png" type="image/png"><link rel="apple-touch-icon" href="icons/icon-192.png"><title>Bid Baaz — Bid. Build. Battle.</title><link rel="stylesheet" href="style.css"></head>
-<body><div class="app-shell">
-<header class="topbar"><div class="brand" id="brandHome" aria-label="Bid Baaz"><span class="brand-mark">B</span><span><strong>BID BAAZ</strong><small>BID · BUILD · BATTLE</small></span></div><span class="offline-pill">● OFFLINE AI</span></header>
-<main>
-<section class="screen active" id="homeScreen"><div class="section-heading"><div><span class="eyebrow">CHOOSE YOUR ARENA</span><h2>Where do we play?</h2></div><small>Swipe to explore arenas</small></div>
-<div class="arena-grid"><button class="arena-card marvel-card" data-mode="marvel"><small>HEROES & VILLAINS</small><strong>Marvel Arena</strong><span>Build your ultimate superhero team.</span><b>Choose arena ↗</b></button><button class="arena-card cricket-card" data-mode="cricket"><small>CRICKET LEGENDS</small><strong>Cricket Auction</strong><span>Build a squad of cricket legends.</span><b>Choose arena ↗</b></button><button class="arena-card anime-card" data-mode="anime"><small>ANIME UNIVERSE</small><strong>Anime Arena</strong><span>Characters from your favourite anime.</span><b>Coming soon</b></button></div>
-<div class="continue-card hidden" id="continueCard"><div><b>Saved game available</b><small id="continueLabel">Continue your last game</small></div><button class="btn pass" id="continueGame">Continue Game →</button><button class="btn pass" id="discardGame">New Game</button></div><div class="how-strip"><div>01 <b>Set your budget</b><small>Same purse for every team</small></div><div>02 <b>Win the bidding</b><small>Challenge up to 6 AI rivals</small></div><div>03 <b>Battle for glory</b><small>See who built the strongest team</small></div></div></section>
-<section class="screen" id="settingsScreen"><button class="back-link" id="backHome">← Back to home</button><div class="screen-heading"><span class="eyebrow">AUCTION SETUP</span><h1>Set the <em>rules.</em></h1><p>Everyone gets the same budget. You decide how tough the competition gets.</p></div>
-<div class="settings-layout"><div class="panel settings-main"><label>Selected arena</label><div class="selected-arena"><b id="selectedArenaName">Marvel Arena</b><button id="changeArena">Change</button></div>
-<label>Budget per team</label><div class="budget-hint">Budget is set automatically by difficulty.</div>
-<label>AI opponents: <b id="opponentCountLabel">3</b></label><input type="range" id="opponentCount" min="1" max="6" value="3"><div class="range-labels"><span>1 rival</span><span>6 rivals</span></div>
-<label>AI difficulty</label><div class="choice-row"><button class="choice active" data-difficulty="easy"><b>Easy</b><small>₹200 Cr</small></button><button class="choice" data-difficulty="medium"><b>Medium</b><small>₹150 Cr</small></button><button class="choice" data-difficulty="hard"><b>Hard</b><small>₹100 Cr</small></button></div>
-<div class="info-line">👤 You control your bids — choose +1, +5, +10 Cr or pass.</div><div class="info-line">🤖 AI rivals keep competing even after you pass.</div><div class="info-line arena-tip" id="arenaTip">🦸 Build your superhero squad, outbid AI rivals and assemble the strongest team.</div></div>
-<aside><div class="budget-card"><span class="eyebrow">YOUR AUCTION</span><strong id="budgetPreview">₹100 Cr</strong><p id="teamCountPreview">4 teams</p><p id="difficultyPreview">Easy</p><small>✓ Equal starting budget for every team</small></div><button class="btn gold full" id="beginAuction">Enter the auction →</button></aside></div></section>
-<section class="screen" id="auctionScreen"><div class="auction-topline"><div class="auction-exit-purse"><button class="back-link" id="quitAuction">← Exit</button><span class="purse">Your purse <strong id="yourPurseTop">₹100 Cr</strong></span></div><b id="auctionRound">PLAYER 1 OF 12</b><div class="auction-tools"><button class="pause-btn icon-control" id="pauseGame" aria-label="Pause game" title="Pause">Ⅱ</button><div class="more-wrap"><button class="pause-btn icon-control" id="moreAuction" aria-label="More auction options" aria-expanded="false">⋮</button><div class="auction-menu hidden" id="auctionMenu"><small>AUCTION SPEED</small><button type="button" data-speed="1">1× Normal</button><button type="button" data-speed="2">2× Fast</button><button type="button" data-speed="3">3× Fast</button><hr><button type="button" id="skipAuction">Skip to results ↠</button></div></div></div></div>
-<div class="auction-layout"><div class="panel lot-panel"><div class="lot-kicker">🟢 LIVE AUCTION <span id="lotCategory">HERO / VILLAIN</span></div>
-<div class="lot-visual"><div class="portrait-wrap" id="lotPortrait"></div><div class="portrait-copy"><small class="eyebrow">NOW UP FOR BIDS</small><h1 id="lotName">Iron Man</h1><p id="lotDescription">Genius · Tech armour</p><div class="rating"><strong id="lotRating">94</strong><small>RATING</small></div></div><span class="lot-rank" id="lotRank">RATING 94</span></div>
-<div class="bid-board"><div class="bid-stat"><small>BASE PRICE</small><b id="basePrice">₹12 Cr</b></div><div class="bid-stat current-stat"><small>CURRENT BID</small><b id="currentBid">—</b></div><div class="bid-stat timer-stat"><small>TIME</small><b id="countdown">10</b></div></div>
-<div class="bid-status" id="bidStatus">Choose your bid or pass. AI rivals will keep playing.</div>
-<div class="bid-controls"><button class="btn bid-option" id="bidOne">+ ₹1 Cr</button><button class="btn bid-option" id="bidFive">+ ₹5 Cr</button><button class="btn bid-option" id="bidTen">+ ₹10 Cr</button><button class="btn pass" id="passButton">Pass</button></div>
-<div class="sold-result hidden" id="soldResult"></div><div class="auction-footnote">Virtual credits only · No real-money bidding</div></div>
-<aside class="auction-side"><div class="panel compact-panel"><div class="panel-title"><h3>At the table</h3><span id="activeTeamsLabel">4 active</span></div><div id="bidderList"></div></div><div class="panel compact-panel"><div class="panel-title"><h3>Your squad</h3><span id="squadCount">0 picked</span></div><div id="miniSquad"><p class="empty-note">Your winning bids will appear here.</p></div></div></aside></div></section>
-<section class="screen" id="resultsScreen"><div class="results-hero"><span class="eyebrow">TOURNAMENT COMPLETE</span><h1>The champions are decided</h1></div><div class="panel champion-panel" id="championPanel"></div><div class="results-grid"><div class="panel results-table-panel"><div class="standings-heading"><h3>Final standings</h3><button class="showdown-toggle" id="toggleShowdown" type="button" aria-expanded="false" aria-controls="battlePanel"><span>⚔</span> Team showdown <b id="showdownChevron">＋</b></button></div><div id="standings"></div></div></div><div class="panel cricket-league-panel hidden" id="cricketLeaguePanel"><h3>🏏 Tournament matches</h3><p class="showdown-explainer">Every team plays every other team once. Open any match for its scorecard and highlights.</p><div id="cricketFixtures"></div></div><div class="panel battle-panel hidden" id="battlePanel"><h3>⚔ Team showdown</h3><p class="showdown-explainer">Every team faces the others one-on-one. Marvel battles are decided by character power tiers and ability matchups—not by adding team ratings. Backup characters matter mainly when the matchup is close.</p><div id="battleSummary"></div><button class="btn pass full" id="battleAgain">Run battle again ↻</button></div><div class="results-actions"><button class="btn pass" id="viewTeams">View all squads</button><button class="btn pass" id="newAuction">Start new auction →</button></div><div class="panel all-teams hidden" id="allTeamsPanel"></div></section>
-</main><footer><span>© 2026 BID BAAZ</span><span>Made by The Chepu Games</span></footer></div><div class="modal-backdrop hidden" id="playModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" data-close="playModal" aria-label="Close">×</button><span class="eyebrow">MARVEL ARENA</span><h2>How do you want to play?</h2><button class="modal-choice" id="playAI">🤖 <span><b>Play with AI</b><small>Challenge computer-controlled rivals</small></span><i>→</i></button><button class="modal-choice disabled-choice" id="playMulti">👥 <span><b>Multiplayer</b><small>Play with friends — coming soon</small></span><i>🔒</i></button></div></div><div class="modal-backdrop hidden" id="arenaModal" aria-hidden="true"><div class="modal-card"><button class="modal-close" data-close="arenaModal" aria-label="Close">×</button><span class="eyebrow">CHANGE ARENA</span><h2>Choose an arena</h2><button class="modal-choice" data-pick-arena="marvel">✦ <span><b>Marvel Arena</b><small>Heroes & villains</small></span><i>→</i></button><button class="modal-choice" data-pick-arena="cricket">🏏 <span><b>Cricket Auction</b><small>Cricket legends</small></span><i>→</i></button><button class="modal-choice disabled-choice">🎌 <span><b>Anime Arena</b><small>Coming soon</small></span><i>🔒</i></button></div></div><div class="pause-overlay hidden" id="pauseOverlay"><div class="pause-card"><span class="eyebrow">GAME PAUSED</span><h2>Your progress is saved</h2><p>AI bidding and the auction timer are stopped.</p><button class="btn gold full" id="resumeGame">▶ Resume game</button><button class="btn pass full" id="saveExit">Save & exit to home</button></div></div><div class="countdown-popup" id="countdownPopup" aria-live="polite"></div><div class="toast" id="toast"></div><script src="script.js"></script><script>if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(err=>console.error("Service worker registration failed:",err)));}</script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta content="#101827" name="theme-color"/>
+  <meta content="yes" name="mobile-web-app-capable"/>
+  <meta content="yes" name="apple-mobile-web-app-capable"/>
+  <meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"/>
+  <link href="manifest.json" rel="manifest"/>
+  <link href="icons/icon-192.png" rel="icon" type="image/png"/>
+  <link href="icons/icon-192.png" rel="apple-touch-icon"/>
+  <title>
+   Bid Baaz &mdash; Bid. Build. Battle.
+  </title>
+  <link href="style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <div class="app-shell">
+   <header class="topbar">
+    <div aria-label="Bid Baaz" class="brand" id="brandHome">
+     <span class="brand-mark">
+      B
+     </span>
+     <span>
+      <strong>
+       BID BAAZ
+      </strong>
+      <small>
+       BID &middot; BUILD &middot; BATTLE
+      </small>
+     </span>
+    </div>
+    <span class="offline-pill">
+     ● OFFLINE AI
+    </span>
+   </header>
+   <main>
+    <section class="screen active" id="homeScreen">
+     <div class="section-heading">
+      <div>
+       <span class="eyebrow">
+        CHOOSE YOUR ARENA
+       </span>
+       <h2>
+        Where do we play?
+       </h2>
+      </div>
+      <small>
+       Swipe to explore arenas
+      </small>
+     </div>
+     <div class="arena-grid">
+      <button class="arena-card marvel-card" data-mode="marvel">
+       <small>
+        HEROES &amp; VILLAINS
+       </small>
+       <strong>
+        Marvel Arena
+       </strong>
+       <span>
+        Build your ultimate superhero team.
+       </span>
+       <b>
+        Choose arena &nearrow;
+       </b>
+      </button>
+      <button class="arena-card cricket-card" data-mode="cricket">
+       <small>
+        CRICKET LEGENDS
+       </small>
+       <strong>
+        Cricket Auction
+       </strong>
+       <span>
+        Build a squad of cricket legends.
+       </span>
+       <b>
+        Choose arena &nearrow;
+       </b>
+      </button>
+      <button class="arena-card anime-card" data-mode="anime">
+       <small>
+        ANIME UNIVERSE
+       </small>
+       <strong>
+        Anime Arena
+       </strong>
+       <span>
+        Characters from your favourite anime.
+       </span>
+       <b>
+        Coming soon
+       </b>
+      </button>
+     </div>
+     <div class="continue-card hidden" id="continueCard">
+      <div>
+       <b>
+        Saved game available
+       </b>
+       <small id="continueLabel">
+        Continue your last game
+       </small>
+      </div>
+      <button class="btn pass" id="continueGame">
+       Continue Game &rarr;
+      </button>
+      <button class="btn pass" id="discardGame">
+       New Game
+      </button>
+     </div>
+     <div class="how-strip">
+      <div>
+       01
+       <b>
+        Set your budget
+       </b>
+       <small>
+        Same purse for every team
+       </small>
+      </div>
+      <div>
+       02
+       <b>
+        Win the bidding
+       </b>
+       <small>
+        Challenge up to 6 AI rivals
+       </small>
+      </div>
+      <div>
+       03
+       <b>
+        Battle for glory
+       </b>
+       <small>
+        See who built the strongest team
+       </small>
+      </div>
+     </div>
+    </section>
+    <section class="screen" id="settingsScreen">
+     <button class="back-link" id="backHome">
+      &larr; Back to home
+     </button>
+     <div class="screen-heading">
+      <span class="eyebrow">
+       AUCTION SETUP
+      </span>
+      <h1>
+       Set the
+       <em>
+        rules.
+       </em>
+      </h1>
+      <p>
+       Everyone gets the same budget. You decide how tough the competition gets.
+      </p>
+     </div>
+     <div class="settings-layout">
+      <div class="panel settings-main">
+       <label>
+        Selected arena
+       </label>
+       <div class="selected-arena">
+        <b id="selectedArenaName">
+         Marvel Arena
+        </b>
+        <button id="changeArena">
+         Change
+        </button>
+       </div>
+       <label>
+        Budget per team
+       </label>
+       <div class="budget-hint">
+        Budget is set automatically by difficulty.
+       </div>
+       <label>
+        AI opponents:
+        <b id="opponentCountLabel">
+         3
+        </b>
+       </label>
+       <input id="opponentCount" max="6" min="1" type="range" value="3"/>
+       <div class="range-labels">
+        <span>
+         1 rival
+        </span>
+        <span>
+         6 rivals
+        </span>
+       </div>
+       <label>
+        AI difficulty
+       </label>
+       <div class="choice-row">
+        <button class="choice active" data-difficulty="easy">
+         <b>
+          Easy
+         </b>
+         <small>
+          ₹200 Cr
+         </small>
+        </button>
+        <button class="choice" data-difficulty="medium">
+         <b>
+          Medium
+         </b>
+         <small>
+          ₹150 Cr
+         </small>
+        </button>
+        <button class="choice" data-difficulty="hard">
+         <b>
+          Hard
+         </b>
+         <small>
+          ₹100 Cr
+         </small>
+        </button>
+       </div>
+       <div class="info-line">
+        👤 You control your bids &mdash; choose +1, +5, +10 Cr or pass.
+       </div>
+       <div class="info-line">
+        🤖 AI rivals keep competing even after you pass.
+       </div>
+       <div class="info-line arena-tip" id="arenaTip">
+        🦸 Build your superhero squad, outbid AI rivals and assemble the strongest team.
+       </div>
+      </div>
+      <aside>
+       <div class="budget-card">
+        <span class="eyebrow">
+         YOUR AUCTION
+        </span>
+        <strong id="budgetPreview">
+         ₹100 Cr
+        </strong>
+        <p id="teamCountPreview">
+         4 teams
+        </p>
+        <p id="difficultyPreview">
+         Easy
+        </p>
+        <small>
+         &checkmark; Equal starting budget for every team
+        </small>
+       </div>
+       <button class="btn gold full" id="beginAuction">
+        Enter the auction &rarr;
+       </button>
+      </aside>
+     </div>
+    </section>
+    <section class="screen" id="auctionScreen">
+     <div class="auction-topline">
+      <div class="auction-exit-purse">
+       <button class="back-link" id="quitAuction">
+        &larr; Exit
+       </button>
+       <span class="purse">
+        Your purse
+        <strong id="yourPurseTop">
+         ₹100 Cr
+        </strong>
+       </span>
+      </div>
+      <b id="auctionRound">
+       PLAYER 1 OF 12
+      </b>
+      <div class="auction-tools">
+       <button aria-label="Pause game" class="pause-btn icon-control" id="pauseGame" title="Pause">
+        Ⅱ
+       </button>
+       <div class="more-wrap">
+        <button aria-expanded="false" aria-label="More auction options" class="pause-btn icon-control" id="moreAuction">
+         &vellip;
+        </button>
+        <div class="auction-menu hidden" id="auctionMenu">
+         <small>
+          AUCTION SPEED
+         </small>
+         <button data-speed="1" type="button">
+          1&times; Normal
+         </button>
+         <button data-speed="2" type="button">
+          2&times; Fast
+         </button>
+         <button data-speed="3" type="button">
+          3&times; Fast
+         </button>
+         <hr/>
+         <button id="skipAuction" type="button">
+          Skip to results &twoheadrightarrow;
+         </button>
+        </div>
+       </div>
+      </div>
+     </div>
+     <div class="auction-layout">
+      <div class="panel lot-panel">
+       <div class="lot-kicker">
+        🟢 LIVE AUCTION
+        <span id="lotCategory">
+         HERO / VILLAIN
+        </span>
+       </div>
+       <div class="lot-visual">
+        <div class="portrait-wrap" id="lotPortrait">
+        </div>
+        <div class="portrait-copy">
+         <small class="eyebrow">
+          NOW UP FOR BIDS
+         </small>
+         <h1 id="lotName">
+          Iron Man
+         </h1>
+         <p id="lotDescription">
+          Genius &middot; Tech armour
+         </p>
+         <div class="rating">
+          <strong id="lotRating">
+           94
+          </strong>
+          <small>
+           RATING
+          </small>
+         </div>
+        </div>
+        <span class="lot-rank" id="lotRank">
+         RATING 94
+        </span>
+       </div>
+       <div class="bid-board">
+        <div class="bid-stat">
+         <small>
+          BASE PRICE
+         </small>
+         <b id="basePrice">
+          ₹12 Cr
+         </b>
+        </div>
+        <div class="bid-stat current-stat">
+         <small>
+          CURRENT BID
+         </small>
+         <b id="currentBid">
+          &mdash;
+         </b>
+        </div>
+        <div class="bid-stat timer-stat">
+         <small>
+          TIME
+         </small>
+         <b id="countdown">
+          10
+         </b>
+        </div>
+       </div>
+       <div class="bid-status" id="bidStatus">
+        Choose your bid or pass. AI rivals will keep playing.
+       </div>
+       <div class="bid-controls">
+        <button class="btn bid-option" id="bidOne">
+         + ₹1 Cr
+        </button>
+        <button class="btn bid-option" id="bidFive">
+         + ₹5 Cr
+        </button>
+        <button class="btn bid-option" id="bidTen">
+         + ₹10 Cr
+        </button>
+        <button class="btn pass" id="passButton">
+         Pass
+        </button>
+       </div>
+       <div class="sold-result hidden" id="soldResult">
+       </div>
+       <div class="auction-footnote">
+        Virtual credits only &middot; No real-money bidding
+       </div>
+      </div>
+      <aside class="auction-side">
+       <div class="panel compact-panel">
+        <div class="panel-title">
+         <h3>
+          At the table
+         </h3>
+         <span id="activeTeamsLabel">
+          4 active
+         </span>
+        </div>
+        <div id="bidderList">
+        </div>
+       </div>
+       <div class="panel compact-panel">
+        <div class="panel-title">
+         <h3>
+          Your squad
+         </h3>
+         <span id="squadCount">
+          0 picked
+         </span>
+        </div>
+        <div id="miniSquad">
+         <p class="empty-note">
+          Your winning bids will appear here.
+         </p>
+        </div>
+       </div>
+      </aside>
+     </div>
+    </section>
+    <section class="screen" id="resultsScreen">
+     <div class="results-hero">
+      <span class="eyebrow">
+       TOURNAMENT COMPLETE
+      </span>
+      <h1>
+       The champions are decided
+      </h1>
+     </div>
+     <div class="panel champion-panel" id="championPanel">
+     </div>
+     <div class="results-grid">
+      <div class="panel results-table-panel">
+       <div class="standings-heading">
+        <h3>
+         Final standings
+        </h3>
+        <button aria-controls="battlePanel" aria-expanded="false" class="showdown-toggle" id="toggleShowdown" type="button">
+         <span>
+          ⚔
+         </span>
+         Team showdown
+         <b id="showdownChevron">
+          ＋
+         </b>
+        </button>
+       </div>
+       <div id="standings">
+       </div>
+      </div>
+     </div>
+     <div class="panel cricket-league-panel hidden" id="cricketLeaguePanel">
+      <h3>
+       🏏 Tournament matches
+      </h3>
+      <p class="showdown-explainer">
+       Every team plays every other team once. Open any match for its scorecard and highlights.
+      </p>
+      <div id="cricketFixtures">
+      </div>
+     </div>
+     <div class="panel battle-panel hidden" id="battlePanel">
+      <h3>
+       ⚔ Team showdown
+      </h3>
+      <p class="showdown-explainer">
+       Every team faces the others one-on-one. Marvel battles are decided by character power tiers and ability matchups&mdash;not by adding team ratings. Backup characters matter mainly when the matchup is close.
+      </p>
+      <div id="battleSummary">
+      </div>
+      <button class="btn pass full" id="battleAgain">
+       Run battle again &orarr;
+      </button>
+     </div>
+     <div class="results-actions">
+      <button class="btn pass" id="viewTeams">
+       View all squads
+      </button>
+      <button class="btn pass" id="newAuction">
+       Start new auction &rarr;
+      </button>
+     </div>
+     <div class="panel all-teams hidden" id="allTeamsPanel">
+     </div>
+    </section>
+   </main>
+   <footer>
+    <span>
+     &copy; 2026 BID BAAZ
+    </span>
+    <span>
+     Made by The Chepu Games
+    </span>
+   </footer>
+  </div>
+  <div aria-hidden="true" class="modal-backdrop hidden" id="playModal">
+   <div class="modal-card">
+    <button aria-label="Close" class="modal-close" data-close="playModal">
+     &times;
+    </button>
+    <span class="eyebrow">
+     MARVEL ARENA
+    </span>
+    <h2>
+     How do you want to play?
+    </h2>
+    <button class="modal-choice" id="playAI">
+     🤖
+     <span>
+      <b>
+       Play with AI
+      </b>
+      <small>
+       Challenge computer-controlled rivals
+      </small>
+     </span>
+     <i>
+      &rarr;
+     </i>
+    </button>
+    <button class="modal-choice disabled-choice" id="playMulti">
+     👥
+     <span>
+      <b>
+       Multiplayer
+      </b>
+      <small>
+       Play with friends &mdash; coming soon
+      </small>
+     </span>
+     <i>
+      🔒
+     </i>
+    </button>
+   </div>
+  </div>
+  <div aria-hidden="true" class="modal-backdrop hidden" id="arenaModal">
+   <div class="modal-card">
+    <button aria-label="Close" class="modal-close" data-close="arenaModal">
+     &times;
+    </button>
+    <span class="eyebrow">
+     CHANGE ARENA
+    </span>
+    <h2>
+     Choose an arena
+    </h2>
+    <button class="modal-choice" data-pick-arena="marvel">
+     ✦
+     <span>
+      <b>
+       Marvel Arena
+      </b>
+      <small>
+       Heroes &amp; villains
+      </small>
+     </span>
+     <i>
+      &rarr;
+     </i>
+    </button>
+    <button class="modal-choice" data-pick-arena="cricket">
+     🏏
+     <span>
+      <b>
+       Cricket Auction
+      </b>
+      <small>
+       Cricket legends
+      </small>
+     </span>
+     <i>
+      &rarr;
+     </i>
+    </button>
+    <button class="modal-choice disabled-choice">
+     🎌
+     <span>
+      <b>
+       Anime Arena
+      </b>
+      <small>
+       Coming soon
+      </small>
+     </span>
+     <i>
+      🔒
+     </i>
+    </button>
+   </div>
+  </div>
+  <div class="pause-overlay hidden" id="pauseOverlay">
+   <div class="pause-card">
+    <span class="eyebrow">
+     GAME PAUSED
+    </span>
+    <h2>
+     Your progress is saved
+    </h2>
+    <p>
+     AI bidding and the auction timer are stopped.
+    </p>
+    <button class="btn gold full" id="resumeGame">
+     ▶ Resume game
+    </button>
+    <button class="btn pass full" id="saveExit">
+     Save &amp; exit to home
+    </button>
+   </div>
+  </div>
+  <div aria-live="polite" class="countdown-popup" id="countdownPopup">
+  </div>
+  <div class="toast" id="toast">
+  </div>
+  <script src="script.js">
+  </script>
+  <script>
+   if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(err=>console.error("Service worker registration failed:",err)));}
+  </script>
+ </body>
+</html>
+
