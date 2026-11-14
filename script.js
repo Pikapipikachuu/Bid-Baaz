@@ -411,3 +411,4 @@ function battle(again=true){state.battleRun++;let r=state.results.map(x=>({...x,
 $("pauseGame").onclick=pauseGame;$("resumeGame").onclick=resumeGame;$("saveExit").onclick=exitPaused;$("continueGame").onclick=()=>{if(restoreProgress()){$("pauseOverlay").classList.remove('hidden');}};$("discardGame").onclick=()=>{localStorage.removeItem(SAVE_KEY);refreshContinueCard();};refreshContinueCard();
 
 window.addEventListener("beforeunload",saveProgress);setInterval(()=>{if(state.teams.length&&!state.paused)saveProgress();},2500);
+
