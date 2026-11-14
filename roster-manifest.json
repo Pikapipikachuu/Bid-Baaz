@@ -1,0 +1,13 @@
+{
+  "current_ipl_players": 70,
+  "ipl_legends": 25,
+  "total": 95,
+  "category_order": [
+    "Batters",
+    "Bowlers",
+    "Wicketkeepers",
+    "All-rounders"
+  ],
+  "images": "assets/cricket/*.webp",
+  "note": "Portrait crops preserve black card backgrounds and remove outer contact-sheet borders."
+}
