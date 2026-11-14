@@ -59,7 +59,13 @@ function svgPortrait(type){
 const marvelPortraitFiles={
  iron:"iron-man.png",captain:"captain-america.png",thor:"thor.png",spider:"spider-man.png",panther:"black-panther.png",strange:"doctor-strange.png",hulk:"hulk.png",widow:"black-widow.png",witch:"scarlet-witch.png",loki:"loki.png",marvel:"captain-marvel-duplicate.png",ant:"ant-man.png",doom:"doctor-doom.png",thanos:"thanos.png",surfer:"silver-surfer.png",phoenix:"jean-grey-phoenix.png",galactus:"galactus.png",deadpool:"deadpool.png",wolverine:"wolverine.png",vision:"vision.png",sentry:"sentry.png",ultron:"ultron.png",hawkeye:"hawkeye.png",magneto:"magneto.png",ghost:"ghost-rider.png",hela:"hela.png",venom:"venom.png",carnage:"carnage.png",quicksilver:"quicksilver.png",shangchi:"shang-chi.png",winter:"winter-soldier.png",daredevil:"daredevil.png",warmachine:"war-machine.png",adam:"adam-warlock.png",starlord:"star-lord.png",groot:"groot.png",rocket:"rocket-raccoon.png",mysterio:"mysterio.png",goblin:"green-goblin.png"
 };
-function portraitSrc(kind){const file=marvelPortraitFiles[kind];return state.mode==="marvel"&&file?`assets/characters/${file}`:state.mode==="cricket"?`assets/cricket/${kind}.webp`:"data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svgPortrait(kind));}
+const GITHUB_IMAGE_BASE = "https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/";
+function portraitSrc(kind){
+ const file=marvelPortraitFiles[kind];
+ if(state.mode==="marvel"&&file) return GITHUB_IMAGE_BASE+encodeURIComponent(file);
+ if(state.mode==="cricket") return GITHUB_IMAGE_BASE+encodeURIComponent(`${kind}.webp`);
+ return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svgPortrait(kind));
+}
 function stopTimers(){clearInterval(state.timer);clearTimeout(state.aiTimer);}
 function shuffle(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
 function buildMarvelLots(){
