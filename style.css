@@ -176,3 +176,269 @@ button:focus:not(:focus-visible) {
   border-color: #8297ae;
 }
 
+/* =========================================
+   BID BAAZ — CLEARER INTERFACE UPDATE
+   Paste this block at the END of style.css
+========================================= */
+
+/* Make arena selection feel more clickable */
+.arena-card {
+  position: relative;
+  min-height: 195px;
+  justify-content: flex-start;
+  padding: 22px;
+  box-shadow: 0 8px 24px #0002;
+}
+
+.arena-card b {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  margin-top: auto;
+  border-radius: 9px;
+  background: #ffffff12;
+  border: 1px solid #ffffff25;
+  font-size: 11px;
+}
+
+/* Make the three steps easier to understand */
+.how-strip {
+  background: linear-gradient(120deg, #18283b, #142333);
+  border-color: #3b5368;
+  padding: 20px;
+  gap: 12px;
+}
+
+.how-strip > div {
+  padding: 12px;
+  border-radius: 12px;
+  background: #ffffff08;
+  border: 1px solid #ffffff12;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.how-strip > div:first-child {
+  color: #83cbd2;
+}
+
+.how-strip b {
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+.how-strip small {
+  font-size: 10px;
+  line-height: 1.5;
+}
+
+/* Clearer setup screen */
+.screen-heading p {
+  line-height: 1.7;
+  font-size: 13px;
+}
+
+.settings-main > label {
+  font-size: 13px;
+  color: #dce7f0;
+  margin-top: 21px;
+}
+
+.selected-arena {
+  min-height: 48px;
+  align-items: center;
+}
+
+.settings-main select,
+.settings-main input[type=number] {
+  min-height: 46px;
+  font-size: 14px;
+}
+
+/* Make the start auction button stand out */
+#beginAuction {
+  width: 100%;
+  min-height: 58px;
+  font-size: 14px;
+  font-weight: 900;
+  letter-spacing: .2px;
+  border-radius: 14px;
+}
+
+/* Auction screen: make player information easier to scan */
+.lot-panel {
+  box-shadow: 0 12px 32px #0002;
+}
+
+.lot-kicker {
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.portrait-copy h1 {
+  line-height: 1.2;
+}
+
+.portrait-copy p {
+  font-size: 12px;
+  line-height: 1.65;
+}
+
+.rating {
+  margin-top: 10px;
+}
+
+/* Make price labels more readable */
+.bid-stat {
+  padding: 13px;
+}
+
+.bid-stat small {
+  font-size: 9px;
+  font-weight: 800;
+  line-height: 1.4;
+}
+
+.bid-stat b {
+  font-size: 16px;
+}
+
+/* Give the user a clear instruction before bidding */
+.bid-controls::before {
+  content: "YOUR MOVE — Choose a bid amount or pass";
+  grid-column: 1 / -1;
+  display: block;
+  color: #b8c8d8;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: .3px;
+  text-align: left;
+  padding: 4px 2px 3px;
+}
+
+/* Explain what each bidding button does */
+.bid-option,
+.pass {
+  min-height: 54px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 4px;
+  font-size: 12px;
+  font-weight: 900;
+}
+
+.bid-option::after {
+  content: "RAISE BID";
+  font-size: 8px;
+  letter-spacing: .7px;
+  opacity: .8;
+}
+
+.pass::after {
+  content: "SKIP PLAYER";
+  font-size: 8px;
+  letter-spacing: .5px;
+  opacity: .8;
+}
+
+/* Make current bid stand out */
+.current-stat {
+  border-width: 1.5px;
+  box-shadow: inset 0 0 16px #69c6d111;
+}
+
+.timer-stat {
+  border-width: 1.5px;
+}
+
+/* More readable status messages */
+.bid-status {
+  padding: 10px 12px;
+  background: #ffffff08;
+  border: 1px solid #ffffff12;
+  border-radius: 10px;
+  line-height: 1.6;
+}
+
+/* Clearer side panels */
+.compact-panel {
+  box-shadow: 0 8px 24px #0002;
+}
+
+.panel-title h3 {
+  font-size: 14px;
+}
+
+.bidder {
+  padding: 10px;
+  min-height: 48px;
+}
+
+.bidder-info b {
+  font-size: 11px;
+}
+
+.bidder-info small {
+  font-size: 9px;
+}
+
+/* Improve touch targets on phones */
+button {
+  touch-action: manipulation;
+}
+
+@media (max-width: 600px) {
+  .arena-card {
+    min-height: 180px;
+    padding: 18px;
+  }
+
+  .how-strip > div {
+    padding: 13px;
+  }
+
+  .settings-main {
+    padding: 17px;
+  }
+
+  .lot-panel {
+    padding: 13px;
+  }
+
+  .bid-controls {
+    gap: 7px;
+  }
+
+  .bid-controls::before {
+    font-size: 10px;
+    line-height: 1.5;
+  }
+
+  .bid-option,
+  .pass {
+    min-height: 56px;
+    font-size: 11px;
+  }
+
+  .bid-option::after,
+  .pass::after {
+    font-size: 7px;
+  }
+
+  .bid-stat b {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 360px) {
+  .bid-option,
+  .pass {
+    font-size: 10px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+
