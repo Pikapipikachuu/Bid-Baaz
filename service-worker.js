@@ -1,5 +1,5 @@
 
-const CACHE_NAME = "bid-baaz-pwa-v4";
+const CACHE_NAME = "bid-baaz-pwa-v5";
 
 const APP_FILES = [
   "./",
