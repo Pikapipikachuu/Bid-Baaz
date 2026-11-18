@@ -451,3 +451,255 @@ button {
 .how-to-play-jump:active{transform:translateY(1px)}
 #homeHow{scroll-margin-top:18px}
 @media(max-width:380px){.how-to-play-jump{font-size:10px;padding:8px 10px}.hero-topline .eyebrow{font-size:11px;letter-spacing:1.4px}}
+
+
+/* ==========================================================
+   BID BAAZ HOME — approved purple/coral/mint design
+   Header and game screens remain untouched.
+========================================================== */
+#homeScreen{
+  padding:0 14px 34px;
+  margin-top:0;
+}
+.home-design-panel{
+  width:100%;
+  max-width:760px;
+  margin:0 auto 26px;
+  padding:25px 18px 20px;
+  border-radius:28px;
+  background:#21172f;
+  color:#fff5f7;
+  box-sizing:border-box;
+}
+.home-hero{
+  width:100%;
+  max-width:none;
+  padding:0 0 22px;
+  margin:0;
+  text-align:left;
+}
+.hero-topline{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin:0 0 20px;
+}
+.hero-topline .eyebrow{
+  display:block;
+  margin:0;
+  color:#f0a5c5;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+  white-space:nowrap;
+}
+.how-to-play-jump{
+  display:inline-flex;
+  align-items:center;
+  gap:7px;
+  flex:none;
+  padding:9px 13px;
+  border:1px solid #ff9c83;
+  border-radius:999px;
+  background:#30213d;
+  color:#ffad97;
+  text-decoration:none;
+  font-size:12px;
+  font-weight:800;
+  white-space:nowrap;
+}
+.home-hero h1{
+  margin:0 0 30px;
+  color:#fff5f7;
+  font:700 clamp(22px,6.2vw,42px)/1.15 'Space Grotesk',sans-serif;
+  letter-spacing:-1.1px;
+  white-space:nowrap;
+}
+.home-hero h1 em{color:#ff9c83;font-style:normal}
+.arena-heading{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+  width:100%;
+  margin:0 auto 17px;
+}
+.arena-heading .arena-rule{
+  flex:1;
+  height:2px;
+  min-width:12px;
+  background:#a66b91;
+}
+.arena-heading h2{
+  margin:0;
+  color:#b9f1d8;
+  font:700 clamp(17px,4.8vw,27px)/1.2 'Space Grotesk',sans-serif;
+  white-space:nowrap;
+}
+.home-hero .arena-tagline{
+  margin:0;
+  color:#f4dce8;
+  text-align:center;
+  font-size:clamp(9px,2.5vw,13px);
+  font-weight:700;
+  line-height:1.45;
+  letter-spacing:0;
+}
+.home-arena-list{
+  display:grid;
+  grid-template-columns:minmax(0,1fr);
+  gap:16px;
+  width:100%;
+  margin:0;
+}
+.home-arena-list .home-arena-card{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  justify-content:flex-start;
+  width:100%;
+  min-width:0;
+  min-height:190px;
+  height:auto;
+  box-sizing:border-box;
+  padding:18px;
+  border-radius:20px;
+  overflow:hidden;
+  text-align:left;
+  box-shadow:0 7px 18px #0003;
+}
+.home-arena-list .home-arena-card small{
+  display:block;
+  margin:0 0 13px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:1.4px;
+}
+.home-arena-list .home-arena-card strong{
+  display:block;
+  margin:0 0 9px;
+  font-size:23px!important;
+  line-height:1.2;
+}
+.home-arena-list .home-arena-card span{
+  display:block;
+  margin:0 0 14px;
+  font-size:14px;
+  line-height:1.4;
+}
+.home-arena-list .home-arena-card b{
+  display:inline-flex;
+  align-items:center;
+  gap:9px;
+  margin-top:auto;
+  padding:10px 13px;
+  border-radius:11px;
+  background:#ffffff20;
+  border:1px solid #ffffff45;
+  color:#fff;
+  font-size:12px;
+}
+.home-arena-list .marvel-card{
+  background:
+    linear-gradient(90deg,rgba(12,17,27,.88),rgba(12,17,27,.52) 62%,rgba(12,17,27,.3)),
+    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/marvel-banner.png") center 58%/cover no-repeat!important;
+  border:1px solid #8d5260!important;
+}
+.home-arena-list .cricket-card{
+  background:
+    linear-gradient(90deg,rgba(9,14,22,.86),rgba(9,14,22,.42) 58%,rgba(9,14,22,.2)),
+    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/ipl-auction-banner.png") center 48%/cover no-repeat!important;
+  border:1px solid #b77d3c!important;
+}
+.continue-card{
+  display:flex;
+  flex-wrap:wrap;
+  gap:12px;
+  width:100%;
+  box-sizing:border-box;
+  margin:0 auto 28px;
+  padding:20px;
+  border:1px solid #a66b91;
+  border-radius:22px;
+  background:linear-gradient(135deg,#30213d,#21172f);
+  color:#fff5f7;
+}
+.continue-card.hidden{display:none!important}
+.continue-card>div{flex-basis:100%}
+.continue-card>div>b{color:#b9f1d8;font-size:20px}
+.continue-card small{color:#e1cddd;font-size:13px}
+.continue-card .btn{
+  min-height:48px;
+  padding:10px 15px;
+  border:1px solid #a66b91;
+  border-radius:13px;
+  background:#3a2948;
+  color:#fff5f7;
+  font-weight:800;
+}
+.continue-card .pass::after{content:none!important;display:none!important}
+.home-how{
+  width:100%;
+  max-width:760px;
+  box-sizing:border-box;
+  margin:0 auto;
+  padding:22px 18px 20px;
+  border:1px solid #594064;
+  border-radius:24px;
+  background:#21172f;
+  color:#fff5f7;
+}
+.home-section-title{margin:0 0 16px}
+.home-section-title h2{
+  margin:0;
+  color:#fff5f7;
+  font:700 29px/1.2 'Space Grotesk',sans-serif;
+}
+.how-strip.home-how-grid{
+  display:grid;
+  grid-template-columns:1fr;
+  gap:12px;
+  padding:0;
+  border:0;
+  background:transparent;
+}
+.how-strip.home-how-grid>div{
+  display:flex;
+  flex-direction:column;
+  align-items:flex-start;
+  gap:7px;
+  padding:17px;
+  border:1px solid #594064;
+  border-radius:17px;
+  background:#30213d;
+  color:#fff5f7;
+}
+.how-strip.home-how-grid .step-number{
+  color:#b9f1d8;
+  font-size:18px;
+  font-weight:900;
+}
+.how-strip.home-how-grid b{
+  margin:0;
+  color:#fff5f7;
+  font-size:17px;
+}
+.how-strip.home-how-grid small{
+  color:#e1cddd;
+  font-size:13px;
+  line-height:1.5;
+}
+@media(max-width:390px){
+  #homeScreen{padding-left:12px;padding-right:12px}
+  .home-design-panel{padding:22px 13px 15px;border-radius:25px}
+  .hero-topline .eyebrow{font-size:10px;letter-spacing:1.5px}
+  .how-to-play-jump{padding:8px 10px;font-size:10px}
+  .home-hero h1{font-size:clamp(19px,5.8vw,23px);letter-spacing:-.8px}
+  .arena-heading{gap:7px}
+  .arena-heading h2{font-size:17px}
+  .home-hero .arena-tagline{font-size:9px}
+  .home-arena-list .home-arena-card{min-height:178px;padding:15px}
+  .home-how{padding:19px 13px}
+  .home-section-title h2{font-size:26px}
+}
