@@ -13,7 +13,768 @@
   <title>
    Bid Baaz &mdash; Bid. Build. Battle.
   </title>
-  <link href="style.css" rel="stylesheet"/>
+  <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+:root{--bg:#0d1421;--panel:#151f30;--line:#29364a;--text:#f4f6fb;--muted:#98a5b8;--gold:#f2bd59;--green:#55d6a0}*{box-sizing:border-box}body{margin:0;background:radial-gradient(circle at 80% 0%,#1c2a40,transparent 32%),var(--bg);color:var(--text);font-family:'DM Sans',sans-serif}.app-shell{max-width:1180px;margin:auto;padding:0 28px}.topbar{height:82px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #ffffff18}.brand{display:flex;gap:11px;align-items:center;color:inherit;text-decoration:none}.brand-mark{width:40px;height:40px;border-radius:12px;background:linear-gradient(145deg,#ffe1a0,#d99531);color:#182131;display:grid;place-items:center;font:800 24px 'Space Grotesk'}.brand strong,.brand small{display:block}.brand strong{font:700 16px 'Space Grotesk';letter-spacing:2px}.brand small{color:var(--muted);font-size:9px;letter-spacing:1.5px}.offline-pill{font-size:10px;color:#a9b5c6;border:1px solid var(--line);padding:9px 12px;border-radius:30px}.offline-pill:first-letter{color:var(--green)}main{min-height:calc(100vh - 140px);padding:28px 0 52px}.screen{display:none}.screen.active{display:block;animation:fade .25s}@keyframes fade{from{opacity:.4;transform:translateY(4px)}to{opacity:1;transform:none}}.hero{display:grid;grid-template-columns:1.2fr .8fr;align-items:center;min-height:340px;padding:30px 7%;background:linear-gradient(110deg,#18253a,#26334a);border:1px solid #31415a;border-radius:26px}.eyebrow{font-size:10px;letter-spacing:2px;font-weight:800;color:var(--gold)}h1,h2{font-family:'Space Grotesk';letter-spacing:-1px}.hero h1,.screen-heading h1,.results-hero h1{font-size:clamp(34px,5vw,54px);line-height:1.08;margin:14px 0}.hero h1 em,.screen-heading em,.results-hero em{color:var(--gold);font-style:normal}.hero p,.screen-heading p{color:#aeb9c9;max-width:450px;line-height:1.6;font-size:14px}.hero small{display:block;color:var(--muted);margin-top:13px}.hero-art{height:230px;display:grid;place-items:center;font-size:95px;position:relative}.hero-art i,.hero-art b{position:absolute;font:700 12px 'Space Grotesk';color:var(--gold);background:#26364d;padding:10px 14px;border:1px solid #50627b;border-radius:10px}.hero-art i{top:25px;left:8%}.hero-art b{right:5%;bottom:24px}.btn{border:0;border-radius:13px;padding:13px 17px;font-weight:800;font-size:12px;cursor:pointer;transition:.18s}.btn:hover{filter:brightness(1.08);transform:translateY(-1px)}.gold{background:linear-gradient(135deg,#ffdc91,#e9ad47);color:#1b2432;box-shadow:0 7px 22px #d89b3c26}.full{width:100%;margin-top:12px}.section-heading{display:flex;justify-content:space-between;align-items:end;margin:36px 2px 16px}.section-heading h2{margin:6px 0}.section-heading small{color:var(--muted)}.arena-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}.arena-card{min-height:185px;border-radius:18px;padding:22px;text-align:left;color:white;display:flex;flex-direction:column;align-items:flex-start;gap:9px;border:1px solid #46536b;cursor:pointer}.marvel-card{background:radial-gradient(circle at 90% 10%,#65414c,transparent 40%),linear-gradient(120deg,#33283a,#1c2538)}.cricket-card{background:radial-gradient(circle at 90% 10%,#326c5c,transparent 40%),linear-gradient(120deg,#193c3a,#1c293a)}.arena-card small{letter-spacing:1.5px;color:#c4cad5;font-size:9px}.arena-card strong{font:700 24px 'Space Grotesk';margin-top:14px}.arena-card span{font-size:11px;color:#c1c9d5}.arena-card b{font-size:11px;color:var(--gold);margin-top:8px}.how-strip{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin-top:20px;padding:19px;background:#131e2d;border:1px solid var(--line);border-radius:16px;color:var(--gold)}.how-strip b,.how-strip small{display:block}.how-strip b{color:white;font-size:11px}.how-strip small{color:var(--muted);font-size:9px;margin-top:4px}.back-link{border:0;background:none;color:var(--muted);font-size:11px;font-weight:700;cursor:pointer;padding:6px 0}.screen-heading{text-align:center;margin:25px auto}.screen-heading h1{font-size:42px}.screen-heading p{margin:auto}.settings-layout,.auction-layout{display:grid;grid-template-columns:1.45fr .75fr;gap:17px;max-width:960px;margin:auto}.panel{background:linear-gradient(145deg,#182437,#141e2e);border:1px solid var(--line);border-radius:20px}.settings-main{padding:24px}.settings-main>label{display:block;font-size:12px;font-weight:800;margin:16px 0 8px}.settings-main select,.settings-main input[type=number]{width:100%;padding:12px;border:1px solid #34445b;border-radius:10px;background:#0f1928;color:white}.selected-arena{display:flex;justify-content:space-between;padding:12px;background:#0f1928;border:1px solid #34445b;border-radius:10px}.selected-arena button{background:none;border:0;color:var(--gold)}.range-labels{display:flex;justify-content:space-between;color:var(--muted);font-size:9px}.choice-row{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.choice{padding:12px 6px;background:#0f1928;border:1px solid #34445b;color:white;border-radius:10px}.choice.active{border-color:var(--gold);background:#332d25;color:var(--gold)}.info-line{font-size:11px;color:#cbd3df;margin-top:14px}.budget-card{padding:22px;background:linear-gradient(145deg,#293a50,#182638);border:1px solid #465a73;border-radius:18px}.budget-card>strong{display:block;font:700 38px 'Space Grotesk';color:var(--gold);margin:14px 0}.budget-card p{font-size:11px;color:#c4cedb;border-top:1px solid #ffffff18;padding-top:10px}.budget-card small{color:var(--green);font-size:10px}.hidden{display:none!important}.auction-topline{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px}.auction-topline>b{font-size:10px;letter-spacing:1.4px;color:var(--gold)}.purse{font-size:10px;color:var(--muted);padding:9px 12px;background:#172337;border:1px solid var(--line);border-radius:30px}.purse strong{color:var(--gold);margin-left:5px}.lot-panel{padding:22px}.lot-kicker{font-size:9px;letter-spacing:1.4px;color:var(--muted)}.lot-kicker span{float:right;color:var(--gold)}.lot-visual{min-height:190px;margin:16px 0;border-radius:15px;background:radial-gradient(circle at 20% 50%,#4d5874,#25334b 48%,#172337);border:1px solid #455570;display:flex;align-items:center;gap:18px;padding:12px 18px;position:relative;overflow:hidden}.portrait-wrap{width:32%;max-width:185px;min-width:105px;align-self:stretch;display:flex;align-items:center}.portrait-wrap img{width:100%;height:160px;object-fit:contain;filter:drop-shadow(0 12px 14px #0008)}.portrait-copy{flex:1;min-width:0;padding-right:38px}.portrait-copy h1{font-size:clamp(22px,3vw,30px);margin:7px 0}.portrait-copy p{font-size:11px;line-height:1.5;color:#c3ccda;margin:0}.rating{display:inline-flex;align-items:baseline;gap:7px;margin-top:12px;padding:6px 10px;background:#101b2a88;border:1px solid #ffffff1c;border-radius:9px}.rating strong{font:700 18px 'Space Grotesk';color:var(--gold)}.rating small{font-size:8px;color:var(--muted)}.lot-rank{position:absolute;right:12px;bottom:10px;font-size:8px;letter-spacing:1px;color:#d5dcea;background:#101b2a99;padding:6px 9px;border-radius:20px}.bid-board{display:grid;grid-template-columns:1fr 1fr .72fr;gap:8px}.bid-stat{background:#0f1928;border:1px solid #2b3b51;border-radius:11px;padding:11px;min-width:0}.bid-stat small,.bid-stat b{display:block}.bid-stat small{font-size:8px;letter-spacing:1px;color:var(--muted)}.bid-stat b{font:700 15px 'Space Grotesk';margin-top:6px;white-space:nowrap}.current-stat{border-color:#9b763d;background:#29291f}.current-stat b,.timer-stat b{color:var(--gold)}.timer-stat{text-align:center;background:#172337;border-color:#53627a}.timer-stat b{font-size:19px}.bid-status{text-align:center;color:#c4cedb;font-size:10px;margin:14px 0;min-height:15px}.bid-controls{display:grid;grid-template-columns:repeat(3,minmax(0,1fr)) 1.1fr;gap:8px;padding:0 7px}.bid-option{background:linear-gradient(145deg,#3a342b,#242b37);border:1px solid #80643c;color:#f4c875;border-radius:13px;padding:13px 5px}.pass{background:linear-gradient(145deg,#2a384c,#202c40);border:1px solid #40516a;color:#e4eaf3;border-radius:13px;padding:13px 8px}.btn:disabled{opacity:.32;cursor:not-allowed;transform:none}.sold-result{margin:12px 7px 0;padding:11px 14px;border-radius:13px;border:1px solid #9a7844;background:linear-gradient(110deg,#3b3428,#202c3d);display:flex;align-items:center;gap:11px}.sold-check{width:29px;height:29px;border-radius:9px;background:#d7ad62;color:#172131;display:grid;place-items:center;font-weight:900}.sold-result small,.sold-result strong,.sold-result em{display:block}.sold-result small{font-size:8px;letter-spacing:1.4px;color:#e4c98e}.sold-result strong{font:700 14px 'Space Grotesk';margin-top:2px}.sold-result em{font-style:normal;font-size:9px;color:#b9c4d2;margin-top:2px}.auction-footnote{text-align:center;color:#748399;font-size:9px;margin-top:13px}.auction-side{display:flex;flex-direction:column;gap:14px}.compact-panel{padding:17px}.panel-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:13px}.panel-title h3{font:600 14px 'Space Grotesk';margin:0}.panel-title span{font-size:9px;color:var(--muted)}.bidder{display:flex;align-items:center;gap:8px;padding:8px;background:#101a29;border-radius:10px;margin:7px 0}.avatar{width:27px;height:27px;display:grid;place-items:center;border-radius:8px;background:#293b54}.bidder-info{flex:1;min-width:0}.bidder-info b,.bidder-info small{display:block}.bidder-info b{font-size:10px}.bidder-info small{font-size:8px;color:var(--muted);margin-top:2px}.cash{font-size:9px;color:var(--gold);white-space:nowrap}.bidder>small{font-size:8px;color:var(--green);min-width:25px;text-align:right}.bidder>small.out{color:var(--muted)}.mini-player{display:flex;justify-content:space-between;padding:8px;background:#101a29;border-radius:8px;font-size:9px;margin:6px 0}.mini-player b{color:var(--gold)}.empty-note{font-size:10px;color:var(--muted);line-height:1.5}.results-hero{text-align:center;margin:25px}.results-hero h1{font-size:40px}.champion-panel{padding:22px;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(110deg,#3c3427,#1c2b3c);border-color:#82663c}.champion-panel h2{margin:7px 0}.champion-panel p{font-size:10px;color:#c1c9d5}.champion-panel>strong{font:700 30px 'Space Grotesk';color:var(--gold);text-align:right}.champion-panel>strong small{display:block;font-size:8px;color:var(--muted)}.results-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:15px;margin-top:15px}.results-table-panel,.battle-panel,.all-teams{padding:20px}.standing-row{display:grid;grid-template-columns:30px 1fr auto;gap:9px;align-items:center;padding:12px 3px;border-top:1px solid #2b394d;font-size:11px}.standing-row>span small{display:block;color:var(--muted);font-size:8px;margin-top:3px}.standing-row>b:last-child{color:var(--gold)}.results-actions{display:flex;justify-content:center;gap:10px;margin:18px}.team-detail-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.team-detail{background:#101a29;border:1px solid #2c3a4d;border-radius:12px;padding:13px;font-size:11px}.team-detail p,.team-detail li{font-size:9px;color:#c5cfdd}.team-detail ul{padding-left:17px}footer{border-top:1px solid #ffffff18;display:flex;justify-content:space-between;padding:18px 0 22px;color:#718096;font-size:9px}.toast{position:fixed;bottom:22px;left:50%;transform:translate(-50%,20px);opacity:0;background:#f1bd5b;color:#172131;padding:11px 16px;border-radius:10px;font-size:11px;font-weight:800;transition:.2s;pointer-events:none;z-index:2000}.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:760px){.app-shell{padding:0 15px}.topbar{height:68px}.hero{grid-template-columns:1fr;padding:25px;min-height:0}.hero-art{height:135px}.arena-card{padding:16px;min-height:165px}.arena-card strong{font-size:19px}.settings-layout,.auction-layout,.results-grid{grid-template-columns:1fr}.settings-main{padding:18px}.auction-side{display:grid;grid-template-columns:1fr 1fr}.lot-panel{padding:15px}.lot-visual{min-height:165px;padding:10px}.portrait-wrap{width:31%;min-width:90px}.portrait-wrap img{height:140px}.portrait-copy{padding-right:32px}.portrait-copy h1{font-size:22px}.portrait-copy p{font-size:10px}.bid-stat{padding:9px}.bid-stat b{font-size:13px}.auction-topline{gap:7px}.auction-topline>b{font-size:8px}.purse{font-size:9px;padding:8px}.champion-panel{padding:16px}.team-detail-grid{grid-template-columns:1fr}}
+@media(max-width:430px){.how-strip{grid-template-columns:1fr}.how-strip>div{font-size:14px}.auction-side{grid-template-columns:1fr}.bid-controls{grid-template-columns:repeat(3,minmax(0,1fr)) 1fr;gap:5px;padding:0}.bid-option,.pass{font-size:10px;padding:12px 3px}.portrait-wrap{min-width:82px;width:30%}.portrait-wrap img{height:130px}.portrait-copy h1{font-size:20px}.lot-rank{font-size:7px}.standing-row{grid-template-columns:24px 1fr auto}.arena-grid{gap:9px}.arena-card strong{font-size:17px}.hero h1{font-size:37px}}
+
+/* Bid Baaz refinements: compact arena home, clear modal flow, difficulty-linked purse */
+.hero{display:none!important}.section-heading{margin-top:12px}.arena-grid{display:flex;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 12px;scrollbar-width:thin}.arena-card{flex:0 0 calc(50% - 7px);scroll-snap-align:start;min-height:190px;transition:transform .18s,border-color .18s}.arena-card:hover{transform:translateY(-2px);border-color:#7890aa}.anime-card{background:radial-gradient(circle at 90% 10%,#594d73,transparent 42%),linear-gradient(120deg,#302c46,#1c293b);border-style:dashed}.arena-card b{margin-top:auto}.how-strip{margin-top:12px}.budget-hint{font-size:10px;color:var(--muted);margin:-2px 0 4px}.choice{display:flex;flex-direction:column;align-items:flex-start;gap:5px;min-height:62px}.choice b{font-size:12px}.choice small{font-size:10px;color:#c3ccda}.choice.active small{color:#f2cf91}.modal-backdrop{position:fixed;inset:0;background:#050a12bb;backdrop-filter:blur(7px);z-index:100;display:grid;place-items:center;padding:18px}.modal-backdrop.hidden{display:none}.modal-card{width:min(100%,390px);position:relative;padding:25px;background:linear-gradient(145deg,#1d2b40,#131d2c);border:1px solid #45566d;border-radius:22px;box-shadow:0 24px 80px #0009;animation:fade .2s}.modal-card h2{font-size:23px;margin:9px 0 20px}.modal-close{position:absolute;right:14px;top:12px;width:32px;height:32px;border-radius:10px;border:1px solid #46566b;background:#26364a;color:#edf1f7;font-size:22px;line-height:1}.modal-choice{width:100%;display:flex;align-items:center;gap:12px;padding:14px;margin-top:9px;border-radius:13px;border:1px solid #3b4c63;background:#111c2b;color:#edf1f7;text-align:left}.modal-choice>span{flex:1}.modal-choice b,.modal-choice small{display:block}.modal-choice b{font-size:12px}.modal-choice small{font-size:10px;color:var(--muted);margin-top:4px}.modal-choice>i{font-style:normal;color:#d9b16d}.disabled-choice{opacity:.58;cursor:not-allowed}.modal-open{overflow:hidden}.bid-status{min-height:18px}.bid-controls{margin-top:2px}.sold-result{margin-top:10px}.portrait-wrap{width:30%;max-width:175px}.portrait-wrap img{height:165px;object-fit:contain}.lot-visual{min-height:190px}.timer-stat b{font-variant-numeric:tabular-nums}.bidder{transition:opacity .2s}.bidder:has(.out){opacity:.62}
+@media(max-width:600px){.arena-card{flex-basis:82%;min-height:175px}.section-heading{margin:7px 2px 12px}.section-heading h2{font-size:22px}.how-strip{padding:15px}.lot-visual{min-height:160px}.portrait-wrap{width:29%;min-width:84px}.portrait-wrap img{height:138px}.portrait-copy{padding-right:24px}.lot-rank{font-size:7px;right:8px;bottom:7px}.bid-controls{grid-template-columns:repeat(3,minmax(0,1fr)) 1fr}.bid-option,.pass{font-size:10px}}
+
+/* Auction callouts: readable bidder identity and calm final-countdown emphasis */
+.bid-status{font-size:12px;line-height:1.45;min-height:22px;color:#c9d2df}
+.bidder-action{display:inline-block;padding:3px 9px;border-radius:7px;background:linear-gradient(135deg,#243e55,#304d62);border:1px solid #6d9aab;color:#b9e4e8;font-weight:800;letter-spacing:.25px;box-shadow:0 2px 10px rgba(67,155,163,.12)}
+.bid-action-word{color:#b8c2d0;font-weight:600}
+.bid-amount{display:inline-block;margin-left:3px;color:#f0c5a0;font-weight:900;text-shadow:0 0 12px rgba(240,197,160,.18)}
+.timer-stat b{transition:color .35s ease,transform .35s ease,text-shadow .35s ease}
+.timer-stat b.urgent{color:#ff777e;text-shadow:0 0 13px rgba(255,91,105,.28);animation:finalTick 1.15s ease-in-out infinite}
+@keyframes finalTick{0%,100%{transform:scale(1);opacity:.88}50%{transform:scale(1.08);opacity:1}}
+.countdown-popup{position:fixed;z-index:1000;left:50%;bottom:76px;transform:translate(-50%,14px) scale(.96);opacity:0;pointer-events:none;padding:10px 17px;border-radius:13px;background:linear-gradient(120deg,#253f4a,#304b57);border:1px solid #82b6b0;color:#e2f5ed;font:700 12px 'Space Grotesk';letter-spacing:.35px;box-shadow:0 10px 30px rgba(0,0,0,.32);transition:opacity .24s ease,transform .24s ease;white-space:nowrap}
+.countdown-popup.show{opacity:1;transform:translate(-50%,0) scale(1)}
+.sold-result{background:linear-gradient(110deg,#1e3b3b,#203b46);border:1px solid #579b91;box-shadow:0 8px 22px rgba(25,111,100,.13)}
+.sold-check{background:#b9e0d2;color:#173a39}
+.sold-result small{color:#a8d8ca}
+.sold-result strong{color:#e4f5ed}
+.sold-result em{color:#b4d3ca}
+@media(prefers-reduced-motion:reduce){.timer-stat b.urgent{animation:none}.countdown-popup{transition:none}}
+
+/* Results: keep Team Showdown collapsed until the user asks to open it. */
+.results-grid{grid-template-columns:1fr}
+.standings-heading{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:8px}
+.standings-heading h3{margin:0}
+.showdown-toggle{display:inline-flex;align-items:center;gap:8px;border:1px solid #52647b;border-radius:11px;padding:9px 12px;background:#111d2d;color:#e8edf5;font:700 10px 'DM Sans',sans-serif;cursor:pointer;white-space:nowrap}
+.showdown-toggle span{color:var(--gold);font-size:14px}
+.showdown-toggle b{color:var(--gold);font-size:14px;margin-left:3px}
+.showdown-toggle:hover{border-color:#d3a85c;background:#1a293d}
+.battle-panel{margin-top:14px;padding:20px}
+.battle-panel h3{margin:0 0 8px;font:700 15px 'Space Grotesk'}
+.showdown-explainer{margin:0 0 12px;color:#c2ccda;font-size:11px;line-height:1.6;padding:11px 13px;background:#101a29;border:1px solid #2b3b51;border-radius:11px}
+.portrait-wrap img{filter:drop-shadow(0 12px 14px #0009) saturate(1.12) contrast(1.06);border-radius:10px;object-fit:contain;background:#080a0e;max-height:170px}
+@media(max-width:430px){.standings-heading{align-items:flex-start;flex-direction:column}.showdown-toggle{align-self:flex-start}.battle-panel{padding:15px}}
+
+/* Pause, save/resume and cricket tournament presentation */
+.pause-btn{border:1px solid #62738a;background:#182538;color:#f1d29a;border-radius:9px;padding:8px 12px;font-weight:800}.auction-topline{flex-wrap:wrap}.pause-overlay{position:fixed;inset:0;z-index:1200;background:#050a12dd;display:grid;place-items:center;padding:18px}.pause-overlay.hidden{display:none}.pause-card{width:min(100%,360px);padding:25px;background:#1a293b;border:1px solid #53677e;border-radius:20px;text-align:center;box-shadow:0 20px 60px #0009}.pause-card h2{margin:10px 0}.pause-card p{color:#b9c4d2;font-size:12px;margin-bottom:18px}.pause-card .btn{margin-top:8px}.cricket-league-panel{padding:18px;margin-top:14px}.fixture-row{display:grid;grid-template-columns:1fr auto auto;gap:10px;align-items:center;padding:12px 3px;border-top:1px solid #304056;font-size:11px}.fixture-row small{display:block;color:#9eacbd;font-size:9px;margin-top:3px}.fixture-row button{border:1px solid #60748b;background:#172638;color:#e7edf5;padding:7px 9px;border-radius:8px;font-size:10px}.scorecard{margin:10px 0 16px;padding:14px;background:#101a29;border:1px solid #34465c;border-radius:12px}.scorecard h4{margin:6px 0}.scorecard table{width:100%;border-collapse:collapse;font-size:10px}.scorecard th,.scorecard td{text-align:left;padding:6px 4px;border-bottom:1px solid #2b394d}.scorecard .innings{margin-top:12px}.scorecard .commentary{font-size:10px;line-height:1.55;color:#c3cfdd}.scorecard .commentary li{margin:3px 0}.hidden{display:none!important}@media(max-width:520px){.fixture-row{grid-template-columns:1fr auto}.fixture-row button{grid-column:2}.pause-btn{padding:7px 9px}}
+.full-commentary{margin:12px 0;padding:10px;background:#172538;border:1px solid #34465c;border-radius:9px;font-size:10px}.full-commentary summary{cursor:pointer;color:#f0cf98;font-weight:800}.full-commentary ol{max-height:260px;overflow:auto;padding-left:22px;color:#c8d2df;line-height:1.55}.full-commentary li{margin:3px 0}
+
+/* Refined cool-accent setup screen and compact tournament results */
+:root{--gold:#69c6d1;--line:#2b4054}
+.brand-mark{background:linear-gradient(145deg,#b9e9ec,#5bbbc7);color:#10212b}
+.eyebrow{color:#83cbd2}
+.screen-heading em,.results-hero em{color:#83cbd2}
+.selected-arena button{color:#83cbd2}
+.choice.active{border-color:#69c6d1;background:#1b3540;color:#9ce0e4;box-shadow:0 0 0 1px #69c6d122}
+.choice.active small{color:#c5e8e9}
+.settings-main{background:linear-gradient(145deg,#19283a,#141f2e);border-color:#2d4053}
+.budget-card{background:linear-gradient(145deg,#20374b,#17283a);border-color:#40576b}
+.budget-card>strong{color:#d8eef0;font-size:35px;margin:12px 0}
+.budget-card p{display:inline-block;width:48%;vertical-align:top;margin:0;padding:10px 0;border-top:1px solid #ffffff18}
+.budget-card p+p{padding-left:10px;border-left:1px solid #ffffff18}
+.budget-card small{display:inline-flex;align-items:center;margin-top:8px;padding:7px 10px;border-radius:20px;background:#153a36;color:#80d8b7}
+#beginAuction{min-height:58px;padding-top:15px;padding-bottom:15px;background:linear-gradient(135deg,#a9e0e3,#5cbec8);color:#10232c;box-shadow:0 8px 22px #3baab51c}
+.info-line{line-height:1.5;margin-top:12px}
+.arena-tip{padding-top:3px}
+footer{color:#8294a8}
+footer span:last-child{color:#8acbd1}
+.results-hero{margin:25px 0 20px}
+.results-hero h1{font-size:clamp(22px,4vw,30px);line-height:1.2;white-space:nowrap;margin:12px 0}
+.champion-panel{background:linear-gradient(110deg,#203b4a,#1a2b3c);border-color:#476777}
+.champion-panel>strong{color:#83cbd2}
+.standing-row>b:last-child{color:#83cbd2}
+.scorecard{width:100%;max-width:none;margin:12px 0 16px;padding:12px;background:#101a29;border-color:#34465c;overflow:hidden}
+.scorecard-top{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.scorecard-top h4{margin:0;font-size:12px}
+.scorecard-top span{font-size:9px;color:#9fb2c4;white-space:nowrap}
+.score-track{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;scrollbar-width:thin;padding-bottom:8px;overscroll-behavior-x:contain}
+.score-slide{flex:0 0 100%;min-width:0;max-width:100%;scroll-snap-align:start;background:#142033;border:1px solid #2b4055;border-radius:10px;padding:10px;overflow:hidden}
+.score-slide h4{font-size:11px;line-height:1.4;margin:2px 0 10px}
+.score-tables{display:grid;grid-template-columns:1fr;gap:12px}
+.score-table-wrap{min-width:0;overflow-x:auto;max-height:230px;overflow-y:auto;scrollbar-width:thin}
+.score-table-title{display:block;font-size:10px;color:#b7dce0;margin:2px 0 5px}
+.scorecard table{min-width:100%;width:max-content;max-width:100%;font-size:9px}
+.scorecard th,.scorecard td{padding:6px 5px;white-space:nowrap}
+.scorecard th:first-child,.scorecard td:first-child{white-space:normal;min-width:100px}
+.scorecard .commentary{font-size:10px;line-height:1.5;padding-left:18px}
+.scorecard .commentary li{margin:5px 0}
+.highlights-slide{overflow-y:auto;max-height:420px}
+.fixture-toggle{border:1px solid #557184;background:#1a3042;color:#d8eef0;padding:8px 12px;border-radius:9px;font-size:10px;font-weight:700;cursor:pointer;margin-top:10px}
+.close-scorecard{width:100%}
+.match-detail-slot{grid-column:1/-1;width:100%;min-width:0}
+.match-detail-slot.hidden{display:none!important}
+.fixture-row{grid-template-columns:minmax(0,1fr) auto;}
+.fixture-row>button{grid-column:2;grid-row:1}
+.fixture-row .match-detail-slot{grid-column:1/-1;grid-row:2}
+@media(max-width:600px){.results-hero h1{font-size:22px;letter-spacing:-.6px}.scorecard-top{align-items:flex-start;flex-direction:column}.scorecard-top span{white-space:normal}.score-slide{flex-basis:100%}.budget-card>strong{font-size:33px}}
+@media(max-width:360px){.results-hero h1{font-size:19px}.budget-card p{font-size:10px}}
+
+/* Final compact controls and cool-blue secondary actions */
+.auction-topline{display:grid;grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);align-items:center;gap:12px;margin:0 0 18px}
+.auction-exit-purse{display:flex;flex-direction:column;align-items:flex-start;gap:2px;min-width:0}
+.auction-exit-purse .back-link{padding:0 0 1px;color:#aeb9c9;font-size:11px}
+.purse{display:inline-flex;align-items:center;gap:7px;padding:8px 11px;border:1px solid #2b3b51;border-radius:24px;background:#142033;color:#aeb9c9;font-size:10px;white-space:nowrap}
+.purse strong{color:#83cbd2;font-weight:800}
+.auction-topline>b{text-align:center;font-size:10px;letter-spacing:1.7px;color:#83cbd2;white-space:nowrap;transform:scale(1.12)}
+.auction-tools{display:flex;align-items:center;gap:7px;justify-self:end}
+.icon-control{width:42px;height:40px;padding:0;display:grid;place-items:center;font-size:19px;line-height:1;border-radius:12px;color:#d8eef0;border-color:#52677d;background:#1b2b40}
+.more-wrap{position:relative}
+.auction-menu{position:absolute;right:0;top:calc(100% + 9px);z-index:50;width:174px;padding:9px;background:#17263a;border:1px solid #455b72;border-radius:13px;box-shadow:0 14px 35px #0009}
+.auction-menu small{display:block;padding:5px 7px 7px;color:#8fa3b9;font-size:8px;letter-spacing:1.4px;font-weight:800}
+.auction-menu button{display:block;width:100%;text-align:left;border:0;border-radius:8px;padding:9px 8px;background:transparent;color:#e6edf5;font-size:11px;font-weight:700}
+.auction-menu button:hover{background:#263b53}
+.auction-menu hr{border:0;border-top:1px solid #34465c;margin:5px 0}
+.auction-menu #skipAuction{color:#8bd0d5}
+.battle-panel h3{font-size:13px}
+.battle-panel .showdown-explainer,.battle-panel #battleSummary{font-size:10px;line-height:1.5}
+.battle-panel #battleSummary p{font-size:10px;line-height:1.5;margin:7px 0}
+.battle-panel .matchup-notes p{font-size:10px;line-height:1.45;margin:7px 0}
+.battle-panel .btn,.results-actions .btn{background:linear-gradient(145deg,#2a384c,#202c40);border:1px solid #40516a;color:#e4eaf3;box-shadow:none}
+.score-slide{flex-basis:100%;}
+.score-table-wrap{max-height:260px}
+@media(max-width:600px){
+ .auction-topline{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:7px;margin-bottom:14px}
+ .auction-topline>b{font-size:9px;letter-spacing:1.05px;transform:scale(1.12)}
+ .auction-exit-purse .back-link{font-size:10px}
+ .purse{font-size:9px;padding:7px 9px;gap:5px}
+ .icon-control{width:37px;height:37px}
+ .auction-tools{gap:6px}
+}
+@media(max-width:370px){.auction-topline{grid-template-columns:minmax(0,1fr) auto minmax(0,1fr);gap:5px}.auction-topline>b{font-size:8px;letter-spacing:.6px;transform:scale(1.08)}.purse{font-size:8px;padding:6px 7px}.icon-control{width:34px;height:35px}}
+#beginAuction{padding:15px 19px}
+
+.auction-menu button.menu-selected{background:linear-gradient(135deg,#24475a,#20394d);border:1px solid #70aebd;color:#c5edf0;box-shadow:inset 0 0 0 1px #70aebd22}
+.brand{cursor:default;user-select:none;-webkit-tap-highlight-color:transparent}
+
+button,[role="button"]{-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+button:focus:not(:focus-visible){outline:none}
+.arena-card:focus,.arena-card:focus-visible{outline:none}
+.arena-card:active{transform:scale(.992);filter:brightness(1.05)}
+
+/* Clearer setup & auction interface rules */
+.screen-heading p{line-height:1.7;font-size:13px}
+.settings-main>label{font-size:13px;color:#dce7f0;margin-top:21px}
+.selected-arena{min-height:48px;align-items:center}
+.settings-main select,.settings-main input[type=number]{min-height:46px;font-size:14px}
+#beginAuction{width:100%;min-height:58px;font-size:14px;font-weight:900;letter-spacing:.2px;border-radius:14px}
+.lot-panel{box-shadow:0 12px 32px #0002}
+.lot-kicker{font-size:10px;font-weight:800}
+.portrait-copy h1{line-height:1.2}
+.portrait-copy p{font-size:12px;line-height:1.65}
+.rating{margin-top:10px}
+.bid-stat{padding:13px}
+.bid-stat small{font-size:9px;font-weight:800;line-height:1.4}
+.bid-stat b{font-size:16px}
+.bid-controls::before{content:"YOUR MOVE — Choose a bid amount or pass";grid-column:1 / -1;display:block;color:#b8c8d8;font-size:11px;font-weight:800;letter-spacing:.3px;text-align:left;padding:4px 2px 3px}
+.bid-option,.pass{min-height:54px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;font-size:12px;font-weight:900}
+.bid-option::after{content:"RAISE BID";font-size:8px;letter-spacing:.7px;opacity:.8}
+.pass::after{content:"SKIP PLAYER";font-size:8px;letter-spacing:.5px;opacity:.8}
+#battleAgain::after,#viewTeams::after,#newAuction::after,#saveExit::after{content:none!important;display:none!important}
+.current-stat{border-width:1.5px;box-shadow:inset 0 0 16px #69c6d111}
+.timer-stat{border-width:1.5px}
+.bid-status{padding:10px 12px;background:#ffffff08;border:1px solid #ffffff12;border-radius:10px;line-height:1.6}
+.compact-panel{box-shadow:0 8px 24px #0002}
+.panel-title h3{font-size:14px}
+.bidder{padding:10px;min-height:48px}
+.bidder-info b{font-size:11px}
+.bidder-info small{font-size:9px}
+
+@media (max-width: 600px) {
+  .settings-main{padding:17px}
+  .lot-panel{padding:13px}
+  .bid-controls{gap:7px}
+  .bid-controls::before{font-size:10px;line-height:1.5}
+  .bid-option,.pass{min-height:56px;font-size:11px}
+  .bid-option::after,.pass::after{font-size:7px}
+  .bid-stat b{font-size:14px}
+}
+@media (max-width: 360px) {
+  .bid-option,.pass{font-size:10px;padding-left:2px;padding-right:2px}
+}
+
+/* ==========================================================
+   EXACT FRONT PAGE DESIGN (MATCHING BOTH REFERENCE IMAGES)
+========================================================== */
+body:has(#homeScreen.active) {
+  background: radial-gradient(circle at 50% 0%, #241438 0%, #140b22 55%, #0e071a 100%);
+}
+
+#homeScreen {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 0 36px;
+}
+
+/* Upper Purple Panel (Image 2) */
+.home-design-panel {
+  width: 100%;
+  margin: 0 auto 24px;
+  padding: 26px 20px 22px;
+  border-radius: 28px;
+  background: #20162d;
+  border: 1px solid #332346;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.45);
+  color: #fff5f7;
+}
+
+.home-hero {
+  width: 100%;
+  margin: 0 0 22px;
+  text-align: left;
+}
+
+.hero-topline {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  margin: 0 0 14px;
+}
+
+.hero-topline .eyebrow {
+  display: block;
+  margin: 0;
+  color: #e59ab9;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+/* "Build your dream team." strictly on ONE line */
+.home-hero h1 {
+  margin: 0 0 28px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(22px, 6.7vw, 37px);
+  line-height: 1.15;
+  letter-spacing: -0.9px;
+  white-space: nowrap;
+}
+
+.home-hero h1 em {
+  color: #ff9c83;
+  font-style: normal;
+}
+
+/* "─── Choose Your Arena ───" */
+.arena-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  margin: 0 auto 14px;
+}
+
+.arena-heading .arena-rule {
+  flex: 1;
+  height: 1.5px;
+  min-width: 18px;
+  background: #7c4d6b;
+}
+
+.arena-heading h2 {
+  margin: 0;
+  color: #b7f0d5;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-weight: 700;
+  font-size: clamp(19px, 5.2vw, 25px);
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  white-space: nowrap;
+}
+
+/* "PICK YOUR ARENA | MAKE YOUR BIDS | BEAT THE COMPETITION" strictly on ONE line */
+.home-hero .arena-tagline {
+  margin: 0;
+  color: #f0dfea;
+  text-align: center;
+  font-family: 'DM Sans', sans-serif;
+  font-size: clamp(8.8px, 2.55vw, 11.8px);
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: 0.35px;
+  white-space: nowrap;
+}
+
+/* Two Arena Cards with Marvel & IPL Banners + Full-Width Coral/Mint CTA Buttons */
+.home-arena-list {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin: 0;
+}
+
+.home-arena-list .home-arena-card {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  width: 100%;
+  min-height: 194px;
+  padding: 20px 18px 18px;
+  border-radius: 20px;
+  overflow: hidden;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.32);
+  transition: transform 0.18s ease, box-shadow 0.18s ease;
+}
+
+.home-arena-list .home-arena-card > * {
+  position: relative;
+  z-index: 1;
+}
+
+.home-arena-list .marvel-card {
+  background:
+    linear-gradient(95deg, rgba(36, 22, 49, 0.90) 0%, rgba(36, 22, 49, 0.72) 55%, rgba(28, 17, 39, 0.52) 100%),
+    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/marvel-banner.png") center 54% / cover no-repeat !important;
+  border: 1px solid #4d335c !important;
+}
+
+.home-arena-list .cricket-card {
+  background:
+    linear-gradient(95deg, rgba(34, 22, 48, 0.90) 0%, rgba(34, 22, 48, 0.72) 55%, rgba(25, 17, 37, 0.50) 100%),
+    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/ipl-auction-banner.png") center 48% / cover no-repeat !important;
+  border: 1px solid #4a355b !important;
+}
+
+.home-arena-list .home-arena-card small {
+  display: block;
+  margin: 0 0 10px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.55);
+}
+
+.home-arena-list .marvel-card small {
+  color: #ef9ec0;
+}
+
+.home-arena-list .cricket-card small {
+  color: #b7f0d5;
+}
+
+.home-arena-list .home-arena-card strong {
+  display: block;
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 22px !important;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.4px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.65);
+}
+
+.home-arena-list .home-arena-card span {
+  display: block;
+  margin: 0 0 16px;
+  color: #dfd0e2;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.4;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.65);
+}
+
+.home-arena-list .home-arena-card b {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  margin-top: auto;
+  padding: 15px 18px;
+  border-radius: 13px;
+  border: none;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  text-shadow: none;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.28);
+}
+
+.home-arena-list .marvel-card b {
+  background: #ffa086;
+  color: #231426;
+}
+
+.home-arena-list .cricket-card b {
+  background: #b8f1d6;
+  color: #162323;
+}
+
+.home-arena-list .home-arena-card b i {
+  font-style: normal;
+  font-size: 16px;
+  line-height: 1;
+}
+
+/* ==========================================================
+   LOWER SECTION (IMAGE 1: SAVED GAME CARD + HOW TO PLAY)
+========================================================== */
+
+/* Saved Game Available Card */
+.continue-card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  margin: 0 auto 30px;
+  padding: 22px 20px 20px;
+  border-radius: 26px;
+  background:
+    linear-gradient(135deg, #1b1535 0%, #241744 52%, #2c1950 100%) padding-box,
+    linear-gradient(135deg, #7cf7e2 0%, #5ec8ca 32%, #7d4cdb 78%, #9b5de5 100%) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 14px 38px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+.continue-card.hidden {
+  display: none !important;
+}
+
+.continue-top {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.continue-gamepad {
+  flex-shrink: 0;
+  width: 52px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  color: #7ef7e1;
+  filter: drop-shadow(0 0 12px rgba(126, 247, 225, 0.35));
+}
+
+.continue-gamepad svg {
+  width: 50px;
+  height: 38px;
+  display: block;
+}
+
+.continue-copy {
+  flex: 1;
+  min-width: 0;
+}
+
+.continue-copy b {
+  display: block;
+  margin: 0 0 4px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.2;
+  letter-spacing: -0.3px;
+}
+
+.continue-copy small {
+  display: block;
+  margin: 0;
+  color: #a69ec4;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14.5px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.continue-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  width: 100%;
+}
+
+.continue-btn-resume,
+.continue-btn-new {
+  min-height: 50px;
+  padding: 12px 16px;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: -0.1px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  transition: transform 0.16s ease, filter 0.16s ease;
+  white-space: nowrap;
+}
+
+.continue-btn-resume {
+  background: linear-gradient(180deg, #2b1f48 0%, #211738 100%);
+  border: 1.5px solid #49386f;
+  color: #ffffff;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.continue-btn-new {
+  background: linear-gradient(90deg, #74f2ce 0%, #89f7e3 100%);
+  border: 0;
+  color: #111827;
+  font-weight: 800;
+  box-shadow: 0 4px 18px rgba(120, 244, 214, 0.25);
+}
+
+.continue-btn-resume::after,
+.continue-btn-new::after {
+  content: none !important;
+  display: none !important;
+}
+
+/* How to play section (Image 1 - without "QUICK GUIDE") */
+.home-how {
+  width: 100%;
+  margin: 0 auto;
+  padding: 4px 2px 0;
+  background: transparent;
+  border: 0;
+}
+
+.home-section-title {
+  margin: 0 0 18px;
+}
+
+.home-section-title h2 {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: clamp(34px, 8.5vw, 42px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+.home-section-title h2 em {
+  color: #77e6c6;
+  font-style: normal;
+}
+
+.how-strip.home-how-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.how-strip.home-how-grid > .how-step-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  padding: 18px 18px;
+  border-radius: 24px;
+  background: linear-gradient(90deg, #211538 0%, #1d1232 55%, #24163d 100%);
+  border: 1px solid #3c295c;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  color: #ffffff;
+}
+
+.how-step-badge {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: rgba(15, 9, 28, 0.55);
+  font-family: 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.step-pink .how-step-badge {
+  border: 1.5px solid #d94890;
+  box-shadow: 0 0 10px rgba(217, 72, 144, 0.2);
+}
+
+.step-mint .how-step-badge {
+  border: 1.5px solid #5de1c6;
+  box-shadow: 0 0 10px rgba(93, 225, 198, 0.2);
+}
+
+.step-orange .how-step-badge {
+  border: 1.5px solid #e69448;
+  box-shadow: 0 0 10px rgba(230, 148, 72, 0.2);
+}
+
+.step-purple .how-step-badge {
+  border: 1.5px solid #9165e6;
+  box-shadow: 0 0 10px rgba(145, 101, 230, 0.2);
+}
+
+.how-step-divider {
+  flex-shrink: 0;
+  width: 1px;
+  height: 34px;
+  background: #463267;
+}
+
+.how-step-icon {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+}
+
+.how-step-icon svg {
+  width: 30px;
+  height: 30px;
+  display: block;
+}
+
+.step-pink .how-step-icon {
+  color: #eb4f9a;
+}
+
+.step-mint .how-step-icon {
+  color: #6df2d7;
+}
+
+.step-orange .how-step-icon {
+  color: #f49b4b;
+}
+
+.step-purple .how-step-icon {
+  color: #9c6df3;
+}
+
+.how-step-text {
+  flex: 1;
+  min-width: 0;
+}
+
+.how-step-text b {
+  display: block;
+  margin: 0 0 3px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.2px;
+}
+
+.how-step-text small {
+  display: block;
+  margin: 0;
+  color: #a498bf;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.how-step-arrow {
+  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  color: #9e90b9;
+  display: grid;
+  place-items: center;
+}
+
+.how-step-arrow svg {
+  width: 18px;
+  height: 18px;
+  display: block;
+}
+
+@media (max-width: 420px) {
+  .home-design-panel {
+    padding: 22px 15px 18px;
+    border-radius: 25px;
+  }
+  .hero-topline .eyebrow {
+    font-size: 11.5px;
+  }
+  .home-hero h1 {
+    font-size: clamp(20px, 6.6vw, 31px);
+    margin-bottom: 24px;
+  }
+  .arena-heading {
+    gap: 10px;
+  }
+  .arena-heading h2 {
+    font-size: clamp(17px, 5vw, 22px);
+  }
+  .home-hero .arena-tagline {
+    font-size: clamp(8.2px, 2.55vw, 10.8px);
+    letter-spacing: 0.2px;
+  }
+  .home-arena-list .home-arena-card {
+    padding: 18px 15px 16px;
+    min-height: 184px;
+  }
+  .home-arena-list .home-arena-card b {
+    padding: 14px 14px;
+    font-size: 12.5px;
+  }
+  .continue-card {
+    padding: 19px 15px 17px;
+  }
+  .continue-copy b {
+    font-size: 18.5px;
+  }
+  .continue-copy small {
+    font-size: 13px;
+  }
+  .continue-btn-resume,
+  .continue-btn-new {
+    min-height: 46px;
+    font-size: 13.5px;
+    padding: 10px 12px;
+  }
+  .how-strip.home-how-grid > .how-step-card {
+    gap: 11px;
+    padding: 15px 14px;
+    border-radius: 21px;
+  }
+  .how-step-badge {
+    width: 39px;
+    height: 39px;
+    font-size: 14.5px;
+  }
+  .how-step-icon {
+    width: 28px;
+    height: 28px;
+  }
+  .how-step-icon svg {
+    width: 25px;
+    height: 25px;
+  }
+  .how-step-text b {
+    font-size: 15.5px;
+  }
+  .how-step-text small {
+    font-size: 12.2px;
+  }
+}
+  </style>
  </head>
  <body>
   <div class="app-shell">
@@ -38,54 +799,140 @@
    <main>
     <section class="screen active" id="homeScreen">
      <div class="home-design-panel">
-     <div class="home-hero">
-      <div class="hero-topline">
-       <span class="eyebrow">WELCOME TO BID BAAZ</span>
-       <a class="how-to-play-jump" href="#homeHow">How to Play <span aria-hidden="true">↓</span></a>
+      <div class="home-hero">
+       <div class="hero-topline">
+        <span class="eyebrow">WELCOME TO BID BAAZ</span>
+       </div>
+       <h1>Build your <em>dream team.</em></h1>
+       <div class="arena-heading">
+        <span class="arena-rule"></span>
+        <h2>Choose Your Arena</h2>
+        <span class="arena-rule"></span>
+       </div>
+       <p class="arena-tagline">PICK YOUR ARENA | MAKE YOUR BIDS | BEAT THE COMPETITION</p>
       </div>
-      <h1>Build your <em>dream team.</em></h1>
-      <div class="arena-heading">
-       <span class="arena-rule"></span>
-       <h2>Choose Your Arena</h2>
-       <span class="arena-rule"></span>
+      <div class="home-arena-list">
+       <button class="arena-card marvel-card home-arena-card" data-mode="marvel">
+        <small>HEROES &amp; VILLAINS</small>
+        <strong>Marvel Arena</strong>
+        <span>Build your ultimate superhero team.</span>
+        <b>PLAY MARVEL ARENA <i>&rarr;</i></b>
+       </button>
+       <button class="arena-card cricket-card home-arena-card" data-mode="cricket">
+        <small>CRICKET LEGENDS</small>
+        <strong>Cricket Auction</strong>
+        <span>Build a squad of cricket legends.</span>
+        <b>PLAY CRICKET AUCTION <i>&rarr;</i></b>
+       </button>
       </div>
-      <p class="arena-tagline">PICK YOUR ARENA&nbsp; | &nbsp;MAKE YOUR BIDS&nbsp; | &nbsp;BEAT THE COMPETITION</p>
      </div>
-     <div class="home-arena-list">
-      <button class="arena-card marvel-card home-arena-card" data-mode="marvel">
-       <small>HEROES &amp; VILLAINS</small>
-       <strong>Marvel Arena</strong>
-       <span>Build your ultimate superhero team.</span>
-       <b>PLAY MARVEL ARENA <i>→</i></b>
-      </button>
-      <button class="arena-card cricket-card home-arena-card" data-mode="cricket">
-       <small>CRICKET LEGENDS</small>
-       <strong>Cricket Auction</strong>
-       <span>Build a squad of cricket legends.</span>
-       <b>PLAY CRICKET AUCTION <i>→</i></b>
-      </button>
-     </div>
-     </div>
+
      <div class="continue-card hidden" id="continueCard">
-      <div>
-       <b>Saved game available</b>
-       <small id="continueLabel">Continue your last game</small>
+      <div class="continue-top">
+       <span aria-hidden="true" class="continue-gamepad">
+        <svg fill="currentColor" viewBox="0 0 64 48" xmlns="http://www.w3.org/2000/svg">
+         <path d="M19.5 6C11.8 6 6.2 11.4 4.7 19L2.2 32.2C1.1 38 5.5 43.2 11.3 43.2C14.7 43.2 17.8 41.3 19.5 38.3L22.6 33H41.4L44.5 38.3C46.2 41.3 49.3 43.2 52.7 43.2C58.5 43.2 62.9 38 61.8 32.2L59.3 19C57.8 11.4 52.2 6 44.5 6H19.5ZM19 14.5C20.1 14.5 21 15.4 21 16.5V20H24.5C25.6 20 26.5 20.9 26.5 22C26.5 23.1 25.6 24 24.5 24H21V27.5C21 28.6 20.1 29.5 19 29.5C17.9 29.5 17 28.6 17 27.5V24H13.5C12.4 24 11.5 23.1 11.5 22C11.5 20.9 12.4 20 13.5 20H17V16.5C17 15.4 17.9 14.5 19 14.5ZM45.5 14.5C47.2 14.5 48.5 15.8 48.5 17.5C48.5 19.2 47.2 20.5 45.5 20.5C43.8 20.5 42.5 19.2 42.5 17.5C42.5 15.8 43.8 14.5 45.5 14.5ZM39.5 20.5C41.2 20.5 42.5 21.8 42.5 23.5C42.5 25.2 41.2 26.5 39.5 26.5C37.8 26.5 36.5 25.2 36.5 23.5C36.5 21.8 37.8 20.5 39.5 20.5ZM51.5 20.5C53.2 20.5 54.5 21.8 54.5 23.5C54.5 25.2 53.2 26.5 51.5 26.5C49.8 26.5 48.5 25.2 48.5 23.5C48.5 21.8 49.8 20.5 51.5 20.5ZM45.5 26.5C47.2 26.5 48.5 27.8 48.5 29.5C48.5 31.2 47.2 32.5 45.5 32.5C43.8 32.5 42.5 31.2 42.5 29.5C42.5 27.8 43.8 26.5 45.5 26.5Z"/>
+        </svg>
+       </span>
+       <div class="continue-copy">
+        <b>Saved game available</b>
+        <small id="continueLabel">Marvel Arena &middot; 4 players in your squad</small>
+       </div>
       </div>
-      <button class="btn pass" id="continueGame">Continue Game &rarr;</button>
-      <button class="btn pass" id="discardGame">New Game</button>
+      <div class="continue-actions">
+       <button class="btn continue-btn-resume" id="continueGame" type="button">Continue Game &rarr;</button>
+       <button class="btn continue-btn-new" id="discardGame" type="button">New Game</button>
+      </div>
      </div>
+
      <div class="home-how" id="homeHow">
       <div class="home-section-title">
-       <h2>How to play</h2>
+       <h2>How to <em>play</em></h2>
       </div>
       <div class="how-strip home-how-grid">
-       <div><span class="step-number">01</span><b>Choose your arena</b><small>Enter Marvel or Cricket auction.</small></div>
-       <div><span class="step-number">02</span><b>Set your budget</b><small>Choose your purse and AI difficulty.</small></div>
-       <div><span class="step-number">03</span><b>Bid for players</b><small>Compete with AI rivals to build your squad.</small></div>
-       <div><span class="step-number">04</span><b>Win the battle</b><small>See how your dream team performs.</small></div>
+       <div class="how-step-card step-pink">
+        <span class="how-step-badge">01</span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <span aria-hidden="true" class="how-step-icon">
+         <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+         </svg>
+        </span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <div class="how-step-text">
+         <b>Choose your arena</b>
+         <small>Enter Marvel or Cricket auction.</small>
+        </div>
+        <span aria-hidden="true" class="how-step-arrow">
+         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+          <path d="m9 18 6-6-6-6"/>
+         </svg>
+        </span>
+       </div>
+
+       <div class="how-step-card step-mint">
+        <span class="how-step-badge">02</span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <span aria-hidden="true" class="how-step-icon">
+         <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18 4H6C3.79 4 2 5.79 2 8v10c0 2.21 1.79 4 4 4h12c2.21 0 4-1.79 4-4v-1.5c.55 0 1-.45 1-1v-5c0-.55-.45-1-1-1V8c0-2.21-1.79-4-4-4zm-1.5 11.5c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM6 6h12c.74 0 1.38.4 1.72 1H4.28C4.62 6.4 5.26 6 6 6z"/>
+         </svg>
+        </span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <div class="how-step-text">
+         <b>Set your budget</b>
+         <small>Choose your purse and AI difficulty.</small>
+        </div>
+        <span aria-hidden="true" class="how-step-arrow">
+         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+          <path d="m9 18 6-6-6-6"/>
+         </svg>
+        </span>
+       </div>
+
+       <div class="how-step-card step-orange">
+        <span class="how-step-badge">03</span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <span aria-hidden="true" class="how-step-icon">
+         <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M2 20h12v2H2v-2zM5.24 8.07l2.83-2.83 14.14 14.14-2.83 2.83L5.24 8.07zM12.31 1l5.66 5.66-2.83 2.83-5.66-5.66L12.31 1zM3.83 9.48l5.66 5.66-2.83 2.83-5.66-5.66 2.83-2.83z"/>
+         </svg>
+        </span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <div class="how-step-text">
+         <b>Bid for players</b>
+         <small>Compete with AI rivals to build your squad.</small>
+        </div>
+        <span aria-hidden="true" class="how-step-arrow">
+         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+          <path d="m9 18 6-6-6-6"/>
+         </svg>
+        </span>
+       </div>
+
+       <div class="how-step-card step-purple">
+        <span class="how-step-badge">04</span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <span aria-hidden="true" class="how-step-icon">
+         <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+         </svg>
+        </span>
+        <span aria-hidden="true" class="how-step-divider"></span>
+        <div class="how-step-text">
+         <b>Win the battle</b>
+         <small>See how your dream team performs.</small>
+        </div>
+        <span aria-hidden="true" class="how-step-arrow">
+         <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewBox="0 0 24 24">
+          <path d="m9 18 6-6-6-6"/>
+         </svg>
+        </span>
+       </div>
       </div>
      </div>
     </section>
+
     <section class="screen" id="settingsScreen">
      <button class="back-link" id="backHome">
       &larr; Back to home
@@ -201,6 +1048,7 @@
       </aside>
      </div>
     </section>
+
     <section class="screen" id="auctionScreen">
      <div class="auction-topline">
       <div class="auction-exit-purse">
@@ -360,6 +1208,7 @@
       </aside>
      </div>
     </section>
+
     <section class="screen" id="resultsScreen">
      <div class="results-hero">
       <span class="eyebrow">
@@ -426,7 +1275,7 @@
      </div>
     </section>
    </main>
-      <footer>
+   <footer>
     <span>
      &copy; 2026 BID BAAZ &middot; <a href="privacy.html" style="color: inherit; text-decoration: underline; opacity: 0.85;">Privacy Policy</a>
     </span>
@@ -435,6 +1284,7 @@
     </span>
    </footer>
   </div>
+
   <div aria-hidden="true" class="modal-backdrop hidden" id="playModal">
    <div class="modal-card">
     <button aria-label="Close" class="modal-close" data-close="playModal">
@@ -476,6 +1326,7 @@
     </button>
    </div>
   </div>
+
   <div aria-hidden="true" class="modal-backdrop hidden" id="arenaModal">
    <div class="modal-card">
     <button aria-label="Close" class="modal-close" data-close="arenaModal">
@@ -531,6 +1382,7 @@
     </button>
    </div>
   </div>
+
   <div class="pause-overlay hidden" id="pauseOverlay">
    <div class="pause-card">
     <span class="eyebrow">
@@ -550,11 +1402,428 @@
     </button>
    </div>
   </div>
+
   <div aria-live="polite" class="countdown-popup" id="countdownPopup">
   </div>
   <div class="toast" id="toast">
   </div>
-  <script src="script.js">
+
+  <script>
+const $=id=>document.getElementById(id), screens=["homeScreen","settingsScreen","auctionScreen","resultsScreen"];
+const state={mode:"marvel",budget:200,opponents:3,difficulty:"easy",teams:[],lots:[],lotIndex:0,current:null,bid:0,leader:null,passed:new Set(),closed:false,deadline:0,timer:null,aiTimer:null,results:[],battleRun:0,lastCountdown:null,aiThinking:false,paused:false,remaining:5,speed:1,skipMode:false,fixtures:[],matchDetails:[]};
+const marvel=[
+["Iron Man","iron","Genius · Tech armour",88,12,"Genius inventor with advanced armour and powerful weapons."],
+["Captain America","captain","Leader · Tactician",79,10,"Peak human conditioning, vibranium shield and exceptional leadership."],
+["Thor","thor","God · Heavy hitter",97,14,"Asgardian god with immense strength, lightning and Mjolnir or Stormbreaker."],
+["Spider-Man","spider","Agile · Quick thinker",84,8,"Superhuman strength, spider-sense, agility and web technology."],
+["Black Panther","panther","Tactician · Warrior",82,9,"Elite warrior, tactical genius and vibranium suit."],
+["Doctor Strange","strange","Mystic · Support",98,13,"Master of mystic arts with portals, shields and powerful spells."],
+["Hulk","hulk","Power · Tank",95,11,"Grows stronger with anger and possesses extraordinary durability."],
+["Black Widow","widow","Spy · Specialist",70,6,"Highly trained spy, tactician and hand-to-hand combat expert."],
+["Scarlet Witch","witch","Mystic · Reality warper",96,15,"Chaos magic, telekinesis and reality-altering abilities."],
+["Loki","loki","Trickster · Mystic",89,7,"Illusions, sorcery, shapeshifting and cunning strategy."],
+["Captain Marvel","marvel","Cosmic · Power",96,14,"Cosmic energy projection, flight and immense physical power."],
+["Ant-Man","ant","Stealth · Specialist",76,5,"Size manipulation and clever use of Pym technology."],
+["Doctor Doom","doom","Genius · Mystic · Ruler",99,18,"Brilliant scientist and sorcerer with advanced armour and powerful magic."],
+["Thanos","thanos","Titan · Heavy hitter",98,20,"A near-unstoppable Titan with immense strength, durability and tactical skill."],
+["Silver Surfer","surfer","Cosmic · Energy",98,18,"Power Cosmic grants energy control, flight, speed and matter manipulation."],
+["Jean Grey (Phoenix)","phoenix","Mystic · Cosmic",100,25,"Phoenix Force host with vast telepathy, telekinesis and cosmic power."],
+["Galactus","galactus","Cosmic · Entity",100,30,"Cosmic entity with power on a scale far beyond most heroes and villains."],
+["Deadpool","deadpool","Regeneration · Specialist",80,8,"Unpredictable fighter with an extraordinary healing factor."],
+["Wolverine","wolverine","Regeneration · Warrior",85,9,"Adamantium claws, enhanced senses and powerful regeneration."],
+["Vision","vision","Android · Energy",90,10,"Density control, flight, super strength and energy projection."],
+["Sentry","sentry","Cosmic · Power",100,28,"Overwhelming strength, flight and energy abilities with immense potential."],
+["Ultron","ultron","AI · Technology",91,11,"Adaptive artificial intelligence with advanced armour and weapon systems."],
+["Hawkeye","hawkeye","Archer · Tactician",76,6,"Master archer with trick arrows, precision and exceptional aim."],
+["Magneto","magneto","Mutant · Energy control",97,17,"Controls magnetic fields and can manipulate metal on a massive scale."],
+["Ghost Rider","ghost","Supernatural · Mystic",98,18,"Supernatural Spirit of Vengeance with hellfire and formidable resilience."],
+["Hela","hela","Asgardian · Mystic",96,16,"Asgardian goddess with immense strength and conjured weapons."],
+["Venom","venom","Symbiote · Heavy hitter",89,10,"Powerful alien symbiote with strength, agility and regeneration."],
+["Carnage","carnage","Symbiote · Heavy hitter",91,12,"Extremely dangerous symbiote with shapeshifting weapons and regeneration."],
+["Quicksilver","quicksilver","Speedster · Specialist",86,9,"Superhuman speed and rapid reflexes."],
+["Shang-Chi","shangchi","Martial artist · Warrior",86,9,"Exceptional martial artist with mastery of combat techniques."],
+["Winter Soldier","winter","Assassin · Warrior",82,8,"Elite combatant with a powerful cybernetic arm."],
+["Daredevil","daredevil","Martial artist · Specialist",78,7,"Enhanced senses, radar perception and elite martial arts."],
+["War Machine","warmachine","Genius · Tech armour",87,10,"Military-grade powered armour with heavy weapons and flight."],
+["Adam Warlock","adam","Cosmic · Mystic",97,17,"Cosmic energy, enhanced physical abilities and powerful mystical potential."],
+["Star-Lord","starlord","Tactician · Tech",80,8,"Resourceful leader using advanced gear and tactical improvisation."],
+["Groot","groot","Flora · Heavy hitter",82,8,"Powerful plant-based body, regeneration and limb manipulation."],
+["Rocket Raccoon","rocket","Genius · Tech",78,7,"Brilliant engineer, weapons expert and tactical problem-solver."],
+["Mysterio","mysterio","Illusion · Tactician",77,7,"Master of elaborate illusions, drones and psychological tricks."],
+["Green Goblin","goblin","Tech · Heavy hitter",84,9,"Enhanced strength, agility and advanced weapons on a glider."]];
+const cricketRoster=[{"name":"Virat Kohli","id":"virat-kohli","role":"Batter","rating":96,"base":1,"desc":"Batter · Current IPL pool","group":0},{"name":"Jasprit Bumrah","id":"jasprit-bumrah","role":"Bowler","rating":98,"base":1,"desc":"Bowler · Current IPL pool","group":1},{"name":"Rohit Sharma","id":"rohit-sharma","role":"Batter","rating":94,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Hardik Pandya","id":"hardik-pandya","role":"All-rounder","rating":90,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Ravindra Jadeja","id":"ravindra-jadeja","role":"All-rounder","rating":94,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Suryakumar Yadav","id":"suryakumar-yadav","role":"Batter","rating":95,"base":1,"desc":"Batter · Current IPL pool","group":0},{"name":"Rashid Khan","id":"rashid-khan","role":"Bowler","rating":96,"base":1,"desc":"Bowler · Current IPL pool","group":1},{"name":"Jos Buttler","id":"jos-buttler","role":"Wicketkeeper","rating":95,"base":1,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Trent Boult","id":"trent-boult","role":"Bowler","rating":89,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Glenn Maxwell","id":"glenn-maxwell","role":"All-rounder","rating":84,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Rishabh Pant","id":"rishabh-pant","role":"Wicketkeeper","rating":82,"base":0.2,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Pat Cummins","id":"pat-cummins","role":"Bowler","rating":94,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"MS Dhoni","id":"ms-dhoni","role":"Wicketkeeper","rating":91,"base":0.5,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Ruturaj Gaikwad","id":"ruturaj-gaikwad","role":"Batter","rating":83,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Sanju Samson","id":"sanju-samson","role":"Wicketkeeper","rating":88,"base":0.2,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Shivam Dube","id":"shivam-dube","role":"All-rounder","rating":82,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Dewald Brevis","id":"dewald-brevis","role":"Batter","rating":90,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Noor Ahmad","id":"noor-ahmad","role":"Bowler","rating":91,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"KL Rahul","id":"kl-rahul","role":"Wicketkeeper","rating":89,"base":0.5,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Axar Patel","id":"axar-patel","role":"All-rounder","rating":88,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Kuldeep Yadav","id":"kuldeep-yadav","role":"Bowler","rating":93,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Mitchell Starc","id":"mitchell-starc","role":"Bowler","rating":94,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Tristan Stubbs","id":"tristan-stubbs","role":"Batter","rating":90,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"David Miller","id":"david-miller","role":"Batter","rating":92,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Shubman Gill","id":"shubman-gill","role":"Batter","rating":84,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Sai Sudharsan","id":"sai-sudharsan","role":"Batter","rating":88,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Mohammed Siraj","id":"mohammed-siraj","role":"Bowler","rating":83,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Kagiso Rabada","id":"kagiso-rabada","role":"Bowler","rating":91,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Prasidh Krishna","id":"prasidh-krishna","role":"Bowler","rating":85,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Washington Sundar","id":"washington-sundar","role":"All-rounder","rating":89,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Shreyas Iyer","id":"shreyas-iyer","role":"Batter","rating":82,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Arshdeep Singh","id":"arshdeep-singh","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Yuzvendra Chahal","id":"yuzvendra-chahal","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Marcus Stoinis","id":"marcus-stoinis","role":"All-rounder","rating":86,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Marco Jansen","id":"marco-jansen","role":"All-rounder","rating":91,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Rinku Singh","id":"rinku-singh","role":"Batter","rating":84,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Sunil Narine","id":"sunil-narine","role":"All-rounder","rating":93,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Varun Chakravarthy","id":"varun-chakravarthy","role":"Bowler","rating":82,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Cameron Green","id":"cameron-green","role":"All-rounder","rating":84,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Matheesha Pathirana","id":"matheesha-pathirana","role":"Bowler","rating":86,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Nicholas Pooran","id":"nicholas-pooran","role":"Wicketkeeper","rating":90,"base":0.5,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Mitchell Marsh","id":"mitchell-marsh","role":"All-rounder","rating":83,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Avesh Khan","id":"avesh-khan","role":"Bowler","rating":91,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Mohammed Shami","id":"mohammed-shami","role":"Bowler","rating":88,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Wanindu Hasaranga","id":"wanindu-hasaranga","role":"All-rounder","rating":86,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Yashasvi Jaiswal","id":"yashasvi-jaiswal","role":"Batter","rating":85,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Dhruv Jurel","id":"dhruv-jurel","role":"Wicketkeeper","rating":93,"base":0.5,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Riyan Parag","id":"riyan-parag","role":"Batter","rating":88,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Jofra Archer","id":"jofra-archer","role":"Bowler","rating":93,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Ravi Bishnoi","id":"ravi-bishnoi","role":"Bowler","rating":92,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Sandeep Sharma","id":"sandeep-sharma","role":"Bowler","rating":90,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Rajat Patidar","id":"rajat-patidar","role":"Batter","rating":85,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Phil Salt","id":"phil-salt","role":"Wicketkeeper","rating":87,"base":0.2,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Josh Hazlewood","id":"josh-hazlewood","role":"Bowler","rating":91,"base":0.5,"desc":"Bowler · Current IPL pool","group":1},{"name":"Bhuvneshwar Kumar","id":"bhuvneshwar-kumar","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Krunal Pandya","id":"krunal-pandya","role":"All-rounder","rating":92,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Tim David","id":"tim-david","role":"Batter","rating":84,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Abhishek Sharma","id":"abhishek-sharma","role":"Batter","rating":89,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Travis Head","id":"travis-head","role":"Batter","rating":94,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Heinrich Klaasen","id":"heinrich-klaasen","role":"Wicketkeeper","rating":94,"base":0.5,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Ishan Kishan","id":"ishan-kishan","role":"Wicketkeeper","rating":91,"base":0.5,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Nitish Kumar Reddy","id":"nitish-kumar-reddy","role":"All-rounder","rating":93,"base":0.5,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Harshal Patel","id":"harshal-patel","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · Current IPL pool","group":1},{"name":"Tilak Varma","id":"tilak-varma","role":"Batter","rating":86,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Aiden Markram","id":"aiden-markram","role":"All-rounder","rating":86,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Sam Curran","id":"sam-curran","role":"All-rounder","rating":86,"base":0.2,"desc":"All-rounder · Current IPL pool","group":3},{"name":"Jitesh Sharma","id":"jitesh-sharma","role":"Wicketkeeper","rating":85,"base":0.2,"desc":"Wicketkeeper · Current IPL pool","group":2},{"name":"Vaibhav Suryavanshi","id":"vaibhav-suryavanshi","role":"Batter","rating":92,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Ayush Mhatre","id":"ayush-mhatre","role":"Batter","rating":93,"base":0.5,"desc":"Batter · Current IPL pool","group":0},{"name":"Priyansh Arya","id":"priyansh-arya","role":"Batter","rating":85,"base":0.2,"desc":"Batter · Current IPL pool","group":0},{"name":"Suresh Raina","id":"suresh-raina","role":"Batter","rating":87,"base":0.2,"desc":"Batter · IPL legend","group":0},{"name":"AB de Villiers","id":"ab-de-villiers","role":"Wicketkeeper","rating":98,"base":1,"desc":"Wicketkeeper · IPL legend","group":2},{"name":"Chris Gayle","id":"chris-gayle","role":"Batter","rating":97,"base":1,"desc":"Batter · IPL legend","group":0},{"name":"Shikhar Dhawan","id":"shikhar-dhawan","role":"Batter","rating":91,"base":0.5,"desc":"Batter · IPL legend","group":0},{"name":"Gautam Gambhir","id":"gautam-gambhir","role":"Batter","rating":87,"base":0.2,"desc":"Batter · IPL legend","group":0},{"name":"Robin Uthappa","id":"robin-uthappa","role":"Wicketkeeper","rating":83,"base":0.2,"desc":"Wicketkeeper · IPL legend","group":2},{"name":"Ambati Rayudu","id":"ambati-rayudu","role":"Batter","rating":90,"base":0.5,"desc":"Batter · IPL legend","group":0},{"name":"Michael Hussey","id":"michael-hussey","role":"Batter","rating":90,"base":0.5,"desc":"Batter · IPL legend","group":0},{"name":"Brendon McCullum","id":"brendon-mccullum","role":"Wicketkeeper","rating":92,"base":0.5,"desc":"Wicketkeeper · IPL legend","group":2},{"name":"Dinesh Karthik","id":"dinesh-karthik","role":"Wicketkeeper","rating":91,"base":0.5,"desc":"Wicketkeeper · IPL legend","group":2},{"name":"Parthiv Patel","id":"parthiv-patel","role":"Wicketkeeper","rating":90,"base":0.5,"desc":"Wicketkeeper · IPL legend","group":2},{"name":"Shane Watson","id":"shane-watson","role":"All-rounder","rating":94,"base":0.5,"desc":"All-rounder · IPL legend","group":3},{"name":"Kieron Pollard","id":"kieron-pollard","role":"All-rounder","rating":94,"base":0.5,"desc":"All-rounder · IPL legend","group":3},{"name":"Irfan Pathan","id":"irfan-pathan","role":"All-rounder","rating":86,"base":0.2,"desc":"All-rounder · IPL legend","group":3},{"name":"Yusuf Pathan","id":"yusuf-pathan","role":"All-rounder","rating":82,"base":0.2,"desc":"All-rounder · IPL legend","group":3},{"name":"Lasith Malinga","id":"lasith-malinga","role":"Bowler","rating":96,"base":1,"desc":"Bowler · IPL legend","group":1},{"name":"Dale Steyn","id":"dale-steyn","role":"Bowler","rating":96,"base":1,"desc":"Bowler · IPL legend","group":1},{"name":"Zaheer Khan","id":"zaheer-khan","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · IPL legend","group":1},{"name":"Harbhajan Singh","id":"harbhajan-singh","role":"Bowler","rating":86,"base":0.2,"desc":"Bowler · IPL legend","group":1},{"name":"Amit Mishra","id":"amit-mishra","role":"Bowler","rating":89,"base":0.5,"desc":"Bowler · IPL legend","group":1},{"name":"Ashish Nehra","id":"ashish-nehra","role":"Bowler","rating":88,"base":0.2,"desc":"Bowler · IPL legend","group":1},{"name":"RP Singh","id":"rp-singh","role":"Bowler","rating":85,"base":0.2,"desc":"Bowler · IPL legend","group":1},{"name":"Munaf Patel","id":"munaf-patel","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · IPL legend","group":1},{"name":"Praveen Kumar","id":"praveen-kumar","role":"Bowler","rating":87,"base":0.2,"desc":"Bowler · IPL legend","group":1},{"name":"S. Sreesanth","id":"s-sreesanth","role":"Bowler","rating":92,"base":0.5,"desc":"Bowler · IPL legend","group":1}];
+const names=["Rival Red","The Strategist","Budget Boss","Power XI","The Underdogs","Auction Ace","Night Owls"],icons=["🔴","🧠","💰","⚔️","🐺","🎯","🌙"];
+function money(n){return `₹${n} Cr`;} function teamName(i){return i?names[i-1]:"Your Team";} function teamIcon(i){return i?icons[i-1]:"👑";}
+function show(id){screens.forEach(s=>$(s).classList.toggle("active",s===id));scrollTo(0,0);}
+function toast(t){$("toast").textContent=t;$("toast").classList.add("show");setTimeout(()=>$("toast").classList.remove("show"),2000);}
+function budget(){return ({easy:200,medium:150,hard:100})[state.difficulty];}
+function updateSettings(){let n=+$("opponentCount").value;state.budget=budget();$("opponentCountLabel").textContent=n;$("teamCountPreview").textContent=`${n+1} teams`;$("budgetPreview").textContent=money(state.budget);$("difficultyPreview").textContent=state.difficulty[0].toUpperCase()+state.difficulty.slice(1);const tip=$("arenaTip");if(tip){tip.textContent=state.mode==="cricket"?"🏏 Build a balanced cricket squad with batters, bowlers, all-rounders and a wicketkeeper.":"🦸 Assemble a powerful team of heroes and villains, then outbid your AI rivals.";}}
+function chooseMode(m){if(m==="anime"){toast("Anime Arena is coming soon!");return;}state.mode=m;$("selectedArenaName").textContent=m==="marvel"?"Marvel Arena":"Cricket Auction";show("settingsScreen");updateSettings();}
+function svgPortrait(type){
+ const c={doom:["#315c4d","#c7a66a","#273342"],thanos:["#6d4c91","#c2a4d5","#342b49"],surfer:["#91b9c7","#e0edf0","#304c61"],phoenix:["#a83227","#f0b94d","#482b31"],galactus:["#604b91","#d0a7e8","#263b68"],deadpool:["#a62635","#e3c2a2","#262a35"],wolverine:["#d4a52c","#e4c1a2","#334b73"],vision:["#a43d4c","#d4b66d","#355d5b"],sentry:["#d7b94d","#e6d9a9","#34527c"],ultron:["#9b3338","#d1d4d8","#343d4c"],hawkeye:["#654d76","#c49a7b","#37435a"],magneto:["#6c385f","#d1b39a","#873c45"],ghost:["#5a5667","#d7d8dc","#2a2c3c"],hela:["#315c4a","#b6a4a0","#242d40"],venom:["#202632","#c3d3d8","#10151d"],carnage:["#9b2632","#d3a29a","#3b202b"],quicksilver:["#7e9eae","#d8dce0","#34465e"],shangchi:["#9b4336","#d7ad88","#293f4e"],winter:["#4b6078","#d1ad91","#333c4a"],daredevil:["#9d2e35","#c49b83","#292b37"],warmachine:["#53616e","#c3cbd2","#27313d"],adam:["#a17b3c","#e4c68a","#425c76"],starlord:["#8b4b3c","#d0a17e","#354a61"],groot:["#796044","#b6a078","#3c5946"],rocket:["#8a573c","#c99570","#354354"],mysterio:["#4b6e84","#c6a66d","#4d3c70"],goblin:["#47734b","#c8a17b","#553c62"],iron:["#b52d37","#e8b94e","#28364a"],hulk:["#32884d","#9ad46e","#263d34"],witch:["#92243e","#d74c67","#392239"],captain:["#244b80","#d2b36c","#9b2c3d"],thor:["#466a91","#c9b17d","#35435b"],spider:["#ad2936","#2c4c84","#202c40"],panther:["#242d42","#a4b0c0","#493b72"],strange:["#354e7b","#bf8c62","#a13442"],widow:["#673c36","#c59a79","#252d3b"],loki:["#345a4b","#c9a75d","#25374a"],marvel:["#a34434","#e1bd64","#274e83"],ant:["#704139","#caa17c","#303d50"]};
+ let p=c[type]||["#3c6687","#d2a17e","#26384d"],head=type==="iron"?`<path d="M44 43Q80 5 116 43L108 99 80 119 52 99Z" fill="${p[0]}" stroke="${p[1]}" stroke-width="5"/><path d="M53 54L73 61 80 54 89 61 107 54 101 88 80 105 59 88Z" fill="#b93438"/><path d="M59 65l16 5-7 7-10-3m27-4 16-5 1 9-10 3" fill="#e4faff"/>`:type==="hulk"?`<path d="M42 57Q42 17 80 19Q118 17 118 57L108 100Q96 122 80 122Q58 119 49 98Z" fill="${p[0]}" stroke="#245c3b" stroke-width="4"/><path d="M42 49Q52 9 81 18Q111 9 119 49L102 40 91 31 77 43 58 35Z" fill="#24683c"/>`:type==="witch"?`<path d="M45 58Q45 20 80 20Q115 20 115 58L107 99Q96 119 80 119Q59 116 50 97Z" fill="#d39a7e"/><path d="M40 63Q25 7 80 8Q135 8 120 65L107 45 96 27 80 39 61 28 49 51Z" fill="#9c263f"/><path d="M49 20L58 1 69 23M92 23L105 1 114 27" stroke="#d94c67" stroke-width="8" fill="none"/>`:`<path d="M44 57Q44 18 80 19Q116 18 116 57L108 99Q96 120 80 120Q58 117 49 97Z" fill="${p[1]}" stroke="#202b3b" stroke-width="3"/><path d="M42 55Q45 13 80 14Q115 13 118 55L104 43 92 29 79 39 59 31Z" fill="${p[0]}"/>`;
+ let suit=type==="hulk"?"#34894d":type==="iron"?"#a92d38":type==="witch"?"#70223b":p[2];
+ const marks={iron:"ARC",captain:"★",thor:"⚡",spider:"WEB",panther:"CLAW",strange:"EYE",hulk:"SMASH",widow:"HOUR",witch:"HEX",loki:"TRICK",marvel:"STAR",ant:"ANT",doom:"DOOM",thanos:"GEM",surfer:"COSMIC",phoenix:"PHOENIX",galactus:"WORLD",deadpool:"DP",wolverine:"X",vision:"MIND",sentry:"SUN",ultron:"AI",hawkeye:"BOW",magneto:"MAGNET",ghost:"HELLFIRE",hela:"CROWN",venom:"SYM",carnage:"RED",quicksilver:"SPEED",shangchi:"RING",winter:"ARM",daredevil:"DD",warmachine:"GUN",adam:"SOUL",starlord:"STAR",groot:"LEAF",rocket:"BLAST",mysterio:"ILLUSION",goblin:"BOMB"};
+ const mark=marks[type]||"HERO";
+ return `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 180"><defs><linearGradient id="b" x2="1" y2="1"><stop stop-color="${p[2]}"/><stop offset="1" stop-color="#101827"/></linearGradient></defs><rect width="160" height="180" rx="16" fill="url(#b)"/><circle cx="80" cy="65" r="68" fill="${p[1]}" opacity=".15"/><path d="M24 180Q28 122 58 112L80 129 102 112Q132 122 136 180Z" fill="${suit}" stroke="${p[1]}" stroke-opacity=".55" stroke-width="3"/>${head}${type==="iron"?"":`<path d="M63 75l12 1m10 0 12-1M72 94q8 6 16 0" stroke="#46312e" stroke-width="3" fill="none" stroke-linecap="round"/>`}<g><circle cx="123" cy="139" r="20" fill="#0b1422" stroke="${p[1]}" stroke-width="2.5"/><circle cx="123" cy="139" r="15" fill="${p[0]}"/><text x="123" y="142" text-anchor="middle" font-family="Arial,sans-serif" font-size="${mark.length>5?5.5:mark.length>3?7:10}" font-weight="800" fill="#fff">${mark}</text></g></svg>`;
+}
+const marvelPortraitFiles={
+ iron:"iron-man.png",captain:"captain-america.png",thor:"thor.png",spider:"spider-man.png",panther:"black-panther.png",strange:"doctor-strange.png",hulk:"hulk.png",widow:"black-widow.png",witch:"scarlet-witch.png",loki:"loki.png",marvel:"captain-marvel-duplicate.png",ant:"ant-man.png",doom:"doctor-doom.png",thanos:"thanos.png",surfer:"silver-surfer.png",phoenix:"jean-grey-phoenix.png",galactus:"galactus.png",deadpool:"deadpool.png",wolverine:"wolverine.png",vision:"vision.png",sentry:"sentry.png",ultron:"ultron.png",hawkeye:"hawkeye.png",magneto:"magneto.png",ghost:"ghost-rider.png",hela:"hela.png",venom:"venom.png",carnage:"carnage.png",quicksilver:"quicksilver.png",shangchi:"shang-chi.png",winter:"winter-soldier.png",daredevil:"daredevil.png",warmachine:"war-machine.png",adam:"adam-warlock.png",starlord:"star-lord.png",groot:"groot.png",rocket:"rocket-raccoon.png",mysterio:"mysterio.png",goblin:"green-goblin.png"
+};
+const GITHUB_IMAGE_BASE = "https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/";
+function portraitSrc(kind){
+ const file=marvelPortraitFiles[kind];
+ if(state.mode==="marvel"&&file) return GITHUB_IMAGE_BASE+encodeURIComponent(file);
+ if(state.mode==="cricket") return GITHUB_IMAGE_BASE+encodeURIComponent(`${kind}.webp`);
+ return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svgPortrait(kind));
+}
+function stopTimers(){clearInterval(state.timer);clearTimeout(state.aiTimer);}
+function shuffle(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
+function buildMarvelLots(){
+ const all=marvel.map(a=>{const rating=a[3],special=rating>=95;const base=rating===100?50:rating>=98?30:rating>=95?20:a[4];return {name:a[0],portrait:a[1],role:a[2],rating,base,desc:a[5],special};});
+ const special=shuffle(all.filter(p=>p.special)),regular=shuffle(all.filter(p=>!p.special));
+ const specialCount=Math.min(special.length,Math.floor(Math.random()*3));
+ const specialLots=special.slice(0,specialCount);
+ const normalLots=shuffle(regular.slice(0,15-specialCount));
+ const result=Array(15).fill(null);
+ const positions=shuffle(Array.from({length:13},(_,i)=>i+1)).slice(0,specialCount);
+ positions.forEach((pos,i)=>{result[pos]=specialLots[i];});
+ let cursor=0;
+ for(let i=0;i<result.length;i++){if(result[i]===null)result[i]=normalLots[cursor++];}
+ return result;
+}
+function buildCricketLots(){
+ const teams=state.opponents+1,total=teams*12,targets=[4,3,2,3].map(n=>n*teams),chosen=[],used=new Set();
+ [0,1,2,3].forEach((g,i)=>{const pool=shuffle(cricketRoster.filter(p=>p.group===g));const take=Math.min(targets[i],pool.length);pool.slice(0,take).forEach(p=>{chosen.push(p);used.add(p.id);});});
+ if(chosen.length<total){shuffle(cricketRoster.filter(p=>!used.has(p.id))).slice(0,total-chosen.length).forEach(p=>chosen.push(p));}
+ return chosen.slice(0,total).map(p=>({...p,portrait:p.id,desc:p.desc}));
+}
+function start(){window.__bidBaazHideSavedCard=false;stopTimers();state.speed=1;state.skipMode=false;syncAuctionMenuSelection();document.querySelector("#bidOne").textContent=state.mode==="cricket"?"+ ₹20 L":"+ ₹1 Cr";document.querySelector("#bidFive").textContent=state.mode==="cricket"?"+ ₹50 L":"+ ₹5 Cr";document.querySelector("#bidTen").textContent=state.mode==="cricket"?"+ ₹1 Cr":"+ ₹10 Cr";state.opponents=+$("opponentCount").value;state.budget=budget();state.teams=[{name:"Your Team",budget:state.budget,spent:0,players:[]}];for(let i=0;i<+$("opponentCount").value;i++)state.teams.push({name:names[i],budget:state.budget,spent:0,players:[]});state.lots=state.mode==="marvel"?buildMarvelLots():buildCricketLots();state.lotIndex=0;state.battleRun=0;state.paused=false;show("auctionScreen");loadLot();saveProgress();}
+function loadLot(){stopTimers();if(state.lotIndex>=state.lots.length)return finish();state.current=state.lots[state.lotIndex];state.bid=0;state.leader=null;state.passed=new Set();state.closed=false;
+ $("auctionRound").textContent=`PLAYER ${state.lotIndex+1} OF ${state.lots.length}`;$("lotCategory").textContent=state.mode==="marvel"?"HERO / VILLAIN":state.current.role.toUpperCase();$("lotPortrait").innerHTML=`<img alt="${state.current.name} illustrated portrait" src="${portraitSrc(state.current.portrait)}">`;$("lotName").textContent=state.current.name;$("lotDescription").textContent=state.current.role+" — "+state.current.desc;$("lotRating").textContent=state.current.rating;$("lotRank").textContent=state.current.special?`SPECIAL · RATING ${state.current.rating}`:`RATING ${state.current.rating}`;$("basePrice").textContent=money(state.current.base);$("currentBid").textContent="—";$("bidStatus").textContent="Choose your bid or pass. AI rivals will keep playing.";$("soldResult").classList.add("hidden");$("soldResult").innerHTML="";$("countdownPopup").classList.remove("show");$("countdown").classList.remove("urgent");controls(true);render();deadline(5);if(state.skipMode){state.passed.add(0);controls(false);scheduleAI(30);}else scheduleAI(850);saveProgress();}
+function controls(on){["bidOne","bidFive","bidTen","passButton"].forEach(id=>$(id).disabled=!on);}
+function syncControls(){const locked=state.closed||state.paused||state.passed.has(0)||state.leader===0||(state.mode==='cricket'&&state.teams[0].players.length>=12);['bidOne','bidFive','bidTen'].forEach(id=>$(id).disabled=locked);$('passButton').disabled=state.closed||state.paused||state.passed.has(0);}
+function deadline(seconds){state.deadline=Date.now()+(seconds*1000)/Math.max(1,state.speed||1);state.lastCountdown=null;clearInterval(state.timer);$("countdown").classList.remove("urgent");tick();state.timer=setInterval(tick,50);}
+function tick(){
+ if(state.closed)return;
+ let left=Math.max(0,(state.deadline-Date.now())/1000),gameLeft=left*Math.max(1,state.speed||1);
+ const shown=gameLeft<=0?0:Math.min(5,Math.ceil(gameLeft));
+ const timer=$("countdown");
+ timer.textContent=shown;
+ timer.classList.toggle("urgent",gameLeft<=4&&gameLeft>0);
+ if([3,2,1].includes(shown)&&shown!==state.lastCountdown){
+   state.lastCountdown=shown;
+   const popup=$("countdownPopup");
+   popup.textContent=shown===1?"1 second to go":`${shown} seconds to go`;
+   popup.classList.remove("show");void popup.offsetWidth;popup.classList.add("show");
+   clearTimeout(state.popupTimer);state.popupTimer=setTimeout(()=>popup.classList.remove("show"),850);
+ }
+ if(left<=0)resolve();
+}
+function afterBid(){deadline(5);}
+function placeBid(team,step){if(state.closed||state.passed.has(team)||team===state.leader)return;if(state.mode==="cricket"&&state.teams[team].players.length>=12){state.passed.add(team);render();return;}let amount=state.leader===null?state.current.base:state.bid+step;if(state.teams[team].budget<amount)return;state.bid=amount;state.leader=team;$("currentBid").textContent=money(amount);$("bidStatus").innerHTML=`<span class="bidder-action">${teamName(team)}</span> <span class="bid-action-word">bids</span> <strong class="bid-amount">${money(amount)}</strong>`;render();if(allOtherBiddersDone()){resolve();}else{afterBid();scheduleAI(650);}saveProgress();}
+function humanBid(step){if(state.mode==="cricket"&&state.teams[0].players.length>=12){toast("Your 12-player squad is complete.");return;}if(state.leader===0){toast("You are already leading.");return;}let amount=state.leader===null?state.current.base:state.bid+step;if(state.teams[0].budget<amount){toast("Not enough budget for this bid.");return;}placeBid(0,step);}
+function pass(){if(state.closed||state.passed.has(0))return;state.passed.add(0);controls(false);$("bidStatus").textContent="You passed on this character. AI teams are still bidding.";render();if(allOtherBiddersDone())resolve();else scheduleAI(300);saveProgress();}
+function playerRoleKey(p){
+ const role=(p.role||"").toLowerCase();
+ if(state.mode==="cricket"){
+   if(role.includes("bowler"))return "bowling";
+   if(role.includes("batter"))return "batting";
+   if(role.includes("all-rounder"))return "allround";
+   if(role.includes("wicketkeeper"))return "keeper";
+ }
+ return role.split(/[ ·-]/)[0]||"specialist";
+}
+function aiTeamNeed(team){
+ const keys=team.players.map(playerRoleKey);
+ if(state.mode==="cricket"){
+   const counts={batting:0,bowling:0,allround:0,keeper:0};
+   keys.forEach(k=>{if(counts[k]!==undefined)counts[k]++;});
+   return counts;
+ }
+ const unique=new Set(keys);
+ return {unique:unique.size,total:keys.length};
+}
+function aiValue(i){
+ const team=state.teams[i],p=state.current,d=state.difficulty;
+ const roleKey=playerRoleKey(p),needs=aiTeamNeed(team);
+ let fit=0;
+ if(state.mode==="cricket"){
+   const count=needs[roleKey]||0;
+   fit=count===0?7:count===1?3:-Math.min(8,count*3);
+ }else{
+   fit=needs.unique>=team.players.length?5:Math.max(-3,2-needs.unique);
+   if(p.rating>=95)fit+=d==="hard"?9:d==="medium"?6:3;
+   if(p.rating>=98)fit+=d==="hard"?10:d==="medium"?6:3;
+   if(p.rating===100)fit+=d==="hard"?12:d==="medium"?7:4;
+ }
+ const remaining=state.lots.length-state.lotIndex;
+ const idealSquad=Math.min(6,Math.max(3,Math.ceil((team.players.length+remaining)/(state.opponents+1))));
+ const rosterNeed=team.players.length<idealSquad?1.12:team.players.length>=idealSquad?0.78:1;
+ const multiplier={easy:.83,medium:1.16,hard:1.55}[d];
+ return Math.max(p.base,Math.round((p.base+Math.max(0,p.rating-70)*.9+fit)*multiplier*rosterNeed));
+}
+function aiCap(i){
+ const team=state.teams[i],p=state.current,remaining=state.lots.length-state.lotIndex-1;
+ const raw=aiValue(i);
+ if(state.mode==="marvel"){
+   const purseFloor=state.difficulty==="hard"?Math.max(0,team.budget-(remaining>0?12:0)):
+     state.difficulty==="medium"?Math.max(0,team.budget-(remaining>0?18:0)):Math.max(0,team.budget-(remaining>0?25:0));
+   const tierExtra=p.rating>=100?70:p.rating>=98?55:p.rating>=95?43:p.rating>=90?42:p.rating>=85?30:p.rating>=80?22:14;
+   const tierCap=p.base+tierExtra;
+   const difficultyCap=state.difficulty==="hard"?tierCap:state.difficulty==="medium"?Math.min(tierCap,raw+12):Math.min(tierCap,raw);
+   return Math.min(team.budget,purseFloor,difficultyCap);
+ }
+ const desired=12;
+ const slots=Math.max(0,desired-team.players.length-1);
+ const reservePerSlot={easy:3,medium:4,hard:5}[state.difficulty];
+ return Math.min(team.budget-slots*reservePerSlot,raw);
+}
+function scheduleAI(ms){clearTimeout(state.aiTimer);if(!state.closed)state.aiTimer=setTimeout(aiStep,ms/Math.max(1,state.speed||1));}
+function allOtherBiddersDone(){return state.teams.every((t,i)=>i===state.leader||state.passed.has(i)||t.budget<=0||(state.mode==="cricket"&&t.players.length>=12));}
+function aiStep(){
+ if(state.closed)return;
+ const difficulty=state.difficulty;
+ const next=state.leader===null?state.current.base:state.bid+(state.mode==="cricket"?.2:1);
+ const candidates=state.teams.map((t,i)=>i).filter(i=>i>0&&!state.passed.has(i)&&i!==state.leader&&state.teams[i].budget>=next&&(state.mode!=="cricket"||state.teams[i].players.length<12));
+ if(!candidates.length){
+   state.teams.forEach((team,i)=>{
+     if(i>0 && i!==state.leader && !state.passed.has(i) &&
+        (team.budget<next || (state.mode==="cricket" && team.players.length>=12))) state.passed.add(i);
+   });
+   const humanCanStillBid=!state.passed.has(0) && state.leader!==0 &&
+     state.teams[0].budget>=next && !(state.mode==="cricket" && state.teams[0].players.length>=12);
+   render();
+   if(!humanCanStillBid) resolve();
+   return;
+ }
+ const ranked=candidates.map(i=>{
+   const t=state.teams[i],cap=aiCap(i),room=cap-next;
+   const rosterUrgency=Math.max(0,5-t.players.length)*2.5;
+   const purseRatio=t.budget/state.budget;
+   const powerPriority=state.mode==="marvel"?state.current.rating*.28:state.current.rating*.1;
+   const personality=difficulty==="hard"?Math.random()*0.25:difficulty==="medium"?Math.random()*4:Math.random()*14;
+   const score=(room>=0?45:0)+rosterUrgency+Math.min(22,Math.max(0,room)*.35)+purseRatio*5+powerPriority+personality;
+   return {i,cap,score};
+ }).sort((a,b)=>b.score-a.score);
+ const {i,cap}=ranked[0];
+ const room=cap-state.bid;
+ let step=1;
+ if(state.mode==="cricket"){if(difficulty==="hard")step=room>=1?1:room>=.5?.5:.2;else if(difficulty==="medium")step=room>=.5&&Math.random()<.68?.5:.2;else step=.2;}
+ else if(difficulty==="hard")step=room>=1?1:room>=.5?.5:.2;
+ else if(difficulty==="medium")step=room>=.5&&Math.random()<.68?.5:.2;
+ if(state.mode==="marvel"){if(difficulty==="hard")step=room>=10?10:room>=5?5:1;else if(difficulty==="medium")step=room>=5&&Math.random()<.68?5:1;}
+ const amount=state.leader===null?state.current.base:state.bid+step;
+ const canAfford=amount<=cap&&amount<=state.teams[i].budget;
+ const chance={easy:.64,medium:.96,hard:1}[difficulty];
+ const willing=canAfford&&(difficulty==="hard"||Math.random()<chance);
+ if(willing){
+   placeBid(i,step);
+ }else{
+   state.passed.add(i);render();if(allOtherBiddersDone())resolve();else scheduleAI(difficulty==="hard"?260:400+Math.random()*250);
+ }
+}
+function resolve(){if(state.closed)return;state.closed=true;stopTimers();controls(false);
+ if(state.leader!==null){let t=state.teams[state.leader];t.budget-=state.bid;t.spent+=state.bid;t.players.push({...state.current,price:state.bid});$("soldResult").innerHTML=`<b class="sold-check">🏆</b><span><small>SOLD TO</small><strong>${t.name}</strong><em>${money(state.bid)} · Winning bid</em></span>`;toast(`${state.current.name} sold to ${t.name}!`);}
+ else $("soldResult").innerHTML=`<b class="sold-check">—</b><span><small>UNSOLD</small><strong>No bids placed</strong></span>`;
+ $("soldResult").classList.remove("hidden");$("bidStatus").textContent="Bidding closed for this character.";$("countdown").textContent="0";render();saveProgress();setTimeout(()=>{if(state.paused)return;state.lotIndex++;loadLot();},state.skipMode?80:1500);}
+function render(){if(!state.teams.length)return;$("yourPurseTop").textContent=money(state.teams[0].budget);$("activeTeamsLabel").textContent=`${state.teams.length-state.passed.size} active`;$("bidderList").innerHTML=state.teams.map((t,i)=>{let out=state.passed.has(i),lead=state.leader===i;return `<div class="bidder"><span class="avatar">${teamIcon(i)}</span><span class="bidder-info"><b>${t.name}${i===0?" (You)":""}</b><small>${t.players.length} picked · ${money(t.budget)} left</small></span><b class="cash">${money(t.budget)}</b><small class="${out?"out":""}">${lead?"LEAD":out?"PASS":"IN"}</small></div>`}).join("");$("miniSquad").innerHTML=state.teams[0].players.length?state.teams[0].players.map(p=>`<div class="mini-player"><span>${p.name}</span><b>${money(p.price)}</b></div>`).join(""):'<p class="empty-note">Your winning bids will appear here.</p>';$("squadCount").textContent=`${state.teams[0].players.length} picked`;}
+function strength(t){return t.players.length?Math.round(t.players.reduce((s,p)=>s+p.rating,0)/t.players.length*10+Math.min(t.players.length,6)*2):0;}
+
+const marvelProfiles={
+ "Galactus":{tier:12,tag:"cosmic-entity",label:"Cosmic entity"},
+ "Jean Grey (Phoenix)":{tier:12,tag:"phoenix",label:"Phoenix Force"},
+ "Sentry":{tier:11,tag:"cosmic",label:"Top-tier powerhouse"},
+ "Scarlet Witch":{tier:11,tag:"reality-magic",label:"Reality warper"},
+ "Thanos":{tier:11,tag:"titan",label:"Titan-level threat"},
+ "Doctor Doom":{tier:11,tag:"sorcerer-tech",label:"Sorcerer-scientist"},
+ "Silver Surfer":{tier:10,tag:"cosmic",label:"Power Cosmic"},
+ "Adam Warlock":{tier:10,tag:"cosmic-mystic",label:"Cosmic champion"},
+ "Ghost Rider":{tier:10,tag:"supernatural",label:"Spirit of Vengeance"},
+ "Thor":{tier:9,tag:"asgardian",label:"Asgardian god"},
+ "Hulk":{tier:9,tag:"brute",label:"Extreme-strength powerhouse"},
+ "Hela":{tier:9,tag:"asgardian-mystic",label:"Asgardian goddess"},
+ "Magneto":{tier:9,tag:"magnetism",label:"Omega-level mutant"},
+ "Doctor Strange":{tier:9,tag:"sorcerer",label:"Master of mystic arts"},
+ "Captain Marvel":{tier:9,tag:"cosmic",label:"Cosmic powerhouse"},
+ "Ultron":{tier:8,tag:"ai-tech",label:"Adaptive machine intelligence"},
+ "Vision":{tier:8,tag:"android",label:"Advanced synthezoid"},
+ "Loki":{tier:8,tag:"trickster-mystic",label:"God of mischief"},
+ "Iron Man":{tier:7,tag:"tech",label:"Armoured genius"},
+ "Wolverine":{tier:7,tag:"regeneration",label:"Regenerative warrior"},
+ "Venom":{tier:7,tag:"symbiote",label:"Symbiote powerhouse"},
+ "Carnage":{tier:7,tag:"symbiote",label:"Symbiote killer"},
+ "War Machine":{tier:7,tag:"tech",label:"Heavy weapons armour"},
+ "Spider-Man":{tier:7,tag:"agile",label:"Spider-powered hero"},
+ "Black Panther":{tier:6,tag:"tactician-tech",label:"Tactical warrior"},
+ "Green Goblin":{tier:6,tag:"tech-brute",label:"Enhanced tech villain"},
+ "Quicksilver":{tier:6,tag:"speed",label:"Speedster"},
+ "Deadpool":{tier:6,tag:"regeneration",label:"Unpredictable regenerative fighter"},
+ "Groot":{tier:5,tag:"flora",label:"Flora powerhouse"},
+ "Ant-Man":{tier:5,tag:"size-tech",label:"Size-changing tactician"},
+ "Winter Soldier":{tier:5,tag:"soldier",label:"Enhanced soldier"},
+ "Shang-Chi":{tier:5,tag:"martial",label:"Master martial artist"},
+ "Star-Lord":{tier:5,tag:"tech-tactician",label:"Armed tactician"},
+ "Rocket Raccoon":{tier:5,tag:"tech-tactician",label:"Weapons genius"},
+ "Hawkeye":{tier:4,tag:"archer",label:"Master archer"},
+ "Daredevil":{tier:4,tag:"martial-senses",label:"Enhanced senses fighter"},
+ "Mysterio":{tier:4,tag:"illusion-tech",label:"Illusion specialist"},
+ "Black Widow":{tier:4,tag:"spy",label:"Elite spy"},
+ "Captain America":{tier:5,tag:"tactician-soldier",label:"Super-soldier leader"}
+};
+function marvelTeamProfile(players){
+ if(!players.length)return {tier:0,lead:null,label:"No active fighter",support:0,tags:[]};
+ const ranked=players.map(p=>({player:p,profile:marvelProfiles[p.name]||{tier:Math.max(3,Math.min(8,Math.round(p.rating/12))),tag:"hero",label:"Hero"}})).sort((a,b)=>b.profile.tier-a.profile.tier);
+ const lead=ranked[0], support=ranked.slice(1), tags=ranked.map(x=>x.profile.tag);
+ const supportValue=Math.min(1.15,support.reduce((v,x)=>v+(x.profile.tier>=lead.profile.tier-1?.24:.08),0));
+ return {tier:lead.profile.tier,lead:lead.player,label:lead.profile.label,support:supportValue,tags};
+}
+function marvelMatchup(a,b){
+ if(a.tier===0&&b.tier===0)return {winner:-1,reason:"Neither team drafted a character."};
+ if(a.tier===0)return {winner:1,reason:`${b.lead.name} faces no opposition.`};
+ if(b.tier===0)return {winner:0,reason:`${a.lead.name} faces no opposition.`};
+ const gap=Math.abs(a.tier-b.tier);
+ const counter=(attacker,defender)=>{
+  let n=0;
+  if(attacker.tags.includes("reality-magic")&&defender.tags.includes("tech"))n+=.25;
+  if(attacker.tags.includes("sorcerer-tech")||attacker.tags.includes("sorcerer"))n+=.12;
+  if(attacker.tags.includes("cosmic-entity")||attacker.tags.includes("phoenix"))n+=.2;
+  if(attacker.tags.includes("speed")&&defender.tags.includes("archer"))n+=.12;
+  return n;
+ };
+ const aEdge=a.tier+a.support+counter(a,b), bEdge=b.tier+b.support+counter(b,a);
+ if(gap>=2){return {winner:a.tier>b.tier?0:1,reason:`${a.tier>b.tier?a.lead.name:b.lead.name} is in a much higher power class.`};}
+ if(aEdge===bEdge)return {winner:Math.random()<.5?0:1,reason:"Both teams are closely matched; the battle could go either way."};
+ return {winner:aEdge>bEdge?0:1,reason:`${aEdge>bEdge?a.lead.name:b.lead.name} has the matchup advantage.`};
+}
+
+let modalHistory=false;
+function openModal(id){$(id).classList.remove("hidden");$(id).setAttribute("aria-hidden","false");document.body.classList.add("modal-open");history.pushState({bidBaazModal:id},"");modalHistory=true;}
+function closeModal(id,fromPop=false){if($(id).classList.contains("hidden"))return;$(id).classList.add("hidden");$(id).setAttribute("aria-hidden","true");document.body.classList.remove("modal-open");if(!fromPop&&modalHistory){modalHistory=false;history.back();}}
+window.addEventListener("popstate",()=>{for(const id of ["arenaModal","playModal"]){if(!$(id).classList.contains("hidden")){closeModal(id,true);return;}}});
+document.querySelectorAll("[data-close]").forEach(b=>b.addEventListener("click",()=>closeModal(b.dataset.close)));
+document.querySelectorAll(".arena-card").forEach(b=>b.addEventListener("click",()=>{if(b.dataset.mode==="anime"){toast("Anime Arena is coming soon!");return;}state.mode=b.dataset.mode;$("playModal").querySelector(".eyebrow").textContent=state.mode==="marvel"?"MARVEL ARENA":"CRICKET AUCTION";openModal("playModal");}));
+$("playAI").onclick=()=>{closeModal("playModal");$("selectedArenaName").textContent=state.mode==="marvel"?"Marvel Arena":"Cricket Auction";show("settingsScreen");updateSettings();};
+$("playMulti").onclick=()=>toast("Multiplayer is coming soon!");
+document.querySelectorAll("[data-pick-arena]").forEach(b=>b.onclick=()=>{state.mode=b.dataset.pickArena;$("selectedArenaName").textContent=state.mode==="marvel"?"Marvel Arena":"Cricket Auction";closeModal("arenaModal");updateSettings();});
+$("backHome").onclick=()=>show("homeScreen");$("changeArena").onclick=()=>openModal("arenaModal");$("opponentCount").oninput=updateSettings;
+document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{document.querySelectorAll(".choice").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.difficulty=b.dataset.difficulty;updateSettings();});
+$("toggleShowdown").onclick=()=>{const panel=$("battlePanel"),open=panel.classList.contains("hidden");panel.classList.toggle("hidden",!open);$("toggleShowdown").setAttribute("aria-expanded",String(open));$("showdownChevron").textContent=open?"－":"＋";};
+$("beginAuction").onclick=start;$("bidOne").onclick=()=>humanBid(state.mode==="cricket"?.2:1);$("bidFive").onclick=()=>humanBid(state.mode==="cricket"?.5:5);$("bidTen").onclick=()=>humanBid(state.mode==="cricket"?1:10);$("passButton").onclick=pass;
+$("moreAuction").onclick=()=>{$("auctionMenu").classList.toggle("hidden");$("moreAuction").setAttribute("aria-expanded",String(!$("auctionMenu").classList.contains("hidden")));};
+function syncAuctionMenuSelection(){
+ document.querySelectorAll("[data-speed]").forEach(b=>b.classList.toggle("menu-selected",!state.skipMode&&Number(b.dataset.speed)===Number(state.speed||1)));
+ $("skipAuction")?.classList.toggle("menu-selected",!!state.skipMode);
+}
+document.querySelectorAll("[data-speed]").forEach(b=>b.onclick=()=>{
+ const nextSpeed=Number(b.dataset.speed)||1,oldSpeed=Math.max(1,state.speed||1);
+ state.speed=nextSpeed;state.skipMode=false;
+ $("auctionMenu").classList.add("hidden");$("moreAuction").setAttribute("aria-expanded","false");syncAuctionMenuSelection();
+ toast(nextSpeed===1?"Normal speed":`${nextSpeed}× speed enabled`);
+ if(!state.paused&&!state.closed){const gameSecondsLeft=Math.max(.01,(state.deadline-Date.now())/1000*oldSpeed);deadline(gameSecondsLeft);clearTimeout(state.aiTimer);scheduleAI(650);}
+ saveProgress();
+});
+$("skipAuction").onclick=()=>{
+ if(state.closed||state.paused)return;
+ state.skipMode=true;state.speed=3;state.passed.add(0);
+ $("auctionMenu").classList.add("hidden");$("moreAuction").setAttribute("aria-expanded","false");syncAuctionMenuSelection();
+ controls(false);toast("Skipping remaining auction…");
+ if(allOtherBiddersDone())resolve();else scheduleAI(20);
+ saveProgress();
+};
+$("quitAuction").onclick=()=>{pauseGame();};
+$("newAuction").onclick=()=>{localStorage.removeItem(SAVE_KEY);state.speed=1;state.skipMode=false;syncAuctionMenuSelection();refreshContinueCard();show("homeScreen");};
+$("battleAgain").onclick=()=>battle(true);
+$("viewTeams").onclick=()=>{$("allTeamsPanel").classList.toggle("hidden");$("allTeamsPanel").scrollIntoView({behavior:"smooth"});};
+updateSettings();
+
+// --- Bid Baaz persistence, pause/resume and Cricket T20 league engine ---
+const SAVE_KEY="bidbaaz_saved_v3";
+const DEMO_SEED_KEY="bidbaaz_seeded_v1";
+
+function seedInitialSavedGameIfNeeded(){
+ try{
+  if(!localStorage.getItem(SAVE_KEY)&&!sessionStorage.getItem(DEMO_SEED_KEY)){
+   sessionStorage.setItem(DEMO_SEED_KEY,"1");
+   const demoLots=buildMarvelLots();
+   const picked=demoLots.slice(0,4).map(p=>({...p,price:p.base}));
+   const spent=picked.reduce((s,p)=>s+p.price,0);
+   const demoState={
+    mode:"marvel",
+    budget:200,
+    opponents:3,
+    difficulty:"easy",
+    teams:[
+     {name:"Your Team",budget:200-spent,spent,players:picked},
+     {name:"Rival Red",budget:176,spent:24,players:[{...demoLots[4],price:24}]},
+     {name:"The Strategist",budget:182,spent:18,players:[{...demoLots[5],price:18}]},
+     {name:"Budget Boss",budget:188,spent:12,players:[{...demoLots[6],price:12}]}
+    ],
+    lots:demoLots,
+    lotIndex:7,
+    current:demoLots[7],
+    bid:0,
+    leader:null,
+    passed:[],
+    closed:false,
+    remaining:5,
+    speed:1,
+    skipMode:false,
+    results:[],
+    fixtures:[],
+    matchDetails:[]
+   };
+   localStorage.setItem(SAVE_KEY,JSON.stringify(demoState));
+  }
+ }catch(e){}
+}
+
+function serialState(){return {mode:state.mode,budget:state.budget,opponents:state.opponents,difficulty:state.difficulty,teams:state.teams,lots:state.lots,lotIndex:state.lotIndex,current:state.current,bid:state.bid,leader:state.leader,passed:[...state.passed],closed:state.closed,remaining:state.paused?state.remaining:Math.max(0,(state.deadline-Date.now())/1000),speed:state.speed,skipMode:state.skipMode,results:state.results,fixtures:state.fixtures,matchDetails:state.matchDetails};}
+function saveProgress(){try{if(!state.teams.length||!$("auctionScreen").classList.contains("active"))return;localStorage.setItem(SAVE_KEY,JSON.stringify(serialState()));refreshContinueCard();}catch(e){console.warn("Could not save game",e);}}
+window.__bidBaazHideSavedCard=window.__bidBaazHideSavedCard||false;
+function refreshContinueCard(){let raw=null;try{raw=localStorage.getItem(SAVE_KEY);}catch(e){}const card=$("continueCard");if(!card)return;if(window.__bidBaazHideSavedCard){card.classList.add("hidden");return;}card.classList.toggle("hidden",!raw);if(raw){try{const d=JSON.parse(raw);$("continueLabel").textContent=`${d.mode==='cricket'?'Cricket Auction':'Marvel Arena'} · ${d.teams?.[0]?.players?.length||0} players in your squad`;}catch{card.classList.add("hidden");}}}
+function restoreProgress(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");if(!d||!d.teams?.length)return false;Object.assign(state,d);state.speed=1;state.skipMode=false;syncAuctionMenuSelection();if(state.closed){state.lotIndex++;state.closed=false;state.current=null;}state.passed=new Set(d.passed||[]);state.paused=true;state.remaining=Math.max(1,d.remaining||5);state.timer=null;state.aiTimer=null;state.deadline=Date.now()+state.remaining*1000;$("selectedArenaName").textContent=state.mode==='cricket'?'Cricket Auction':'Marvel Arena';$("opponentCount").value=state.opponents;state.difficulty=d.difficulty;document.querySelectorAll('.choice').forEach(x=>x.classList.toggle('active',x.dataset.difficulty===state.difficulty));updateSettings();show("auctionScreen");loadPausedLot();return true;}catch(e){console.error(e);return false;}}
+function loadPausedLot(){if(state.lotIndex>=state.lots.length){finish();return;}state.current=state.lots[state.lotIndex];$("auctionRound").textContent=`PLAYER ${state.lotIndex+1} OF ${state.lots.length}`;$("lotCategory").textContent=state.mode==='marvel'?'HERO / VILLAIN':state.current.role.toUpperCase();$("lotPortrait").innerHTML=`<img alt="${state.current.name}" src="${portraitSrc(state.current.portrait)}">`;$("lotName").textContent=state.current.name;$("lotDescription").textContent=state.current.role+' — '+state.current.desc;$("lotRating").textContent=state.current.rating;$("lotRank").textContent=`RATING ${state.current.rating}`;$("basePrice").textContent=money(state.current.base);$("currentBid").textContent=state.leader===null?'—':money(state.bid);$("countdown").textContent=Math.ceil(state.remaining);$("bidStatus").textContent=state.leader===null?'Auction paused. Resume when ready.':`${teamName(state.leader)} currently leads at ${money(state.bid)}.`;$("soldResult").classList.add('hidden');render();controls(false);}
+function pauseGame(){
+ if(state.closed||state.paused)return;
+ state.remaining=Math.max(.05,(state.deadline-Date.now())/1000*Math.max(1,state.speed||1));
+ state.paused=true;state.speed=1;state.skipMode=false;stopTimers();
+ $("auctionMenu").classList.add("hidden");$("moreAuction").setAttribute("aria-expanded","false");syncAuctionMenuSelection();
+ controls(false);saveProgress();$("pauseOverlay").classList.remove('hidden');
+}
+function resumeGame(){
+ if(!state.paused)return;
+ state.speed=1;state.skipMode=false;state.paused=false;syncAuctionMenuSelection();
+ $("pauseOverlay").classList.add('hidden');controls(true);syncControls();deadline(Math.max(.05,state.remaining));scheduleAI(700);saveProgress();
+}
+function exitPaused(){saveProgress();$("pauseOverlay").classList.add('hidden');show('homeScreen');refreshContinueCard();}
+function cricketInnings(batting,bowling){
+ const batters=[...batting.players].sort((a,b)=>b.rating-a.rating);const bowlers=bowling.players.filter(p=>['Bowler','All-rounder'].includes(p.role)).sort((a,b)=>b.rating-a.rating);const bats=batters.slice(0,11);const overs=bowlers.length?bowlers:bowling.players;const batStats=bats.map(p=>({name:p.name,r:0,b:0,fours:0,sixes:0,out:false}));const bowlStats=overs.map(p=>({name:p.name,o:0,r:0,w:0,balls:0}));let total=0,wickets=0,balls=0,extras=0,commentary=[],ballByBall=[];let striker=0,non=1;
+ for(let over=0;over<20&&wickets<10;over++){
+  const bowler=bowlStats[over%bowlStats.length];
+  for(let ball=0;ball<6&&wickets<10;ball++){
+   const bat=batStats[striker];if(!bat)break;const b=batting.players.find(p=>p.name===bat.name)||bats[0];const skill=b.rating+(Math.random()*16-8),bowlSkill=(overs[over%bowlStats.length].rating||75)+(Math.random()*16-8);let outcome;
+   const wicketChance=Math.max(.025,Math.min(.12,.058+(bowlSkill-skill)*.0015));const roll=Math.random();
+   if(roll<wicketChance){wickets++;bat.out=true;bat.b++;balls++;bowler.balls++;bowler.w++;outcome='W';const wicketLine=`${over+1}.${ball+1} ${bat.name} is OUT! ${overs[over%bowlStats.length].name} takes the wicket.`;commentary.push(wicketLine);ballByBall.push(wicketLine);striker=Math.max(striker,non)+1;if(striker>=batStats.length)break;}
+   else {let r=roll<.40?0:roll<.68?1:roll<.78?2:roll<.90?4:roll<.95?6:3;bat.r+=r;bat.b++;bowler.r+=r;total+=r;balls++;bowler.balls++;if(r===4)bat.fours++;if(r===6)bat.sixes++;outcome=r===0?'dot ball':`${r} run${r===1?'':'s'}`;ballByBall.push(`${over+1}.${ball+1} ${bat.name}: ${outcome}.`);if(r===4||r===6||over>=16&&r>=2)commentary.push(`${over+1}.${ball+1} ${bat.name} hits ${r===4?'FOUR':r===6?'SIX':r+' runs'}!`);if(r%2) [striker,non]=[non,striker];}
+   if(ball===5&&wickets<10)[striker,non]=[non,striker];
+  }
+  if(over%5===4)commentary.push(`End of over ${over+1}: ${total}/${wickets}.`);
+ }
+ const completedOvers=Math.floor(balls/6)+(balls%6)/10;const econ=bowlStats.map(x=>({...x,overs:(Math.floor(x.balls/6)+(x.balls%6)/10).toFixed(1),economy:x.balls?(x.r/(x.balls/6)).toFixed(2):'0.00'}));
+ return {team:batting.name,total,wickets,balls,nrrBalls:wickets===10?120:balls,overs:completedOvers.toFixed(1),batStats,bowlStats:econ,extras,commentary:commentary.slice(-24),ballByBall};
+}
+function simulateCricketMatch(a,b,idx){const toss=Math.random()<.5?a:b;const first=cricketInnings(toss,toss===a?b:a),second=cricketInnings(toss===a?b:a,toss);let winner,margin;if(second.total>first.total){winner=second.team;margin=`${10-second.wickets} wickets`;}else if(second.total===first.total){winner='Tie';margin='Super Over not simulated';}else{winner=first.team;margin=`${first.total-second.total} runs`;}return {id:idx,a:a.name,b:b.name,first,second,winner,margin,highlights:[...first.commentary.slice(-4),...second.commentary.slice(-4)]};}
+function cricketTournament(){const fixtures=[];let n=0;for(let i=0;i<state.teams.length;i++)for(let j=i+1;j<state.teams.length;j++)fixtures.push(simulateCricketMatch(state.teams[i],state.teams[j],++n));const table=state.teams.map(t=>({name:t.name,played:0,w:0,l:0,t:0,pts:0,forRuns:0,againstRuns:0,forBalls:0,againstBalls:0}));fixtures.forEach(f=>{const a=table.find(x=>x.name===f.a),b=table.find(x=>x.name===f.b);a.played++;b.played++;const x=f.first.team===f.a?f.first:f.second,y=f.first.team===f.b?f.first:f.second;a.forRuns+=x.total;a.againstRuns+=y.total;b.forRuns+=y.total;b.againstRuns+=x.total;a.forBalls+=(x.nrrBalls||120);a.againstBalls+=(y.nrrBalls||120);b.forBalls+=(y.nrrBalls||120);b.againstBalls+=(x.nrrBalls||120);if(f.winner==='Tie'){a.t++;b.t++;a.pts++;b.pts++;}else{const win=table.find(z=>z.name===f.winner),lose=win===a?b:a;win.w++;win.pts+=2;lose.l++;}});table.forEach(x=>{x.nrr=(x.forRuns/Math.max(1,x.forBalls/6))-(x.againstRuns/Math.max(1,x.againstBalls/6));});table.sort((a,b)=>b.pts-a.pts||b.nrr-a.nrr);return {fixtures,table,final:null};}
+function openCricketScorecard(id){const f=state.matchDetails.find(x=>x.id===id);if(!f)return;const panel=document.getElementById('matchDetail_'+id);const button=document.getElementById('scoreToggle_'+id);if(!panel||!button)return;if(!panel.classList.contains('hidden')){panel.classList.add('hidden');panel.innerHTML='';button.textContent='View scorecard';button.setAttribute('aria-expanded','false');return;}const batting=(inn,label)=>`<section class="score-slide"><h4>${label}: ${inn.team} — ${inn.total}/${inn.wickets} (${inn.overs} ov)</h4><b class="score-table-title">Batting</b><div class="score-table-wrap"><table><thead><tr><th>Batter</th><th>R</th><th>B</th><th>4s</th><th>6s</th></tr></thead><tbody>${inn.batStats.map(x=>`<tr><td>${x.name}${x.out?' *':''}</td><td>${x.r}</td><td>${x.b}</td><td>${x.fours}</td><td>${x.sixes}</td></tr>`).join('')}</tbody></table></div></section>`;const bowling=(inn,label)=>`<section class="score-slide"><h4>${label}: ${inn.team}</h4><b class="score-table-title">Bowling</b><div class="score-table-wrap"><table><thead><tr><th>Bowler</th><th>O</th><th>R</th><th>W</th><th>Econ</th></tr></thead><tbody>${inn.bowlStats.map(x=>`<tr><td>${x.name}</td><td>${x.overs}</td><td>${x.r}</td><td>${x.w}</td><td>${x.economy}</td></tr>`).join('')}</tbody></table></div></section>`;panel.innerHTML=`<div class="scorecard"><div class="scorecard-top"><h4>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</h4><span>Scroll left to right for more</span></div><div class="score-track">${batting(f.first,'1st innings')}${bowling(f.first,'1st innings')}${batting(f.second,'2nd innings')}${bowling(f.second,'2nd innings')}<section class="score-slide highlights-slide"><h4>Key highlights</h4><ul class="commentary">${f.highlights.map(x=>`<li>${x}</li>`).join('')}</ul><details class="full-commentary"><summary>Full ball-by-ball commentary</summary><ol>${[...f.first.ballByBall,...f.second.ballByBall].map(x=>`<li>${x}</li>`).join('')}</ol></details></section></div><button class="fixture-toggle close-scorecard" onclick="closeCricketScorecard(${id})">Close scorecard</button></div>`;panel.classList.remove('hidden');button.textContent='Close scorecard';button.setAttribute('aria-expanded','true');}
+function closeCricketScorecard(id){const panel=document.getElementById('matchDetail_'+id),button=document.getElementById('scoreToggle_'+id);if(panel){panel.classList.add('hidden');panel.innerHTML='';}if(button){button.textContent='View scorecard';button.setAttribute('aria-expanded','false');}}
+function finish(){stopTimers();state.closed=true;state.paused=false;if(state.mode==='cricket'){const t=cricketTournament();state.fixtures=t.fixtures;state.matchDetails=t.fixtures;state.results=t.table.map(x=>({...x,players:state.teams.find(y=>y.name===x.name).players,spent:state.teams.find(y=>y.name===x.name).spent,budget:state.teams.find(y=>y.name===x.name).budget,score:x.pts}));const champion=t.table[0].name;const batAwards=new Map(),bowlAwards=new Map();t.fixtures.forEach(f=>[f.first,f.second].forEach(inn=>{inn.batStats.forEach(x=>batAwards.set(x.name,(batAwards.get(x.name)||0)+x.r));inn.bowlStats.forEach(x=>bowlAwards.set(x.name,(bowlAwards.get(x.name)||0)+x.w));}));const orange=[...batAwards].sort((a,b)=>b[1]-a[1])[0],purple=[...bowlAwards].sort((a,b)=>b[1]-a[1])[0];$("championPanel").innerHTML=`<div>🏆 <span class="eyebrow">TOURNAMENT WINNER · LEAGUE TABLE</span><h2>${champion}</h2><p>Top of the league table on points, with NRR used as the tie-breaker.</p><p class="empty-note">🟠 Orange Cap: ${orange?`${orange[0]} (${orange[1]} runs)`:'—'} · 🟣 Purple Cap: ${purple?`${purple[0]} (${purple[1]} wickets)`:'—'}</p></div><strong>${t.table[0].pts}<small>LEAGUE POINTS</small></strong>`;$("standings").innerHTML=t.table.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>${x.played} played · ${x.w}W ${x.l}L ${x.t}T · NRR ${x.nrr.toFixed(3)}</small></span><b>${x.pts} pts</b></div>`).join('');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length}/12 players · ${money(t.spent)} spent · ${money(t.budget)} left</p><ul>${t.players.map(p=>`<li>${p.name} · ${p.role} — ${money(p.price)}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;$("cricketLeaguePanel").classList.remove('hidden');$("cricketFixtures").innerHTML=t.fixtures.map(f=>`<div class="fixture-row"><span><b>${f.stage==='FINAL'?'🏆 FINAL · ':''}${f.a} vs ${f.b}</b><small>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</small></span><button id="scoreToggle_${f.id}" aria-expanded="false" onclick="openCricketScorecard(${f.id})">View scorecard</button><div class="match-detail-slot hidden" id="matchDetail_${f.id}"></div></div>`).join('');$("battlePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.add('hidden');}else{state.results=state.teams.map(t=>({name:t.name,players:t.players,spent:t.spent,budget:t.budget,strength:strength(t)}));battle(false);}show('resultsScreen');localStorage.removeItem(SAVE_KEY);refreshContinueCard();}
+function battle(again=true){state.battleRun++;let r=state.results.map(x=>({...x,profile:marvelTeamProfile(x.players)}));const wins=new Map(r.map((x,i)=>[i,0])),notes=[];for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){const m=marvelMatchup(r[i].profile,r[j].profile);if(m.winner===0)wins.set(i,wins.get(i)+1);else if(m.winner===1)wins.set(j,wins.get(j)+1);notes.push(`${r[i].name} vs ${r[j].name}: ${m.winner===0?r[i].profile.lead?.name||r[i].name:m.winner===1?r[j].profile.lead?.name||r[j].name:'Draw'} — ${m.reason}`);}r=r.map((x,i)=>({...x,wins:wins.get(i),score:wins.get(i)})).sort((a,b)=>b.wins-a.wins||b.profile.tier-a.profile.tier);state.results=r;const c=r[0];$("championPanel").innerHTML=`<div>🏆 <span class="eyebrow">ARENA CHAMPION</span><h2>${c.name}</h2><p>${c.players.length} picks · ${money(c.spent)} spent · ${money(c.budget)} left</p><p class="empty-note">Key fighter: ${c.profile.lead?.name||'None'} · ${c.profile.label}</p></div><strong>${c.wins}<small>HEAD-TO-HEAD WINS</small></strong>`;$("standings").innerHTML=r.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>Lead: ${x.profile.lead?.name||'No character'} · ${x.profile.label}</small></span><b>${x.wins} wins</b></div>`).join('');$("battleSummary").innerHTML=`<p class="empty-note">Marvel matchups use power tiers, abilities and limited support effects—not a simple sum of ratings.</p><div class="matchup-notes">${notes.map(n=>`<p>${n}</p>`).join('')}</div>`;$("cricketLeaguePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.remove('hidden');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length} picks · ${money(t.spent)} spent</p><ul>${t.players.map(p=>`<li>${p.name} — ${money(p.price)}</li>`).join('')}</ul></div>`).join('')}</div>`;if(again)toast('Battle simulated again!');}
+
+seedInitialSavedGameIfNeeded();
+$("pauseGame").onclick=pauseGame;$("resumeGame").onclick=resumeGame;$("saveExit").onclick=exitPaused;$("continueGame").onclick=()=>{if(restoreProgress()){$("pauseOverlay").classList.remove('hidden');}};$("discardGame").onclick=()=>{window.__bidBaazHideSavedCard=true;localStorage.removeItem(SAVE_KEY);$("continueCard").classList.add("hidden");};refreshContinueCard();
+
+window.addEventListener("beforeunload",saveProgress);setInterval(()=>{if(state.teams.length&&!state.paused)saveProgress();},2500);
   </script>
   <script>
    if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(err=>console.error("Service worker registration failed:",err)));}
