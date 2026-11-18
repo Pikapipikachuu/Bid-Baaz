@@ -512,3 +512,83 @@ button {
  .home-how-grid{grid-template-columns:1fr}
  .home-how-grid>div{padding:12px}
 }
+/* BID BAAZ — Purple, Coral & Mint Homepage Hero */
+
+#homeScreen {
+  padding-top: 0;
+}
+
+.home-hero {
+  max-width: 100%;
+  padding: 15px 4px 25px;
+}
+
+.home-hero .eyebrow {
+  display: block;
+  color: #f0a5c5;
+  font-size: 10px;
+  letter-spacing: 2.4px;
+  margin-bottom: 15px;
+}
+
+.home-hero h1 {
+  font: 700 clamp(25px, 5.8vw, 43px)/1.2 'Space Grotesk', sans-serif;
+  letter-spacing: -1.2px;
+  white-space: nowrap;
+  margin: 0 0 25px;
+  color: #fff5f7;
+}
+
+.home-hero h1 em {
+  color: #ff9c83;
+  font-style: normal;
+}
+
+.arena-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.arena-heading span {
+  flex: 1;
+  height: 1px;
+  background: #a66b91;
+}
+
+.arena-heading h2 {
+  margin: 0;
+  color: #b9f1d8;
+  font: 700 clamp(16px, 4vw, 21px)/1.2 'Space Grotesk', sans-serif;
+  white-space: nowrap;
+}
+
+.home-hero .arena-tagline {
+  margin: 0;
+  color: #f4dce8;
+  text-align: center;
+  font-size: clamp(7px, 1.8vw, 11px);
+  font-weight: 700;
+  letter-spacing: .35px;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* Mobile fit */
+@media (max-width: 390px) {
+  .home-hero h1 {
+    font-size: clamp(23px, 6.1vw, 27px);
+    letter-spacing: -.9px;
+  }
+
+  .home-hero .arena-tagline {
+    font-size: 7px;
+    letter-spacing: 0;
+  }
+
+  .arena-heading {
+    gap: 7px;
+  }
+}
