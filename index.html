@@ -194,7 +194,9 @@ button:focus:not(:focus-visible){outline:none}
 /* ==========================================================
    EXACT FRONT PAGE DESIGN (MATCHING BOTH REFERENCE IMAGES)
 ========================================================== */
-body:has(#homeScreen.active) {
+body:has(#homeScreen.active),
+body:has(#settingsScreen.active),
+body:has(#resultsScreen.active) {
   background: radial-gradient(circle at 50% 0%, #241438 0%, #140b22 55%, #0e071a 100%);
 }
 
@@ -774,6 +776,1245 @@ body:has(#homeScreen.active) {
     font-size: 12.2px;
   }
 }
+
+/* ==========================================================
+   UPGRADED MODALS (#playModal, #arenaModal)
+========================================================== */
+.modal-backdrop {
+  background: rgba(9, 5, 19, 0.80);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  padding: 20px;
+}
+
+.modal-card {
+  width: min(100%, 420px);
+  padding: 28px 22px 24px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(116, 242, 206, 0.12), transparent 52%),
+    radial-gradient(circle at 88% 12%, rgba(255, 156, 131, 0.14), transparent 50%),
+    linear-gradient(155deg, #241738 0%, #180f28 100%) padding-box,
+    linear-gradient(135deg, #7cf7e2 0%, #7d4cdb 55%, #ff9c83 100%) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.72), inset 0 1px 0 rgba(255, 255, 255, 0.10);
+  color: #ffffff;
+}
+
+.modal-close {
+  position: absolute;
+  right: 18px;
+  top: 18px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: 1px solid #4c366e;
+  background: #2c1d45;
+  color: #e9dcf8;
+  font-size: 20px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  transition: background 0.16s ease, transform 0.16s ease, border-color 0.16s ease;
+}
+
+.modal-close:hover {
+  background: #3a2659;
+  border-color: #74f2ce;
+  color: #ffffff;
+  transform: scale(1.05);
+}
+
+.modal-card .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(229, 154, 185, 0.14);
+  border: 1px solid rgba(229, 154, 185, 0.35);
+  color: #f3a6c6;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.modal-card h2 {
+  margin: 14px 0 6px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1.18;
+  letter-spacing: -0.6px;
+}
+
+.modal-subtitle {
+  margin: 0 0 18px;
+  color: #b7a8cd;
+  font-size: 13px;
+  line-height: 1.45;
+}
+
+.modal-choice {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px 15px;
+  margin-top: 11px;
+  border-radius: 20px;
+  border: 1.5px solid #453166;
+  background: linear-gradient(135deg, #2b1c44 0%, #211535 100%);
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.28), inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+.modal-choice:not(.disabled-choice):hover {
+  border-color: #74f2ce;
+  background: linear-gradient(135deg, #342252 0%, #27183f 100%);
+  box-shadow: 0 12px 26px rgba(0, 0, 0, 0.38), 0 0 0 1px rgba(116, 242, 206, 0.25);
+  transform: translateY(-2px);
+}
+
+.modal-choice-icon {
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 15px;
+  display: grid;
+  place-items: center;
+  font-size: 22px;
+  background: rgba(116, 242, 206, 0.14);
+  border: 1.5px solid #65e3c6;
+  color: #89f7e3;
+  box-shadow: 0 0 14px rgba(116, 242, 206, 0.2);
+}
+
+.modal-choice-icon.coral-icon {
+  background: rgba(255, 156, 131, 0.14);
+  border-color: #ff9c83;
+  color: #ffb49e;
+  box-shadow: 0 0 14px rgba(255, 156, 131, 0.2);
+}
+
+.modal-choice-icon.muted-icon {
+  background: rgba(155, 135, 189, 0.10);
+  border-color: #4f3a70;
+  color: #9e8cb9;
+  box-shadow: none;
+}
+
+.modal-choice > span:not(.modal-choice-icon):not(.modal-arrow-pill):not(.modal-soon-pill) {
+  flex: 1;
+  min-width: 0;
+}
+
+.modal-choice b {
+  display: block;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 16.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+.modal-choice small {
+  display: block;
+  margin-top: 3px;
+  color: #b5a6cc;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 500;
+  line-height: 1.35;
+}
+
+.modal-arrow-pill {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #74f2ce;
+  color: #131d29;
+  font-size: 16px;
+  font-weight: 900;
+  box-shadow: 0 4px 12px rgba(116, 242, 206, 0.3);
+}
+
+.modal-soon-pill {
+  flex-shrink: 0;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #2f2047;
+  border: 1px solid #4e3970;
+  color: #bdaed4;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 0.9px;
+  text-transform: uppercase;
+}
+
+.disabled-choice {
+  opacity: 0.68;
+  cursor: not-allowed;
+}
+
+/* ==========================================================
+   AUCTION SETUP SCREEN (#settingsScreen) — PURPLE/CORAL/MINT
+========================================================== */
+#settingsScreen {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 0 0 38px;
+}
+
+#settingsScreen #backHome {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 9px 16px;
+  border-radius: 999px;
+  background: #231738;
+  border: 1px solid #3f2b5e;
+  color: #e4d4f4;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+  letter-spacing: 0.2px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+#settingsScreen #backHome:hover {
+  background: #2c1d46;
+  border-color: #6a4999;
+  transform: translateY(-1px);
+}
+
+#settingsScreen .setup-hero-card {
+  width: 100%;
+  margin: 0 auto 20px;
+  padding: 24px 20px 22px;
+  border-radius: 28px;
+  background: #20162d;
+  border: 1px solid #332346;
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.42);
+  text-align: left;
+}
+
+#settingsScreen .screen-heading {
+  margin: 0;
+  text-align: left;
+}
+
+#settingsScreen .screen-heading .eyebrow {
+  display: inline-block;
+  margin: 0 0 10px;
+  color: #e59ab9;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+#settingsScreen .screen-heading h1 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: clamp(30px, 7.5vw, 40px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+}
+
+#settingsScreen .screen-heading h1 em {
+  color: #ff9c83;
+  font-style: normal;
+}
+
+#settingsScreen .screen-heading p {
+  margin: 0;
+  max-width: none;
+  color: #c7b8d8;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+#settingsScreen .settings-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  max-width: none;
+  margin: 0;
+}
+
+#settingsScreen .settings-main {
+  padding: 22px 20px;
+  border-radius: 28px;
+  background: #20162d;
+  border: 1px solid #35244a;
+  box-shadow: 0 16px 44px rgba(0, 0, 0, 0.38);
+}
+
+#settingsScreen .setup-block {
+  padding: 0 0 20px;
+  margin: 0 0 20px;
+  border-bottom: 1px solid #322248;
+}
+
+#settingsScreen .setup-block:last-of-type {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: 0;
+}
+
+#settingsScreen .setup-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin: 0 0 12px;
+}
+
+#settingsScreen .setup-label-row label {
+  margin: 0;
+  color: #f4eafc;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+#settingsScreen .setup-pill-note {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #2c1d42;
+  border: 1px solid #483268;
+  color: #b7f0d5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+/* Collapsible Auction Rules Toggle Button */
+.rules-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2d1e46 0%, #241738 100%);
+  border: 1.5px solid #593e82;
+  color: #b7f0d5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
+  transition: transform 0.16s ease, border-color 0.16s ease, background 0.16s ease;
+}
+
+.rules-toggle-btn:hover {
+  border-color: #74f2ce;
+  background: #352352;
+  transform: translateY(-1px);
+}
+
+.rules-toggle-btn.is-open {
+  border-color: #ff9c83;
+  color: #ffb8a4;
+  background: #331f42;
+}
+
+.rules-toggle-btn i {
+  font-style: normal;
+  font-size: 15px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+/* Selected Arena Card inside Setup */
+#settingsScreen .selected-arena {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 15px 16px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #2a1b40 0%, #221535 100%);
+  border: 1.5px solid #4a3469;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.06);
+}
+
+#settingsScreen .selected-arena-left {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  min-width: 0;
+}
+
+#settingsScreen .selected-arena-badge {
+  flex-shrink: 0;
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  display: grid;
+  place-items: center;
+  background: rgba(255, 156, 131, 0.14);
+  border: 1.5px solid #ff9c83;
+  color: #ff9c83;
+  box-shadow: 0 0 14px rgba(255, 156, 131, 0.18);
+}
+
+#settingsScreen .selected-arena-badge svg {
+  width: 22px;
+  height: 22px;
+  display: block;
+}
+
+#settingsScreen .selected-arena-copy small {
+  display: block;
+  margin: 0 0 2px;
+  color: #a99bc2;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.8px;
+  text-transform: uppercase;
+}
+
+#settingsScreen #selectedArenaName {
+  display: block;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 18.5px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+#settingsScreen #changeArena {
+  flex-shrink: 0;
+  padding: 9px 15px;
+  border-radius: 999px;
+  background: #33224d;
+  border: 1px solid #63458a;
+  color: #b7f0d5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: background 0.16s ease, transform 0.16s ease;
+}
+
+#settingsScreen #changeArena:hover {
+  background: #3f2b5f;
+  transform: translateY(-1px);
+}
+
+/* AI Opponents Range Slider */
+#settingsScreen .rival-counter-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: rgba(126, 247, 225, 0.12);
+  border: 1px solid #62dfc5;
+  color: #89f7e3;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+#settingsScreen .rival-counter-pill b {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+#settingsScreen #opponentCount {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 100%;
+  height: 10px;
+  margin: 10px 0 12px;
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff9c83 0%, #c77dff 50%, #74f2ce 100%);
+  outline: none;
+  cursor: pointer;
+}
+
+#settingsScreen #opponentCount::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #74f2ce;
+  box-shadow: 0 0 14px rgba(116, 242, 206, 0.65), 0 3px 8px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+#settingsScreen #opponentCount::-webkit-slider-thumb:active {
+  transform: scale(1.12);
+}
+
+#settingsScreen #opponentCount::-moz-range-thumb {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #ffffff;
+  border: 4px solid #74f2ce;
+  box-shadow: 0 0 14px rgba(116, 242, 206, 0.65), 0 3px 8px rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+}
+
+#settingsScreen .range-labels {
+  display: flex;
+  justify-content: space-between;
+  color: #a799c0;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* AI Difficulty & Purse Cards */
+#settingsScreen .budget-hint {
+  margin: -4px 0 12px;
+  color: #a89ac1;
+  font-size: 12.5px;
+  line-height: 1.45;
+}
+
+#settingsScreen .choice-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+#settingsScreen .choice {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  min-height: 86px;
+  padding: 14px 13px;
+  border-radius: 18px;
+  background: linear-gradient(160deg, #281a3d 0%, #1f1431 100%);
+  border: 1.5px solid #412d5d;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+
+#settingsScreen .choice:hover {
+  border-color: #63468b;
+  transform: translateY(-1px);
+}
+
+#settingsScreen .choice .choice-tier-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #5c457b;
+  margin-bottom: 8px;
+}
+
+#settingsScreen .choice b {
+  display: block;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 15.5px;
+  font-weight: 700;
+  letter-spacing: -0.2px;
+}
+
+#settingsScreen .choice small {
+  display: block;
+  margin-top: 4px;
+  color: #b4a6cc;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+#settingsScreen .choice.active {
+  background: linear-gradient(155deg, #352154 0%, #26173e 100%);
+  border-color: #74f2ce;
+  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.32), 0 0 0 1px rgba(116, 242, 206, 0.28);
+}
+
+#settingsScreen .choice.active .choice-tier-dot {
+  background: #74f2ce;
+  box-shadow: 0 0 10px #74f2ce;
+}
+
+#settingsScreen .choice.active b {
+  color: #ffffff;
+}
+
+#settingsScreen .choice.active small {
+  color: #89f7e3;
+}
+
+/* Match Rules / Info Lines inside Setup */
+#settingsScreen .setup-rules-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 14px;
+  animation: fade 0.2s ease;
+}
+
+#settingsScreen .info-line {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0;
+  padding: 13px 14px;
+  border-radius: 16px;
+  background: linear-gradient(90deg, #26193c 0%, #211534 100%);
+  border: 1px solid #3b2857;
+  color: #e2d5f0;
+  font-size: 12.8px;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+/* Your Auction Summary Card (Gradient Border matching Image 1) */
+#settingsScreen .budget-card {
+  position: relative;
+  padding: 24px 20px 20px;
+  border-radius: 26px;
+  background:
+    linear-gradient(135deg, #1b1535 0%, #241744 52%, #2c1950 100%) padding-box,
+    linear-gradient(135deg, #7cf7e2 0%, #5ec8ca 32%, #7d4cdb 78%, #9b5de5 100%) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.45), inset 0 1px 0 rgba(255, 255, 255, 0.08);
+  color: #ffffff;
+}
+
+#settingsScreen .budget-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+#settingsScreen .budget-card .eyebrow {
+  color: #e59ab9;
+  font-size: 11.5px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+#settingsScreen .budget-card-tag {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(126, 247, 225, 0.12);
+  border: 1px solid rgba(126, 247, 225, 0.35);
+  color: #89f7e3;
+  font-size: 10.5px;
+  font-weight: 700;
+}
+
+#settingsScreen .budget-card > strong {
+  display: block;
+  margin: 10px 0 16px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: clamp(34px, 8vw, 42px);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -1px;
+  text-shadow: 0 0 24px rgba(126, 247, 225, 0.22);
+}
+
+#settingsScreen .budget-stats-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+#settingsScreen .budget-stat-box {
+  padding: 11px 13px;
+  border-radius: 15px;
+  background: rgba(17, 11, 31, 0.55);
+  border: 1px solid #453369;
+}
+
+#settingsScreen .budget-stat-box span {
+  display: block;
+  margin-bottom: 3px;
+  color: #a69ac0;
+  font-size: 10.5px;
+  font-weight: 700;
+  letter-spacing: 0.7px;
+  text-transform: uppercase;
+}
+
+#settingsScreen .budget-stat-box p {
+  display: block;
+  width: auto;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+#settingsScreen .budget-card small {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: rgba(116, 242, 206, 0.13);
+  border: 1px solid rgba(116, 242, 206, 0.32);
+  color: #9bf7e0;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+/* Enter the Auction CTA Button */
+#settingsScreen #beginAuction {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+  min-height: 58px;
+  margin-top: 14px;
+  padding: 16px 22px;
+  border-radius: 18px;
+  border: 0;
+  background: linear-gradient(90deg, #ff9c83 0%, #ffb199 100%);
+  color: #211224;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 15px;
+  font-weight: 900;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  box-shadow: 0 10px 28px rgba(255, 156, 131, 0.32);
+  cursor: pointer;
+  transition: transform 0.16s ease, filter 0.16s ease;
+}
+
+#settingsScreen #beginAuction:hover {
+  filter: brightness(1.05);
+  transform: translateY(-1px);
+}
+
+/* ==========================================================
+   WINNING / RESULTS SCREEN (#resultsScreen) — PURPLE/CORAL/MINT
+========================================================== */
+#resultsScreen {
+  max-width: 620px;
+  margin: 0 auto;
+  padding: 0 0 42px;
+}
+
+#resultsScreen .results-hero {
+  margin: 0 0 20px;
+  padding: 24px 20px 22px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 50% 0%, rgba(255, 156, 131, 0.16), transparent 62%),
+    #20162d;
+  border: 1px solid #35244a;
+  box-shadow: 0 18px 46px rgba(0, 0, 0, 0.42);
+  text-align: center;
+}
+
+#resultsScreen .results-hero .eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 13px;
+  border-radius: 999px;
+  background: rgba(229, 154, 185, 0.14);
+  border: 1px solid rgba(229, 154, 185, 0.32);
+  color: #f3a6c6;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+}
+
+#resultsScreen .results-hero h1 {
+  margin: 12px 0 6px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: clamp(24px, 6.2vw, 36px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.8px;
+  white-space: normal;
+}
+
+#resultsScreen .results-hero h1 em {
+  color: #74f2ce;
+  font-style: normal;
+}
+
+#resultsScreen .results-hero-sub {
+  margin: 0;
+  color: #b8a9cc;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+/* Champion Spotlight Panel */
+#resultsScreen .champion-panel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 20px;
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 85% 20%, rgba(116, 242, 206, 0.16), transparent 55%),
+    radial-gradient(circle at 12% 10%, rgba(255, 156, 131, 0.15), transparent 50%),
+    linear-gradient(135deg, #1d1438 0%, #271847 52%, #2f1a54 100%) padding-box,
+    linear-gradient(135deg, #ffd166 0%, #ff9c83 45%, #74f2ce 100%) border-box;
+  border: 1.5px solid transparent;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.champ-left {
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  min-width: 0;
+  flex: 1;
+}
+
+.champ-trophy-badge {
+  flex-shrink: 0;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: grid;
+  place-items: center;
+  font-size: 28px;
+  background: linear-gradient(145deg, rgba(255, 209, 102, 0.22), rgba(255, 156, 131, 0.15));
+  border: 1.5px solid #ffd166;
+  box-shadow: 0 0 22px rgba(255, 209, 102, 0.28);
+}
+
+.champ-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.champ-info .eyebrow {
+  display: inline-block;
+  color: #ffd166;
+  font-size: 11px;
+  font-weight: 800;
+  letter-spacing: 1.4px;
+}
+
+.champ-info h2 {
+  margin: 5px 0 8px;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: clamp(23px, 5.8vw, 30px);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.6px;
+}
+
+.champ-meta-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 8px;
+}
+
+.champ-pill {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: rgba(15, 9, 29, 0.55);
+  border: 1px solid #4d3773;
+  color: #e3d6f5;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.champ-highlight-note {
+  margin: 0;
+  color: #9bf7e0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.champ-score-box {
+  flex-shrink: 0;
+  min-width: 88px;
+  padding: 14px 14px;
+  border-radius: 20px;
+  background: rgba(13, 8, 26, 0.65);
+  border: 1.5px solid rgba(116, 242, 206, 0.45);
+  text-align: center;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+}
+
+.champ-score-box strong {
+  display: block;
+  color: #74f2ce;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.champ-score-box small {
+  display: block;
+  margin-top: 5px;
+  color: #b7a8cd;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: 1px;
+}
+
+/* Final Standings Card */
+#resultsScreen .results-grid {
+  margin-top: 18px;
+}
+
+#resultsScreen .results-table-panel,
+#resultsScreen .battle-panel,
+#resultsScreen .cricket-league-panel,
+#resultsScreen .all-teams {
+  padding: 22px 20px;
+  border-radius: 26px;
+  background: #20162d;
+  border: 1px solid #35244a;
+  box-shadow: 0 16px 42px rgba(0, 0, 0, 0.38);
+}
+
+#resultsScreen .standings-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+#resultsScreen .standings-heading h3,
+#resultsScreen .battle-panel h3,
+#resultsScreen .cricket-league-panel h3,
+#resultsScreen .all-teams h3 {
+  margin: 0;
+  color: #ffffff;
+  font-family: 'Space Grotesk', 'DM Sans', sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.3px;
+}
+
+#resultsScreen .showdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #2d1e46 0%, #241738 100%);
+  border: 1.5px solid #593e82;
+  color: #b7f0d5;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#resultsScreen .showdown-toggle span,
+#resultsScreen .showdown-toggle b {
+  color: #ff9c83;
+}
+
+#resultsScreen #standings {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+#resultsScreen .standing-row {
+  display: grid;
+  grid-template-columns: 38px 1fr auto;
+  gap: 12px;
+  align-items: center;
+  padding: 13px 14px;
+  border-top: 0;
+  border-radius: 18px;
+  background: linear-gradient(90deg, #281b3b 0%, #221633 100%);
+  border: 1px solid #3d2a59;
+  font-size: 13px;
+}
+
+#resultsScreen .standing-row:first-child {
+  background: linear-gradient(90deg, #32204a 0%, #26183a 100%);
+  border-color: #74f2ce;
+  box-shadow: 0 6px 20px rgba(116, 242, 206, 0.12);
+}
+
+#resultsScreen .standing-row > b:first-child {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  background: #191026;
+  border: 1px solid #4c376e;
+  color: #d5c5eb;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px;
+}
+
+#resultsScreen .standing-row:first-child > b:first-child {
+  background: rgba(255, 209, 102, 0.16);
+  border-color: #ffd166;
+  color: #ffd166;
+}
+
+#resultsScreen .standing-row > span {
+  color: #ffffff;
+  font-weight: 700;
+  font-size: 14.5px;
+}
+
+#resultsScreen .standing-row > span small {
+  display: block;
+  margin-top: 3px;
+  color: #a899c1;
+  font-size: 11.5px;
+  font-weight: 500;
+}
+
+#resultsScreen .standing-row > b:last-child {
+  padding: 5px 11px;
+  border-radius: 999px;
+  background: rgba(116, 242, 206, 0.12);
+  border: 1px solid rgba(116, 242, 206, 0.32);
+  color: #89f7e3;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12.5px;
+}
+
+/* Battle Showdown & Cricket League Panels */
+#resultsScreen .showdown-explainer {
+  margin: 12px 0 14px;
+  padding: 13px 14px;
+  border-radius: 16px;
+  background: #27193a;
+  border: 1px solid #3f2b5c;
+  color: #d6c8ea;
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+#resultsScreen .matchup-notes p {
+  padding: 10px 12px;
+  border-radius: 12px;
+  background: #191026;
+  border: 1px solid #35244d;
+  color: #dfd3f0;
+  font-size: 11.5px;
+  margin: 8px 0;
+}
+
+#resultsScreen .fixture-row {
+  padding: 13px 12px;
+  margin-top: 8px;
+  border-top: 0;
+  border-radius: 16px;
+  background: #27193a;
+  border: 1px solid #3e2b59;
+}
+
+#resultsScreen .fixture-row b {
+  color: #ffffff;
+  font-size: 13px;
+}
+
+#resultsScreen .fixture-row small {
+  color: #b2a3c9;
+  font-size: 11px;
+}
+
+#resultsScreen .fixture-row button {
+  padding: 8px 13px;
+  border-radius: 999px;
+  background: #33224d;
+  border: 1px solid #63458a;
+  color: #b7f0d5;
+  font-size: 11px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+#resultsScreen .scorecard {
+  background: #170e24;
+  border: 1px solid #443063;
+  border-radius: 16px;
+}
+
+#resultsScreen .score-slide {
+  background: #211534;
+  border-color: #3d2a59;
+}
+
+/* Action Buttons Row on Results Screen */
+#resultsScreen .results-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin: 20px 0 16px;
+}
+
+#resultsScreen #viewTeams,
+#resultsScreen #newAuction,
+#resultsScreen #battleAgain {
+  min-height: 52px;
+  padding: 13px 16px;
+  border-radius: 999px;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 13.5px;
+  font-weight: 800;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+#resultsScreen #viewTeams,
+#resultsScreen #battleAgain {
+  background: linear-gradient(180deg, #2d1f47 0%, #221636 100%);
+  border: 1.5px solid #4e3873;
+  color: #ffffff;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+}
+
+#resultsScreen #newAuction {
+  background: linear-gradient(90deg, #74f2ce 0%, #89f7e3 100%);
+  border: 0;
+  color: #111827;
+  font-weight: 900;
+  box-shadow: 0 8px 24px rgba(116, 242, 206, 0.28);
+}
+
+/* All Squads Grid */
+#resultsScreen .team-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+#resultsScreen .team-detail {
+  padding: 15px;
+  border-radius: 18px;
+  background: #27193a;
+  border: 1px solid #3f2b5c;
+}
+
+#resultsScreen .team-detail b {
+  color: #ffffff;
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 14.5px;
+}
+
+#resultsScreen .team-detail p {
+  color: #ff9c83;
+  font-size: 11px;
+  font-weight: 700;
+  margin: 4px 0 10px;
+}
+
+#resultsScreen .team-detail ul {
+  padding-left: 16px;
+  margin: 0;
+}
+
+#resultsScreen .team-detail li {
+  color: #dfd3f0;
+  font-size: 11.5px;
+  line-height: 1.55;
+}
+
+@media (max-width: 480px) {
+  #resultsScreen .champion-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .champ-score-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 16px;
+  }
+  .champ-score-box strong {
+    font-size: 26px;
+  }
+  .champ-score-box small {
+    margin-top: 0;
+    font-size: 10px;
+  }
+  #resultsScreen .team-detail-grid {
+    grid-template-columns: 1fr;
+  }
+  #resultsScreen .results-actions {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 420px) {
+  #settingsScreen .setup-hero-card,
+  #settingsScreen .settings-main,
+  #settingsScreen .budget-card,
+  #resultsScreen .results-hero,
+  #resultsScreen .champion-panel,
+  #resultsScreen .results-table-panel,
+  #resultsScreen .battle-panel,
+  #resultsScreen .cricket-league-panel,
+  #resultsScreen .all-teams {
+    padding: 20px 15px 18px;
+    border-radius: 24px;
+  }
+  #settingsScreen .choice-row {
+    gap: 8px;
+  }
+  #settingsScreen .choice {
+    padding: 12px 10px;
+    min-height: 80px;
+  }
+  #settingsScreen .choice b {
+    font-size: 14px;
+  }
+  #settingsScreen .choice small {
+    font-size: 11.5px;
+  }
+}
   </style>
  </head>
  <body>
@@ -934,115 +2175,175 @@ body:has(#homeScreen.active) {
     </section>
 
     <section class="screen" id="settingsScreen">
-     <button class="back-link" id="backHome">
+     <button class="back-link" id="backHome" type="button">
       &larr; Back to home
      </button>
-     <div class="screen-heading">
-      <span class="eyebrow">
-       AUCTION SETUP
-      </span>
-      <h1>
-       Set the
-       <em>
-        rules.
-       </em>
-      </h1>
-      <p>
-       Everyone gets the same budget. You decide how tough the competition gets.
-      </p>
+     <div class="setup-hero-card">
+      <div class="screen-heading">
+       <span class="eyebrow">
+        AUCTION SETUP
+       </span>
+       <h1>
+        Set the
+        <em>
+         rules.
+        </em>
+       </h1>
+       <p>
+        Everyone gets the same budget. You decide how tough the competition gets.
+       </p>
+      </div>
      </div>
      <div class="settings-layout">
       <div class="panel settings-main">
-       <label>
-        Selected arena
-       </label>
-       <div class="selected-arena">
-        <b id="selectedArenaName">
-         Marvel Arena
-        </b>
-        <button id="changeArena">
-         Change
-        </button>
+       <div class="setup-block">
+        <div class="setup-label-row">
+         <label>
+          Selected arena
+         </label>
+         <span class="setup-pill-note">Active mode</span>
+        </div>
+        <div class="selected-arena">
+         <div class="selected-arena-left">
+          <span aria-hidden="true" class="selected-arena-badge">
+           <svg fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94A5.01 5.01 0 0 0 11 15.9V19H7v2h10v-2h-4v-3.1a5.01 5.01 0 0 0 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2zM5 8V7h2v3.82C5.84 10.4 5 9.3 5 8zm14 0c0 1.3-.84 2.4-2 2.82V7h2v1z"/>
+           </svg>
+          </span>
+          <div class="selected-arena-copy">
+           <small>CURRENT ARENA</small>
+           <b id="selectedArenaName">
+            Marvel Arena
+           </b>
+          </div>
+         </div>
+         <button id="changeArena" type="button">
+          Change
+         </button>
+        </div>
        </div>
-       <label>
-        Budget per team
-       </label>
-       <div class="budget-hint">
-        Budget is set automatically by difficulty.
+
+       <div class="setup-block">
+        <div class="setup-label-row">
+         <label for="opponentCount">
+          AI opponents
+         </label>
+         <span class="rival-counter-pill">
+          <b id="opponentCountLabel">3</b> rivals
+         </span>
+        </div>
+        <input id="opponentCount" max="6" min="1" type="range" value="3"/>
+        <div class="range-labels">
+         <span>
+          1 rival
+         </span>
+         <span>
+          6 rivals
+         </span>
+        </div>
        </div>
-       <label>
-        AI opponents:
-        <b id="opponentCountLabel">
-         3
-        </b>
-       </label>
-       <input id="opponentCount" max="6" min="1" type="range" value="3"/>
-       <div class="range-labels">
-        <span>
-         1 rival
-        </span>
-        <span>
-         6 rivals
-        </span>
+
+       <div class="setup-block">
+        <div class="setup-label-row">
+         <label>
+          AI difficulty &amp; purse
+         </label>
+         <span class="setup-pill-note">Auto budget</span>
+        </div>
+        <div class="budget-hint">
+         Budget per team is set automatically by difficulty.
+        </div>
+        <div class="choice-row">
+         <button class="choice active" data-difficulty="easy" type="button">
+          <span aria-hidden="true" class="choice-tier-dot"></span>
+          <div>
+           <b>
+            Easy
+           </b>
+           <small>
+            ₹200 Cr
+           </small>
+          </div>
+         </button>
+         <button class="choice" data-difficulty="medium" type="button">
+          <span aria-hidden="true" class="choice-tier-dot"></span>
+          <div>
+           <b>
+            Medium
+           </b>
+           <small>
+            ₹150 Cr
+           </small>
+          </div>
+         </button>
+         <button class="choice" data-difficulty="hard" type="button">
+          <span aria-hidden="true" class="choice-tier-dot"></span>
+          <div>
+           <b>
+            Hard
+           </b>
+           <small>
+            ₹100 Cr
+           </small>
+          </div>
+         </button>
+        </div>
        </div>
-       <label>
-        AI difficulty
-       </label>
-       <div class="choice-row">
-        <button class="choice active" data-difficulty="easy">
-         <b>
-          Easy
-         </b>
-         <small>
-          ₹200 Cr
-         </small>
-        </button>
-        <button class="choice" data-difficulty="medium">
-         <b>
-          Medium
-         </b>
-         <small>
-          ₹150 Cr
-         </small>
-        </button>
-        <button class="choice" data-difficulty="hard">
-         <b>
-          Hard
-         </b>
-         <small>
-          ₹100 Cr
-         </small>
-        </button>
-       </div>
-       <div class="info-line">
-        👤 You control your bids &mdash; choose +1, +5, +10 Cr or pass.
-       </div>
-       <div class="info-line">
-        🤖 AI rivals keep competing even after you pass.
-       </div>
-       <div class="info-line arena-tip" id="arenaTip">
-        🦸 Build your superhero squad, outbid AI rivals and assemble the strongest team.
+
+       <div class="setup-block">
+        <div class="setup-label-row" style="margin-bottom: 0;">
+         <label>
+          Auction rules
+         </label>
+         <button aria-controls="setupRulesList" aria-expanded="false" class="rules-toggle-btn" id="toggleRulesBtn" type="button">
+          <span id="toggleRulesLabel">Show rules</span>
+          <i aria-hidden="true" id="toggleRulesIcon">+</i>
+         </button>
+        </div>
+        <div class="setup-rules-list hidden" id="setupRulesList">
+         <div class="info-line">
+          👤 You control your bids &mdash; choose +1, +5, +10 Cr or pass.
+         </div>
+         <div class="info-line">
+          🤖 AI rivals keep competing even after you pass.
+         </div>
+         <div class="info-line arena-tip" id="arenaTip">
+          🦸 Build your superhero squad, outbid AI rivals and assemble the strongest team.
+         </div>
+        </div>
        </div>
       </div>
+
       <aside>
        <div class="budget-card">
-        <span class="eyebrow">
-         YOUR AUCTION
-        </span>
+        <div class="budget-card-head">
+         <span class="eyebrow">
+          YOUR AUCTION
+         </span>
+         <span class="budget-card-tag">READY TO BID</span>
+        </div>
         <strong id="budgetPreview">
-         ₹100 Cr
+         ₹200 Cr
         </strong>
-        <p id="teamCountPreview">
-         4 teams
-        </p>
-        <p id="difficultyPreview">
-         Easy
-        </p>
+        <div class="budget-stats-grid">
+         <div class="budget-stat-box">
+          <span>TOTAL TEAMS</span>
+          <p id="teamCountPreview">
+           4 teams
+          </p>
+         </div>
+         <div class="budget-stat-box">
+          <span>AI DIFFICULTY</span>
+          <p id="difficultyPreview">
+           Easy
+          </p>
+         </div>
+        </div>
         <small>
          &checkmark; Equal starting budget for every team
         </small>
        </div>
-       <button class="btn gold full" id="beginAuction">
+       <button class="btn gold full" id="beginAuction" type="button">
         Enter the auction &rarr;
        </button>
       </aside>
@@ -1212,11 +2513,12 @@ body:has(#homeScreen.active) {
     <section class="screen" id="resultsScreen">
      <div class="results-hero">
       <span class="eyebrow">
-       TOURNAMENT COMPLETE
+       🏆 TOURNAMENT COMPLETE
       </span>
       <h1>
-       The champions are decided
+       The <em>champions</em> are decided
       </h1>
+      <p class="results-hero-sub">Final auction standings, squad breakdown &amp; head-to-head results</p>
      </div>
      <div class="panel champion-panel" id="championPanel">
      </div>
@@ -1287,7 +2589,7 @@ body:has(#homeScreen.active) {
 
   <div aria-hidden="true" class="modal-backdrop hidden" id="playModal">
    <div class="modal-card">
-    <button aria-label="Close" class="modal-close" data-close="playModal">
+    <button aria-label="Close" class="modal-close" data-close="playModal" type="button">
      &times;
     </button>
     <span class="eyebrow">
@@ -1296,40 +2598,37 @@ body:has(#homeScreen.active) {
     <h2>
      How do you want to play?
     </h2>
-    <button class="modal-choice" id="playAI">
-     🤖
+    <p class="modal-subtitle">Select a battle mode to enter the auction room.</p>
+    <button class="modal-choice" id="playAI" type="button">
+     <span aria-hidden="true" class="modal-choice-icon">🤖</span>
      <span>
       <b>
        Play with AI
       </b>
       <small>
-       Challenge computer-controlled rivals
+       Challenge smart computer-controlled rivals
       </small>
      </span>
-     <i>
-      &rarr;
-     </i>
+     <span aria-hidden="true" class="modal-arrow-pill">&rarr;</span>
     </button>
-    <button class="modal-choice disabled-choice" id="playMulti">
-     👥
+    <button class="modal-choice disabled-choice" id="playMulti" type="button">
+     <span aria-hidden="true" class="modal-choice-icon muted-icon">👥</span>
      <span>
       <b>
        Multiplayer
       </b>
       <small>
-       Play with friends &mdash; coming soon
+       Bid live with friends in a private room
       </small>
      </span>
-     <i>
-      🔒
-     </i>
+     <span class="modal-soon-pill">SOON</span>
     </button>
    </div>
   </div>
 
   <div aria-hidden="true" class="modal-backdrop hidden" id="arenaModal">
    <div class="modal-card">
-    <button aria-label="Close" class="modal-close" data-close="arenaModal">
+    <button aria-label="Close" class="modal-close" data-close="arenaModal" type="button">
      &times;
     </button>
     <span class="eyebrow">
@@ -1338,8 +2637,9 @@ body:has(#homeScreen.active) {
     <h2>
      Choose an arena
     </h2>
-    <button class="modal-choice" data-pick-arena="marvel">
-     ✦
+    <p class="modal-subtitle">Switch your player pool before starting the auction.</p>
+    <button class="modal-choice" data-pick-arena="marvel" type="button">
+     <span aria-hidden="true" class="modal-choice-icon coral-icon">✦</span>
      <span>
       <b>
        Marvel Arena
@@ -1348,12 +2648,10 @@ body:has(#homeScreen.active) {
        Heroes &amp; villains
       </small>
      </span>
-     <i>
-      &rarr;
-     </i>
+     <span aria-hidden="true" class="modal-arrow-pill">&rarr;</span>
     </button>
-    <button class="modal-choice" data-pick-arena="cricket">
-     🏏
+    <button class="modal-choice" data-pick-arena="cricket" type="button">
+     <span aria-hidden="true" class="modal-choice-icon">🏏</span>
      <span>
       <b>
        Cricket Auction
@@ -1362,23 +2660,19 @@ body:has(#homeScreen.active) {
        Cricket legends
       </small>
      </span>
-     <i>
-      &rarr;
-     </i>
+     <span aria-hidden="true" class="modal-arrow-pill">&rarr;</span>
     </button>
-    <button class="modal-choice disabled-choice">
-     🎌
+    <button class="modal-choice disabled-choice" type="button">
+     <span aria-hidden="true" class="modal-choice-icon muted-icon">🎌</span>
      <span>
       <b>
        Anime Arena
       </b>
       <small>
-       Coming soon
+       Iconic anime fighters
       </small>
      </span>
-     <i>
-      🔒
-     </i>
+     <span class="modal-soon-pill">SOON</span>
     </button>
    </div>
   </div>
@@ -1708,6 +3002,18 @@ $("playMulti").onclick=()=>toast("Multiplayer is coming soon!");
 document.querySelectorAll("[data-pick-arena]").forEach(b=>b.onclick=()=>{state.mode=b.dataset.pickArena;$("selectedArenaName").textContent=state.mode==="marvel"?"Marvel Arena":"Cricket Auction";closeModal("arenaModal");updateSettings();});
 $("backHome").onclick=()=>show("homeScreen");$("changeArena").onclick=()=>openModal("arenaModal");$("opponentCount").oninput=updateSettings;
 document.querySelectorAll(".choice").forEach(b=>b.onclick=()=>{document.querySelectorAll(".choice").forEach(x=>x.classList.remove("active"));b.classList.add("active");state.difficulty=b.dataset.difficulty;updateSettings();});
+
+/* Auction Rules collapsible button toggle */
+$("toggleRulesBtn").onclick=()=>{
+ const list=$("setupRulesList"), btn=$("toggleRulesBtn");
+ const isHidden=list.classList.toggle("hidden");
+ const isOpen=!isHidden;
+ btn.classList.toggle("is-open",isOpen);
+ btn.setAttribute("aria-expanded",String(isOpen));
+ $("toggleRulesLabel").textContent=isOpen?"Hide rules":"Show rules";
+ $("toggleRulesIcon").textContent=isOpen?"−":"+";
+};
+
 $("toggleShowdown").onclick=()=>{const panel=$("battlePanel"),open=panel.classList.contains("hidden");panel.classList.toggle("hidden",!open);$("toggleShowdown").setAttribute("aria-expanded",String(open));$("showdownChevron").textContent=open?"－":"＋";};
 $("beginAuction").onclick=start;$("bidOne").onclick=()=>humanBid(state.mode==="cricket"?.2:1);$("bidFive").onclick=()=>humanBid(state.mode==="cricket"?.5:5);$("bidTen").onclick=()=>humanBid(state.mode==="cricket"?1:10);$("passButton").onclick=pass;
 $("moreAuction").onclick=()=>{$("auctionMenu").classList.toggle("hidden");$("moreAuction").setAttribute("aria-expanded",String(!$("auctionMenu").classList.contains("hidden")));};
@@ -1817,8 +3123,8 @@ function simulateCricketMatch(a,b,idx){const toss=Math.random()<.5?a:b;const fir
 function cricketTournament(){const fixtures=[];let n=0;for(let i=0;i<state.teams.length;i++)for(let j=i+1;j<state.teams.length;j++)fixtures.push(simulateCricketMatch(state.teams[i],state.teams[j],++n));const table=state.teams.map(t=>({name:t.name,played:0,w:0,l:0,t:0,pts:0,forRuns:0,againstRuns:0,forBalls:0,againstBalls:0}));fixtures.forEach(f=>{const a=table.find(x=>x.name===f.a),b=table.find(x=>x.name===f.b);a.played++;b.played++;const x=f.first.team===f.a?f.first:f.second,y=f.first.team===f.b?f.first:f.second;a.forRuns+=x.total;a.againstRuns+=y.total;b.forRuns+=y.total;b.againstRuns+=x.total;a.forBalls+=(x.nrrBalls||120);a.againstBalls+=(y.nrrBalls||120);b.forBalls+=(y.nrrBalls||120);b.againstBalls+=(x.nrrBalls||120);if(f.winner==='Tie'){a.t++;b.t++;a.pts++;b.pts++;}else{const win=table.find(z=>z.name===f.winner),lose=win===a?b:a;win.w++;win.pts+=2;lose.l++;}});table.forEach(x=>{x.nrr=(x.forRuns/Math.max(1,x.forBalls/6))-(x.againstRuns/Math.max(1,x.againstBalls/6));});table.sort((a,b)=>b.pts-a.pts||b.nrr-a.nrr);return {fixtures,table,final:null};}
 function openCricketScorecard(id){const f=state.matchDetails.find(x=>x.id===id);if(!f)return;const panel=document.getElementById('matchDetail_'+id);const button=document.getElementById('scoreToggle_'+id);if(!panel||!button)return;if(!panel.classList.contains('hidden')){panel.classList.add('hidden');panel.innerHTML='';button.textContent='View scorecard';button.setAttribute('aria-expanded','false');return;}const batting=(inn,label)=>`<section class="score-slide"><h4>${label}: ${inn.team} — ${inn.total}/${inn.wickets} (${inn.overs} ov)</h4><b class="score-table-title">Batting</b><div class="score-table-wrap"><table><thead><tr><th>Batter</th><th>R</th><th>B</th><th>4s</th><th>6s</th></tr></thead><tbody>${inn.batStats.map(x=>`<tr><td>${x.name}${x.out?' *':''}</td><td>${x.r}</td><td>${x.b}</td><td>${x.fours}</td><td>${x.sixes}</td></tr>`).join('')}</tbody></table></div></section>`;const bowling=(inn,label)=>`<section class="score-slide"><h4>${label}: ${inn.team}</h4><b class="score-table-title">Bowling</b><div class="score-table-wrap"><table><thead><tr><th>Bowler</th><th>O</th><th>R</th><th>W</th><th>Econ</th></tr></thead><tbody>${inn.bowlStats.map(x=>`<tr><td>${x.name}</td><td>${x.overs}</td><td>${x.r}</td><td>${x.w}</td><td>${x.economy}</td></tr>`).join('')}</tbody></table></div></section>`;panel.innerHTML=`<div class="scorecard"><div class="scorecard-top"><h4>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</h4><span>Scroll left to right for more</span></div><div class="score-track">${batting(f.first,'1st innings')}${bowling(f.first,'1st innings')}${batting(f.second,'2nd innings')}${bowling(f.second,'2nd innings')}<section class="score-slide highlights-slide"><h4>Key highlights</h4><ul class="commentary">${f.highlights.map(x=>`<li>${x}</li>`).join('')}</ul><details class="full-commentary"><summary>Full ball-by-ball commentary</summary><ol>${[...f.first.ballByBall,...f.second.ballByBall].map(x=>`<li>${x}</li>`).join('')}</ol></details></section></div><button class="fixture-toggle close-scorecard" onclick="closeCricketScorecard(${id})">Close scorecard</button></div>`;panel.classList.remove('hidden');button.textContent='Close scorecard';button.setAttribute('aria-expanded','true');}
 function closeCricketScorecard(id){const panel=document.getElementById('matchDetail_'+id),button=document.getElementById('scoreToggle_'+id);if(panel){panel.classList.add('hidden');panel.innerHTML='';}if(button){button.textContent='View scorecard';button.setAttribute('aria-expanded','false');}}
-function finish(){stopTimers();state.closed=true;state.paused=false;if(state.mode==='cricket'){const t=cricketTournament();state.fixtures=t.fixtures;state.matchDetails=t.fixtures;state.results=t.table.map(x=>({...x,players:state.teams.find(y=>y.name===x.name).players,spent:state.teams.find(y=>y.name===x.name).spent,budget:state.teams.find(y=>y.name===x.name).budget,score:x.pts}));const champion=t.table[0].name;const batAwards=new Map(),bowlAwards=new Map();t.fixtures.forEach(f=>[f.first,f.second].forEach(inn=>{inn.batStats.forEach(x=>batAwards.set(x.name,(batAwards.get(x.name)||0)+x.r));inn.bowlStats.forEach(x=>bowlAwards.set(x.name,(bowlAwards.get(x.name)||0)+x.w));}));const orange=[...batAwards].sort((a,b)=>b[1]-a[1])[0],purple=[...bowlAwards].sort((a,b)=>b[1]-a[1])[0];$("championPanel").innerHTML=`<div>🏆 <span class="eyebrow">TOURNAMENT WINNER · LEAGUE TABLE</span><h2>${champion}</h2><p>Top of the league table on points, with NRR used as the tie-breaker.</p><p class="empty-note">🟠 Orange Cap: ${orange?`${orange[0]} (${orange[1]} runs)`:'—'} · 🟣 Purple Cap: ${purple?`${purple[0]} (${purple[1]} wickets)`:'—'}</p></div><strong>${t.table[0].pts}<small>LEAGUE POINTS</small></strong>`;$("standings").innerHTML=t.table.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>${x.played} played · ${x.w}W ${x.l}L ${x.t}T · NRR ${x.nrr.toFixed(3)}</small></span><b>${x.pts} pts</b></div>`).join('');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length}/12 players · ${money(t.spent)} spent · ${money(t.budget)} left</p><ul>${t.players.map(p=>`<li>${p.name} · ${p.role} — ${money(p.price)}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;$("cricketLeaguePanel").classList.remove('hidden');$("cricketFixtures").innerHTML=t.fixtures.map(f=>`<div class="fixture-row"><span><b>${f.stage==='FINAL'?'🏆 FINAL · ':''}${f.a} vs ${f.b}</b><small>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</small></span><button id="scoreToggle_${f.id}" aria-expanded="false" onclick="openCricketScorecard(${f.id})">View scorecard</button><div class="match-detail-slot hidden" id="matchDetail_${f.id}"></div></div>`).join('');$("battlePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.add('hidden');}else{state.results=state.teams.map(t=>({name:t.name,players:t.players,spent:t.spent,budget:t.budget,strength:strength(t)}));battle(false);}show('resultsScreen');localStorage.removeItem(SAVE_KEY);refreshContinueCard();}
-function battle(again=true){state.battleRun++;let r=state.results.map(x=>({...x,profile:marvelTeamProfile(x.players)}));const wins=new Map(r.map((x,i)=>[i,0])),notes=[];for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){const m=marvelMatchup(r[i].profile,r[j].profile);if(m.winner===0)wins.set(i,wins.get(i)+1);else if(m.winner===1)wins.set(j,wins.get(j)+1);notes.push(`${r[i].name} vs ${r[j].name}: ${m.winner===0?r[i].profile.lead?.name||r[i].name:m.winner===1?r[j].profile.lead?.name||r[j].name:'Draw'} — ${m.reason}`);}r=r.map((x,i)=>({...x,wins:wins.get(i),score:wins.get(i)})).sort((a,b)=>b.wins-a.wins||b.profile.tier-a.profile.tier);state.results=r;const c=r[0];$("championPanel").innerHTML=`<div>🏆 <span class="eyebrow">ARENA CHAMPION</span><h2>${c.name}</h2><p>${c.players.length} picks · ${money(c.spent)} spent · ${money(c.budget)} left</p><p class="empty-note">Key fighter: ${c.profile.lead?.name||'None'} · ${c.profile.label}</p></div><strong>${c.wins}<small>HEAD-TO-HEAD WINS</small></strong>`;$("standings").innerHTML=r.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>Lead: ${x.profile.lead?.name||'No character'} · ${x.profile.label}</small></span><b>${x.wins} wins</b></div>`).join('');$("battleSummary").innerHTML=`<p class="empty-note">Marvel matchups use power tiers, abilities and limited support effects—not a simple sum of ratings.</p><div class="matchup-notes">${notes.map(n=>`<p>${n}</p>`).join('')}</div>`;$("cricketLeaguePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.remove('hidden');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length} picks · ${money(t.spent)} spent</p><ul>${t.players.map(p=>`<li>${p.name} — ${money(p.price)}</li>`).join('')}</ul></div>`).join('')}</div>`;if(again)toast('Battle simulated again!');}
+function finish(){stopTimers();state.closed=true;state.paused=false;if(state.mode==='cricket'){const t=cricketTournament();state.fixtures=t.fixtures;state.matchDetails=t.fixtures;state.results=t.table.map(x=>({...x,players:state.teams.find(y=>y.name===x.name).players,spent:state.teams.find(y=>y.name===x.name).spent,budget:state.teams.find(y=>y.name===x.name).budget,score:x.pts}));const champion=t.table[0].name;const batAwards=new Map(),bowlAwards=new Map();t.fixtures.forEach(f=>[f.first,f.second].forEach(inn=>{inn.batStats.forEach(x=>batAwards.set(x.name,(batAwards.get(x.name)||0)+x.r));inn.bowlStats.forEach(x=>bowlAwards.set(x.name,(bowlAwards.get(x.name)||0)+x.w));}));const orange=[...batAwards].sort((a,b)=>b[1]-a[1])[0],purple=[...bowlAwards].sort((a,b)=>b[1]-a[1])[0];$("championPanel").innerHTML=`<div class="champ-left"><div class="champ-trophy-badge">🏆</div><div class="champ-info"><span class="eyebrow">TOURNAMENT WINNER · LEAGUE TABLE</span><h2>${champion}</h2><div class="champ-meta-pills"><span class="champ-pill">Top on Points &amp; NRR</span></div><p class="champ-highlight-note">🟠 Orange Cap: ${orange?`${orange[0]} (${orange[1]} runs)`:'—'} · 🟣 Purple Cap: ${purple?`${purple[0]} (${purple[1]} wickets)`:'—'}</p></div></div><div class="champ-score-box"><strong>${t.table[0].pts}</strong><small>LEAGUE POINTS</small></div>`;$("standings").innerHTML=t.table.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>${x.played} played · ${x.w}W ${x.l}L ${x.t}T · NRR ${x.nrr.toFixed(3)}</small></span><b>${x.pts} pts</b></div>`).join('');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length}/12 players · ${money(t.spent)} spent · ${money(t.budget)} left</p><ul>${t.players.map(p=>`<li>${p.name} · ${p.role} — ${money(p.price)}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;$("cricketLeaguePanel").classList.remove('hidden');$("cricketFixtures").innerHTML=t.fixtures.map(f=>`<div class="fixture-row"><span><b>${f.stage==='FINAL'?'🏆 FINAL · ':''}${f.a} vs ${f.b}</b><small>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</small></span><button id="scoreToggle_${f.id}" aria-expanded="false" onclick="openCricketScorecard(${f.id})">View scorecard</button><div class="match-detail-slot hidden" id="matchDetail_${f.id}"></div></div>`).join('');$("battlePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.add('hidden');}else{state.results=state.teams.map(t=>({name:t.name,players:t.players,spent:t.spent,budget:t.budget,strength:strength(t)}));battle(false);}show('resultsScreen');localStorage.removeItem(SAVE_KEY);refreshContinueCard();}
+function battle(again=true){state.battleRun++;let r=state.results.map(x=>({...x,profile:marvelTeamProfile(x.players)}));const wins=new Map(r.map((x,i)=>[i,0])),notes=[];for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){const m=marvelMatchup(r[i].profile,r[j].profile);if(m.winner===0)wins.set(i,wins.get(i)+1);else if(m.winner===1)wins.set(j,wins.get(j)+1);notes.push(`${r[i].name} vs ${r[j].name}: ${m.winner===0?r[i].profile.lead?.name||r[i].name:m.winner===1?r[j].profile.lead?.name||r[j].name:'Draw'} — ${m.reason}`);}r=r.map((x,i)=>({...x,wins:wins.get(i),score:wins.get(i)})).sort((a,b)=>b.wins-a.wins||b.profile.tier-a.profile.tier);state.results=r;const c=r[0];$("championPanel").innerHTML=`<div class="champ-left"><div class="champ-trophy-badge">🏆</div><div class="champ-info"><span class="eyebrow">ARENA CHAMPION</span><h2>${c.name}</h2><div class="champ-meta-pills"><span class="champ-pill">${c.players.length} picks</span><span class="champ-pill">${money(c.spent)} spent</span><span class="champ-pill">${money(c.budget)} left</span></div><p class="champ-highlight-note">⚡ Key fighter: ${c.profile.lead?.name||'None'} · ${c.profile.label}</p></div></div><div class="champ-score-box"><strong>${c.wins}</strong><small>HEAD-TO-HEAD WINS</small></div>`;$("standings").innerHTML=r.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>Lead: ${x.profile.lead?.name||'No character'} · ${x.profile.label}</small></span><b>${x.wins} ${x.wins===1?'win':'wins'}</b></div>`).join('');$("battleSummary").innerHTML=`<p class="empty-note">Marvel matchups use power tiers, abilities and limited support effects—not a simple sum of ratings.</p><div class="matchup-notes">${notes.map(n=>`<p>${n}</p>`).join('')}</div>`;$("cricketLeaguePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.remove('hidden');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length} picks · ${money(t.spent)} spent</p><ul>${t.players.map(p=>`<li>${p.name} — ${money(p.price)}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;if(again)toast('Battle simulated again!');}
 
 seedInitialSavedGameIfNeeded();
 $("pauseGame").onclick=pauseGame;$("resumeGame").onclick=resumeGame;$("saveExit").onclick=exitPaused;$("continueGame").onclick=()=>{if(restoreProgress()){$("pauseOverlay").classList.remove('hidden');}};$("discardGame").onclick=()=>{window.__bidBaazHideSavedCard=true;localStorage.removeItem(SAVE_KEY);$("continueCard").classList.add("hidden");};refreshContinueCard();
