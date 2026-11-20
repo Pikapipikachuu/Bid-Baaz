@@ -1,4 +1,4 @@
-const CACHE_NAME = "bid-baaz-pwa-v15";
+const CACHE_NAME = "bid-baaz-pwa-v16";
 
 const APP_FILES = [
   "./",
