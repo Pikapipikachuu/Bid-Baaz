@@ -3,6 +3,8 @@
  <head>
   <meta charset="utf-8"/>
   <meta content="width=device-width,initial-scale=1" name="viewport"/>
+  <meta name="referrer" content="strict-origin-when-cross-origin"/>
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob:; connect-src 'self'; object-src 'none'; base-uri 'self'; form-action 'self';"/>
   <meta content="#101827" name="theme-color"/>
   <meta content="yes" name="mobile-web-app-capable"/>
   <meta content="yes" name="apple-mobile-web-app-capable"/>
@@ -335,14 +337,14 @@ body:has(#resultsScreen.active) {
 .home-arena-list .marvel-card {
   background:
     linear-gradient(95deg, rgba(36, 22, 49, 0.90) 0%, rgba(36, 22, 49, 0.72) 55%, rgba(28, 17, 39, 0.52) 100%),
-    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/marvel-banner.png") center 54% / cover no-repeat !important;
+    url("./marvel-banner.png") center 54% / cover no-repeat !important;
   border: 1px solid #4d335c !important;
 }
 
 .home-arena-list .cricket-card {
   background:
     linear-gradient(95deg, rgba(34, 22, 48, 0.90) 0%, rgba(34, 22, 48, 0.72) 55%, rgba(25, 17, 37, 0.50) 100%),
-    url("https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/ipl-auction-banner.png") center 48% / cover no-repeat !important;
+    url("./ipl-auction-banner.png") center 48% / cover no-repeat !important;
   border: 1px solid #4a355b !important;
 }
 
@@ -2764,12 +2766,18 @@ function svgPortrait(type){
 const marvelPortraitFiles={
  iron:"iron-man.png",captain:"captain-america.png",thor:"thor.png",spider:"spider-man.png",panther:"black-panther.png",strange:"doctor-strange.png",hulk:"hulk.png",widow:"black-widow.png",witch:"scarlet-witch.png",loki:"loki.png",marvel:"captain-marvel-duplicate.png",ant:"ant-man.png",doom:"doctor-doom.png",thanos:"thanos.png",surfer:"silver-surfer.png",phoenix:"jean-grey-phoenix.png",galactus:"galactus.png",deadpool:"deadpool.png",wolverine:"wolverine.png",vision:"vision.png",sentry:"sentry.png",ultron:"ultron.png",hawkeye:"hawkeye.png",magneto:"magneto.png",ghost:"ghost-rider.png",hela:"hela.png",venom:"venom.png",carnage:"carnage.png",quicksilver:"quicksilver.png",shangchi:"shang-chi.png",winter:"winter-soldier.png",daredevil:"daredevil.png",warmachine:"war-machine.png",adam:"adam-warlock.png",starlord:"star-lord.png",groot:"groot.png",rocket:"rocket-raccoon.png",mysterio:"mysterio.png",goblin:"green-goblin.png"
 };
-const GITHUB_IMAGE_BASE = "https://raw.githubusercontent.com/Pikapipikachuu/Bid-Baaz/main/";
-function portraitSrc(kind){
- const file=marvelPortraitFiles[kind];
- if(state.mode==="marvel"&&file) return GITHUB_IMAGE_BASE+encodeURIComponent(file);
- if(state.mode==="cricket") return GITHUB_IMAGE_BASE+encodeURIComponent(`${kind}.webp`);
+const LOCAL_IMAGE_BASE = "./";
+function esc(v){return String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"})[c]);}
+function roundCr(n){return Math.round((Number(n)||0)*100)/100;}
+function fallbackPortrait(kind){
  return "data:image/svg+xml;charset=utf-8,"+encodeURIComponent(svgPortrait(kind));
+}
+function portraitSrc(kind){
+ const safeKind=String(kind||"").replace(/[^a-z0-9-]/gi,"");
+ const file=marvelPortraitFiles[safeKind];
+ if(state.mode==="marvel"&&file) return LOCAL_IMAGE_BASE+encodeURIComponent(file);
+ if(state.mode==="cricket"&&safeKind) return LOCAL_IMAGE_BASE+encodeURIComponent(`${safeKind}.webp`);
+ return fallbackPortrait(safeKind);
 }
 function stopTimers(){clearInterval(state.timer);clearTimeout(state.aiTimer);}
 function shuffle(list){const a=[...list];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
@@ -2794,7 +2802,7 @@ function buildCricketLots(){
 }
 function start(){window.__bidBaazHideSavedCard=false;stopTimers();state.speed=1;state.skipMode=false;syncAuctionMenuSelection();document.querySelector("#bidOne").textContent=state.mode==="cricket"?"+ ₹20 L":"+ ₹1 Cr";document.querySelector("#bidFive").textContent=state.mode==="cricket"?"+ ₹50 L":"+ ₹5 Cr";document.querySelector("#bidTen").textContent=state.mode==="cricket"?"+ ₹1 Cr":"+ ₹10 Cr";state.opponents=+$("opponentCount").value;state.budget=budget();state.teams=[{name:"Your Team",budget:state.budget,spent:0,players:[]}];for(let i=0;i<+$("opponentCount").value;i++)state.teams.push({name:names[i],budget:state.budget,spent:0,players:[]});state.lots=state.mode==="marvel"?buildMarvelLots():buildCricketLots();state.lotIndex=0;state.battleRun=0;state.paused=false;show("auctionScreen");loadLot();saveProgress();}
 function loadLot(){stopTimers();if(state.lotIndex>=state.lots.length)return finish();state.current=state.lots[state.lotIndex];state.bid=0;state.leader=null;state.passed=new Set();state.closed=false;
- $("auctionRound").textContent=`PLAYER ${state.lotIndex+1} OF ${state.lots.length}`;$("lotCategory").textContent=state.mode==="marvel"?"HERO / VILLAIN":state.current.role.toUpperCase();$("lotPortrait").innerHTML=`<img alt="${state.current.name} illustrated portrait" src="${portraitSrc(state.current.portrait)}">`;$("lotName").textContent=state.current.name;$("lotDescription").textContent=state.current.role+" — "+state.current.desc;$("lotRating").textContent=state.current.rating;$("lotRank").textContent=state.current.special?`SPECIAL · RATING ${state.current.rating}`:`RATING ${state.current.rating}`;$("basePrice").textContent=money(state.current.base);$("currentBid").textContent="—";$("bidStatus").textContent="Choose your bid or pass. AI rivals will keep playing.";$("soldResult").classList.add("hidden");$("soldResult").innerHTML="";$("countdownPopup").classList.remove("show");$("countdown").classList.remove("urgent");controls(true);render();deadline(5);if(state.skipMode){state.passed.add(0);controls(false);scheduleAI(30);}else scheduleAI(850);saveProgress();}
+ $("auctionRound").textContent=`PLAYER ${state.lotIndex+1} OF ${state.lots.length}`;$("lotCategory").textContent=state.mode==="marvel"?"HERO / VILLAIN":state.current.role.toUpperCase();$("lotPortrait").innerHTML=`<img alt="${esc(state.current.name)} portrait" data-kind="${esc(state.current.portrait)}" onerror="this.onerror=null;this.src=fallbackPortrait(this.dataset.kind)" src="${portraitSrc(state.current.portrait)}">`;$("lotName").textContent=state.current.name;$("lotDescription").textContent=state.current.role+" — "+state.current.desc;$("lotRating").textContent=state.current.rating;$("lotRank").textContent=state.current.special?`SPECIAL · RATING ${state.current.rating}`:`RATING ${state.current.rating}`;$("basePrice").textContent=money(state.current.base);$("currentBid").textContent="—";$("bidStatus").textContent="Choose your bid or pass. AI rivals will keep playing.";$("soldResult").classList.add("hidden");$("soldResult").innerHTML="";$("countdownPopup").classList.remove("show");$("countdown").classList.remove("urgent");controls(true);render();deadline(5);if(state.skipMode){state.passed.add(0);controls(false);scheduleAI(30);}else scheduleAI(850);saveProgress();}
 function controls(on){["bidOne","bidFive","bidTen","passButton"].forEach(id=>$(id).disabled=!on);}
 function syncControls(){const locked=state.closed||state.paused||state.passed.has(0)||state.leader===0||(state.mode==='cricket'&&state.teams[0].players.length>=12);['bidOne','bidFive','bidTen'].forEach(id=>$(id).disabled=locked);$('passButton').disabled=state.closed||state.paused||state.passed.has(0);}
 function deadline(seconds){state.deadline=Date.now()+(seconds*1000)/Math.max(1,state.speed||1);state.lastCountdown=null;clearInterval(state.timer);$("countdown").classList.remove("urgent");tick();state.timer=setInterval(tick,50);}
@@ -2815,8 +2823,8 @@ function tick(){
  if(left<=0)resolve();
 }
 function afterBid(){deadline(5);}
-function placeBid(team,step){if(state.closed||state.passed.has(team)||team===state.leader)return;if(state.mode==="cricket"&&state.teams[team].players.length>=12){state.passed.add(team);render();return;}let amount=state.leader===null?state.current.base:state.bid+step;if(state.teams[team].budget<amount)return;state.bid=amount;state.leader=team;$("currentBid").textContent=money(amount);$("bidStatus").innerHTML=`<span class="bidder-action">${teamName(team)}</span> <span class="bid-action-word">bids</span> <strong class="bid-amount">${money(amount)}</strong>`;render();if(allOtherBiddersDone()){resolve();}else{afterBid();scheduleAI(650);}saveProgress();}
-function humanBid(step){if(state.mode==="cricket"&&state.teams[0].players.length>=12){toast("Your 12-player squad is complete.");return;}if(state.leader===0){toast("You are already leading.");return;}let amount=state.leader===null?state.current.base:state.bid+step;if(state.teams[0].budget<amount){toast("Not enough budget for this bid.");return;}placeBid(0,step);}
+function placeBid(team,step){if(state.closed||state.passed.has(team)||team===state.leader)return;if(state.mode==="cricket"&&state.teams[team].players.length>=12){state.passed.add(team);render();return;}let amount=roundCr(state.leader===null?state.current.base:state.bid+step);if(state.teams[team].budget<amount)return;state.bid=amount;state.leader=team;$("currentBid").textContent=money(amount);$("bidStatus").innerHTML=`<span class="bidder-action">${esc(teamName(team))}</span> <span class="bid-action-word">bids</span> <strong class="bid-amount">${esc(money(amount))}</strong>`;render();if(allOtherBiddersDone()){resolve();}else{afterBid();scheduleAI(650);}saveProgress();}
+function humanBid(step){if(state.mode==="cricket"&&state.teams[0].players.length>=12){toast("Your 12-player squad is complete.");return;}if(state.leader===0){toast("You are already leading.");return;}let amount=roundCr(state.leader===null?state.current.base:state.bid+step);if(state.teams[0].budget<amount){toast("Not enough budget for this bid.");return;}placeBid(0,step);}
 function pass(){if(state.closed||state.passed.has(0))return;state.passed.add(0);controls(false);$("bidStatus").textContent="You passed on this character. AI teams are still bidding.";render();if(allOtherBiddersDone())resolve();else scheduleAI(300);saveProgress();}
 function playerRoleKey(p){
  const role=(p.role||"").toLowerCase();
@@ -2918,10 +2926,10 @@ function aiStep(){
  }
 }
 function resolve(){if(state.closed)return;state.closed=true;stopTimers();controls(false);
- if(state.leader!==null){let t=state.teams[state.leader];t.budget-=state.bid;t.spent+=state.bid;t.players.push({...state.current,price:state.bid});$("soldResult").innerHTML=`<b class="sold-check">🏆</b><span><small>SOLD TO</small><strong>${t.name}</strong><em>${money(state.bid)} · Winning bid</em></span>`;toast(`${state.current.name} sold to ${t.name}!`);}
+ if(state.leader!==null){let t=state.teams[state.leader];t.budget=roundCr(t.budget-state.bid);t.spent=roundCr(t.spent+state.bid);t.players.push({...state.current,price:state.bid});$("soldResult").innerHTML=`<b class="sold-check">🏆</b><span><small>SOLD TO</small><strong>${esc(t.name)}</strong><em>${esc(money(state.bid))} · Winning bid</em></span>`;toast(`${state.current.name} sold to ${t.name}!`);}
  else $("soldResult").innerHTML=`<b class="sold-check">—</b><span><small>UNSOLD</small><strong>No bids placed</strong></span>`;
  $("soldResult").classList.remove("hidden");$("bidStatus").textContent="Bidding closed for this character.";$("countdown").textContent="0";render();saveProgress();setTimeout(()=>{if(state.paused)return;state.lotIndex++;loadLot();},state.skipMode?80:1500);}
-function render(){if(!state.teams.length)return;$("yourPurseTop").textContent=money(state.teams[0].budget);$("activeTeamsLabel").textContent=`${state.teams.length-state.passed.size} active`;$("bidderList").innerHTML=state.teams.map((t,i)=>{let out=state.passed.has(i),lead=state.leader===i;return `<div class="bidder"><span class="avatar">${teamIcon(i)}</span><span class="bidder-info"><b>${t.name}${i===0?" (You)":""}</b><small>${t.players.length} picked · ${money(t.budget)} left</small></span><b class="cash">${money(t.budget)}</b><small class="${out?"out":""}">${lead?"LEAD":out?"PASS":"IN"}</small></div>`}).join("");$("miniSquad").innerHTML=state.teams[0].players.length?state.teams[0].players.map(p=>`<div class="mini-player"><span>${p.name}</span><b>${money(p.price)}</b></div>`).join(""):'<p class="empty-note">Your winning bids will appear here.</p>';$("squadCount").textContent=`${state.teams[0].players.length} picked`;}
+function render(){if(!state.teams.length)return;$("yourPurseTop").textContent=money(state.teams[0].budget);$("activeTeamsLabel").textContent=`${state.teams.length-state.passed.size} active`;$("bidderList").innerHTML=state.teams.map((t,i)=>{let out=state.passed.has(i),lead=state.leader===i;return `<div class="bidder"><span class="avatar">${teamIcon(i)}</span><span class="bidder-info"><b>${esc(t.name)}${i===0?" (You)":""}</b><small>${t.players.length} picked · ${esc(money(t.budget))} left</small></span><b class="cash">${esc(money(t.budget))}</b><small class="${out?"out":""}">${lead?"LEAD":out?"PASS":"IN"}</small></div>`}).join("");$("miniSquad").innerHTML=state.teams[0].players.length?state.teams[0].players.map(p=>`<div class="mini-player"><span>${esc(p.name)}</span><b>${esc(money(p.price))}</b></div>`).join(""):'<p class="empty-note">Your winning bids will appear here.</p>';$("squadCount").textContent=`${state.teams[0].players.length} picked`;}
 function strength(t){return t.players.length?Math.round(t.players.reduce((s,p)=>s+p.rating,0)/t.players.length*10+Math.min(t.players.length,6)*2):0;}
 
 const marvelProfiles={
@@ -3045,51 +3053,63 @@ updateSettings();
 
 // --- Bid Baaz persistence, pause/resume and Cricket T20 league engine ---
 const SAVE_KEY="bidbaaz_saved_v3";
-const DEMO_SEED_KEY="bidbaaz_seeded_v1";
-
-function seedInitialSavedGameIfNeeded(){
- try{
-  if(!localStorage.getItem(SAVE_KEY)&&!sessionStorage.getItem(DEMO_SEED_KEY)){
-   sessionStorage.setItem(DEMO_SEED_KEY,"1");
-   const demoLots=buildMarvelLots();
-   const picked=demoLots.slice(0,4).map(p=>({...p,price:p.base}));
-   const spent=picked.reduce((s,p)=>s+p.price,0);
-   const demoState={
-    mode:"marvel",
-    budget:200,
-    opponents:3,
-    difficulty:"easy",
-    teams:[
-     {name:"Your Team",budget:200-spent,spent,players:picked},
-     {name:"Rival Red",budget:176,spent:24,players:[{...demoLots[4],price:24}]},
-     {name:"The Strategist",budget:182,spent:18,players:[{...demoLots[5],price:18}]},
-     {name:"Budget Boss",budget:188,spent:12,players:[{...demoLots[6],price:12}]}
-    ],
-    lots:demoLots,
-    lotIndex:7,
-    current:demoLots[7],
-    bid:0,
-    leader:null,
-    passed:[],
-    closed:false,
-    remaining:5,
-    speed:1,
-    skipMode:false,
-    results:[],
-    fixtures:[],
-    matchDetails:[]
-   };
-   localStorage.setItem(SAVE_KEY,JSON.stringify(demoState));
-  }
- }catch(e){}
+function sanitizePlayer(p){
+ if(!p||typeof p!=="object")return null;
+ return {
+  name:String(p.name||"Unknown").slice(0,50),
+  portrait:String(p.portrait||"").replace(/[^a-z0-9-]/gi,"").slice(0,40),
+  role:String(p.role||"Player").slice(0,40),
+  rating:Math.max(1,Math.min(100,Number(p.rating)||75)),
+  base:roundCr(Math.max(0,Math.min(1000,Number(p.base)||1))),
+  desc:String(p.desc||"").slice(0,160),
+  special:Boolean(p.special),
+  price:roundCr(Math.max(0,Math.min(10000,Number(p.price)||0)))
+ };
+}
+function sanitizeSavedState(d){
+ if(!d||typeof d!=="object"||Array.isArray(d))return null;
+ const mode=d.mode==="cricket"?"cricket":d.mode==="marvel"?"marvel":null;
+ const difficulty=["easy","medium","hard"].includes(d.difficulty)?d.difficulty:"easy";
+ if(!mode||!Array.isArray(d.teams)||d.teams.length<2||d.teams.length>7)return null;
+ if(!Array.isArray(d.lots)||!d.lots.length||d.lots.length>100)return null;
+ const teams=d.teams.map((t,idx)=>{
+  if(!t||typeof t!=="object")return null;
+  const players=Array.isArray(t.players)?t.players.map(sanitizePlayer).filter(Boolean).slice(0,25):[];
+  return {
+   name:idx===0?"Your Team":String(t.name||names[idx-1]||`Team ${idx+1}`).slice(0,32),
+   budget:roundCr(Math.max(0,Math.min(10000,Number(t.budget)||0))),
+   spent:roundCr(Math.max(0,Math.min(10000,Number(t.spent)||0))),
+   players
+  };
+ });
+ if(teams.some(t=>!t))return null;
+ const lots=d.lots.map(sanitizePlayer).filter(Boolean);
+ if(!lots.length)return null;
+ const lotIndex=Math.max(0,Math.min(lots.length,Math.floor(Number(d.lotIndex)||0)));
+ const leader=d.leader===null||d.leader===undefined?null:(Number.isInteger(d.leader)&&d.leader>=0&&d.leader<teams.length?d.leader:null);
+ return {
+  mode,
+  budget:roundCr(Math.max(10,Math.min(10000,Number(d.budget)||200))),
+  opponents:teams.length-1,
+  difficulty,
+  teams,
+  lots,
+  lotIndex,
+  current:lots[lotIndex]||null,
+  bid:roundCr(Math.max(0,Math.min(10000,Number(d.bid)||0))),
+  leader,
+  passed:Array.isArray(d.passed)?d.passed.filter(x=>Number.isInteger(x)&&x>=0&&x<teams.length):[],
+  closed:Boolean(d.closed),
+  remaining:Math.max(1,Math.min(10,Number(d.remaining)||5))
+ };
 }
 
 function serialState(){return {mode:state.mode,budget:state.budget,opponents:state.opponents,difficulty:state.difficulty,teams:state.teams,lots:state.lots,lotIndex:state.lotIndex,current:state.current,bid:state.bid,leader:state.leader,passed:[...state.passed],closed:state.closed,remaining:state.paused?state.remaining:Math.max(0,(state.deadline-Date.now())/1000),speed:state.speed,skipMode:state.skipMode,results:state.results,fixtures:state.fixtures,matchDetails:state.matchDetails};}
 function saveProgress(){try{if(!state.teams.length||!$("auctionScreen").classList.contains("active"))return;localStorage.setItem(SAVE_KEY,JSON.stringify(serialState()));refreshContinueCard();}catch(e){console.warn("Could not save game",e);}}
 window.__bidBaazHideSavedCard=window.__bidBaazHideSavedCard||false;
 function refreshContinueCard(){let raw=null;try{raw=localStorage.getItem(SAVE_KEY);}catch(e){}const card=$("continueCard");if(!card)return;if(window.__bidBaazHideSavedCard){card.classList.add("hidden");return;}card.classList.toggle("hidden",!raw);if(raw){try{const d=JSON.parse(raw);$("continueLabel").textContent=`${d.mode==='cricket'?'Cricket Auction':'Marvel Arena'} · ${d.teams?.[0]?.players?.length||0} players in your squad`;}catch{card.classList.add("hidden");}}}
-function restoreProgress(){try{const d=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");if(!d||!d.teams?.length)return false;Object.assign(state,d);state.speed=1;state.skipMode=false;syncAuctionMenuSelection();if(state.closed){state.lotIndex++;state.closed=false;state.current=null;}state.passed=new Set(d.passed||[]);state.paused=true;state.remaining=Math.max(1,d.remaining||5);state.timer=null;state.aiTimer=null;state.deadline=Date.now()+state.remaining*1000;$("selectedArenaName").textContent=state.mode==='cricket'?'Cricket Auction':'Marvel Arena';$("opponentCount").value=state.opponents;state.difficulty=d.difficulty;document.querySelectorAll('.choice').forEach(x=>x.classList.toggle('active',x.dataset.difficulty===state.difficulty));updateSettings();show("auctionScreen");loadPausedLot();return true;}catch(e){console.error(e);return false;}}
-function loadPausedLot(){if(state.lotIndex>=state.lots.length){finish();return;}state.current=state.lots[state.lotIndex];$("auctionRound").textContent=`PLAYER ${state.lotIndex+1} OF ${state.lots.length}`;$("lotCategory").textContent=state.mode==='marvel'?'HERO / VILLAIN':state.current.role.toUpperCase();$("lotPortrait").innerHTML=`<img alt="${state.current.name}" src="${portraitSrc(state.current.portrait)}">`;$("lotName").textContent=state.current.name;$("lotDescription").textContent=state.current.role+' — '+state.current.desc;$("lotRating").textContent=state.current.rating;$("lotRank").textContent=`RATING ${state.current.rating}`;$("basePrice").textContent=money(state.current.base);$("currentBid").textContent=state.leader===null?'—':money(state.bid);$("countdown").textContent=Math.ceil(state.remaining);$("bidStatus").textContent=state.leader===null?'Auction paused. Resume when ready.':`${teamName(state.leader)} currently leads at ${money(state.bid)}.`;$("soldResult").classList.add('hidden');render();controls(false);}
+function restoreProgress(){try{const raw=JSON.parse(localStorage.getItem(SAVE_KEY)||"null");const d=sanitizeSavedState(raw);if(!d){localStorage.removeItem(SAVE_KEY);return false;}Object.assign(state,d);state.speed=1;state.skipMode=false;syncAuctionMenuSelection();if(state.closed){state.lotIndex++;state.closed=false;state.current=null;}state.passed=new Set(d.passed||[]);state.paused=true;state.remaining=Math.max(1,d.remaining||5);state.timer=null;state.aiTimer=null;state.deadline=Date.now()+state.remaining*1000;$("selectedArenaName").textContent=state.mode==='cricket'?'Cricket Auction':'Marvel Arena';$("opponentCount").value=state.opponents;state.difficulty=d.difficulty;document.querySelectorAll('.choice').forEach(x=>x.classList.toggle('active',x.dataset.difficulty===state.difficulty));updateSettings();show("auctionScreen");loadPausedLot();return true;}catch(e){localStorage.removeItem(SAVE_KEY);console.error(e);return false;}}
+function loadPausedLot(){if(state.lotIndex>=state.lots.length){finish();return;}state.current=state.lots[state.lotIndex];$("auctionRound").textContent=`PLAYER ${state.lotIndex+1} OF ${state.lots.length}`;$("lotCategory").textContent=state.mode==='marvel'?'HERO / VILLAIN':state.current.role.toUpperCase();$("lotPortrait").innerHTML=`<img alt="${esc(state.current.name)} portrait" data-kind="${esc(state.current.portrait)}" onerror="this.onerror=null;this.src=fallbackPortrait(this.dataset.kind)" src="${portraitSrc(state.current.portrait)}">`;$("lotName").textContent=state.current.name;$("lotDescription").textContent=state.current.role+' — '+state.current.desc;$("lotRating").textContent=state.current.rating;$("lotRank").textContent=state.current.special?`SPECIAL · RATING ${state.current.rating}`:`RATING ${state.current.rating}`;$("basePrice").textContent=money(state.current.base);$("currentBid").textContent=state.leader===null?'—':money(state.bid);$("countdown").textContent=Math.ceil(state.remaining);$("bidStatus").textContent=state.leader===null?'Auction paused. Resume when ready.':`${teamName(state.leader)} currently leads at ${money(state.bid)}.`;$("soldResult").classList.add('hidden');render();controls(false);}
 function pauseGame(){
  if(state.closed||state.paused)return;
  state.remaining=Math.max(.05,(state.deadline-Date.now())/1000*Math.max(1,state.speed||1));
@@ -3121,15 +3141,14 @@ function cricketInnings(batting,bowling){
 }
 function simulateCricketMatch(a,b,idx){const toss=Math.random()<.5?a:b;const first=cricketInnings(toss,toss===a?b:a),second=cricketInnings(toss===a?b:a,toss);let winner,margin;if(second.total>first.total){winner=second.team;margin=`${10-second.wickets} wickets`;}else if(second.total===first.total){winner='Tie';margin='Super Over not simulated';}else{winner=first.team;margin=`${first.total-second.total} runs`;}return {id:idx,a:a.name,b:b.name,first,second,winner,margin,highlights:[...first.commentary.slice(-4),...second.commentary.slice(-4)]};}
 function cricketTournament(){const fixtures=[];let n=0;for(let i=0;i<state.teams.length;i++)for(let j=i+1;j<state.teams.length;j++)fixtures.push(simulateCricketMatch(state.teams[i],state.teams[j],++n));const table=state.teams.map(t=>({name:t.name,played:0,w:0,l:0,t:0,pts:0,forRuns:0,againstRuns:0,forBalls:0,againstBalls:0}));fixtures.forEach(f=>{const a=table.find(x=>x.name===f.a),b=table.find(x=>x.name===f.b);a.played++;b.played++;const x=f.first.team===f.a?f.first:f.second,y=f.first.team===f.b?f.first:f.second;a.forRuns+=x.total;a.againstRuns+=y.total;b.forRuns+=y.total;b.againstRuns+=x.total;a.forBalls+=(x.nrrBalls||120);a.againstBalls+=(y.nrrBalls||120);b.forBalls+=(y.nrrBalls||120);b.againstBalls+=(x.nrrBalls||120);if(f.winner==='Tie'){a.t++;b.t++;a.pts++;b.pts++;}else{const win=table.find(z=>z.name===f.winner),lose=win===a?b:a;win.w++;win.pts+=2;lose.l++;}});table.forEach(x=>{x.nrr=(x.forRuns/Math.max(1,x.forBalls/6))-(x.againstRuns/Math.max(1,x.againstBalls/6));});table.sort((a,b)=>b.pts-a.pts||b.nrr-a.nrr);return {fixtures,table,final:null};}
-function openCricketScorecard(id){const f=state.matchDetails.find(x=>x.id===id);if(!f)return;const panel=document.getElementById('matchDetail_'+id);const button=document.getElementById('scoreToggle_'+id);if(!panel||!button)return;if(!panel.classList.contains('hidden')){panel.classList.add('hidden');panel.innerHTML='';button.textContent='View scorecard';button.setAttribute('aria-expanded','false');return;}const batting=(inn,label)=>`<section class="score-slide"><h4>${label}: ${inn.team} — ${inn.total}/${inn.wickets} (${inn.overs} ov)</h4><b class="score-table-title">Batting</b><div class="score-table-wrap"><table><thead><tr><th>Batter</th><th>R</th><th>B</th><th>4s</th><th>6s</th></tr></thead><tbody>${inn.batStats.map(x=>`<tr><td>${x.name}${x.out?' *':''}</td><td>${x.r}</td><td>${x.b}</td><td>${x.fours}</td><td>${x.sixes}</td></tr>`).join('')}</tbody></table></div></section>`;const bowling=(inn,label)=>`<section class="score-slide"><h4>${label}: ${inn.team}</h4><b class="score-table-title">Bowling</b><div class="score-table-wrap"><table><thead><tr><th>Bowler</th><th>O</th><th>R</th><th>W</th><th>Econ</th></tr></thead><tbody>${inn.bowlStats.map(x=>`<tr><td>${x.name}</td><td>${x.overs}</td><td>${x.r}</td><td>${x.w}</td><td>${x.economy}</td></tr>`).join('')}</tbody></table></div></section>`;panel.innerHTML=`<div class="scorecard"><div class="scorecard-top"><h4>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</h4><span>Scroll left to right for more</span></div><div class="score-track">${batting(f.first,'1st innings')}${bowling(f.first,'1st innings')}${batting(f.second,'2nd innings')}${bowling(f.second,'2nd innings')}<section class="score-slide highlights-slide"><h4>Key highlights</h4><ul class="commentary">${f.highlights.map(x=>`<li>${x}</li>`).join('')}</ul><details class="full-commentary"><summary>Full ball-by-ball commentary</summary><ol>${[...f.first.ballByBall,...f.second.ballByBall].map(x=>`<li>${x}</li>`).join('')}</ol></details></section></div><button class="fixture-toggle close-scorecard" onclick="closeCricketScorecard(${id})">Close scorecard</button></div>`;panel.classList.remove('hidden');button.textContent='Close scorecard';button.setAttribute('aria-expanded','true');}
+function openCricketScorecard(id){const f=state.matchDetails.find(x=>x.id===id);if(!f)return;const panel=document.getElementById('matchDetail_'+id);const button=document.getElementById('scoreToggle_'+id);if(!panel||!button)return;if(!panel.classList.contains('hidden')){panel.classList.add('hidden');panel.innerHTML='';button.textContent='View scorecard';button.setAttribute('aria-expanded','false');return;}const batting=(inn,label)=>`<section class="score-slide"><h4>${esc(label)}: ${esc(inn.team)} — ${inn.total}/${inn.wickets} (${esc(inn.overs)} ov)</h4><b class="score-table-title">Batting</b><div class="score-table-wrap"><table><thead><tr><th>Batter</th><th>R</th><th>B</th><th>4s</th><th>6s</th></tr></thead><tbody>${inn.batStats.map(x=>`<tr><td>${esc(x.name)}${x.out?' *':''}</td><td>${x.r}</td><td>${x.b}</td><td>${x.fours}</td><td>${x.sixes}</td></tr>`).join('')}</tbody></table></div></section>`;const bowling=(inn,label)=>`<section class="score-slide"><h4>${esc(label)}: ${esc(inn.team)}</h4><b class="score-table-title">Bowling</b><div class="score-table-wrap"><table><thead><tr><th>Bowler</th><th>O</th><th>R</th><th>W</th><th>Econ</th></tr></thead><tbody>${inn.bowlStats.map(x=>`<tr><td>${esc(x.name)}</td><td>${esc(x.overs)}</td><td>${x.r}</td><td>${x.w}</td><td>${esc(x.economy)}</td></tr>`).join('')}</tbody></table></div></section>`;panel.innerHTML=`<div class="scorecard"><div class="scorecard-top"><h4>${f.winner==='Tie'?'Match tied':esc(f.winner)+' won by '+esc(f.margin)}</h4><span>Scroll left to right for more</span></div><div class="score-track">${batting(f.first,'1st innings')}${bowling(f.first,'1st innings')}${batting(f.second,'2nd innings')}${bowling(f.second,'2nd innings')}<section class="score-slide highlights-slide"><h4>Key highlights</h4><ul class="commentary">${f.highlights.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><details class="full-commentary"><summary>Full ball-by-ball commentary</summary><ol>${[...f.first.ballByBall,...f.second.ballByBall].map(x=>`<li>${esc(x)}</li>`).join('')}</ol></details></section></div><button class="fixture-toggle close-scorecard" onclick="closeCricketScorecard(${Number(id)||0})">Close scorecard</button></div>`;panel.classList.remove('hidden');button.textContent='Close scorecard';button.setAttribute('aria-expanded','true');}
 function closeCricketScorecard(id){const panel=document.getElementById('matchDetail_'+id),button=document.getElementById('scoreToggle_'+id);if(panel){panel.classList.add('hidden');panel.innerHTML='';}if(button){button.textContent='View scorecard';button.setAttribute('aria-expanded','false');}}
-function finish(){stopTimers();state.closed=true;state.paused=false;if(state.mode==='cricket'){const t=cricketTournament();state.fixtures=t.fixtures;state.matchDetails=t.fixtures;state.results=t.table.map(x=>({...x,players:state.teams.find(y=>y.name===x.name).players,spent:state.teams.find(y=>y.name===x.name).spent,budget:state.teams.find(y=>y.name===x.name).budget,score:x.pts}));const champion=t.table[0].name;const batAwards=new Map(),bowlAwards=new Map();t.fixtures.forEach(f=>[f.first,f.second].forEach(inn=>{inn.batStats.forEach(x=>batAwards.set(x.name,(batAwards.get(x.name)||0)+x.r));inn.bowlStats.forEach(x=>bowlAwards.set(x.name,(bowlAwards.get(x.name)||0)+x.w));}));const orange=[...batAwards].sort((a,b)=>b[1]-a[1])[0],purple=[...bowlAwards].sort((a,b)=>b[1]-a[1])[0];$("championPanel").innerHTML=`<div class="champ-left"><div class="champ-trophy-badge">🏆</div><div class="champ-info"><span class="eyebrow">TOURNAMENT WINNER · LEAGUE TABLE</span><h2>${champion}</h2><div class="champ-meta-pills"><span class="champ-pill">Top on Points &amp; NRR</span></div><p class="champ-highlight-note">🟠 Orange Cap: ${orange?`${orange[0]} (${orange[1]} runs)`:'—'} · 🟣 Purple Cap: ${purple?`${purple[0]} (${purple[1]} wickets)`:'—'}</p></div></div><div class="champ-score-box"><strong>${t.table[0].pts}</strong><small>LEAGUE POINTS</small></div>`;$("standings").innerHTML=t.table.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>${x.played} played · ${x.w}W ${x.l}L ${x.t}T · NRR ${x.nrr.toFixed(3)}</small></span><b>${x.pts} pts</b></div>`).join('');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length}/12 players · ${money(t.spent)} spent · ${money(t.budget)} left</p><ul>${t.players.map(p=>`<li>${p.name} · ${p.role} — ${money(p.price)}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;$("cricketLeaguePanel").classList.remove('hidden');$("cricketFixtures").innerHTML=t.fixtures.map(f=>`<div class="fixture-row"><span><b>${f.stage==='FINAL'?'🏆 FINAL · ':''}${f.a} vs ${f.b}</b><small>${f.winner==='Tie'?'Match tied':f.winner+' won by '+f.margin}</small></span><button id="scoreToggle_${f.id}" aria-expanded="false" onclick="openCricketScorecard(${f.id})">View scorecard</button><div class="match-detail-slot hidden" id="matchDetail_${f.id}"></div></div>`).join('');$("battlePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.add('hidden');}else{state.results=state.teams.map(t=>({name:t.name,players:t.players,spent:t.spent,budget:t.budget,strength:strength(t)}));battle(false);}show('resultsScreen');localStorage.removeItem(SAVE_KEY);refreshContinueCard();}
-function battle(again=true){state.battleRun++;let r=state.results.map(x=>({...x,profile:marvelTeamProfile(x.players)}));const wins=new Map(r.map((x,i)=>[i,0])),notes=[];for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){const m=marvelMatchup(r[i].profile,r[j].profile);if(m.winner===0)wins.set(i,wins.get(i)+1);else if(m.winner===1)wins.set(j,wins.get(j)+1);notes.push(`${r[i].name} vs ${r[j].name}: ${m.winner===0?r[i].profile.lead?.name||r[i].name:m.winner===1?r[j].profile.lead?.name||r[j].name:'Draw'} — ${m.reason}`);}r=r.map((x,i)=>({...x,wins:wins.get(i),score:wins.get(i)})).sort((a,b)=>b.wins-a.wins||b.profile.tier-a.profile.tier);state.results=r;const c=r[0];$("championPanel").innerHTML=`<div class="champ-left"><div class="champ-trophy-badge">🏆</div><div class="champ-info"><span class="eyebrow">ARENA CHAMPION</span><h2>${c.name}</h2><div class="champ-meta-pills"><span class="champ-pill">${c.players.length} picks</span><span class="champ-pill">${money(c.spent)} spent</span><span class="champ-pill">${money(c.budget)} left</span></div><p class="champ-highlight-note">⚡ Key fighter: ${c.profile.lead?.name||'None'} · ${c.profile.label}</p></div></div><div class="champ-score-box"><strong>${c.wins}</strong><small>HEAD-TO-HEAD WINS</small></div>`;$("standings").innerHTML=r.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${x.name}<small>Lead: ${x.profile.lead?.name||'No character'} · ${x.profile.label}</small></span><b>${x.wins} ${x.wins===1?'win':'wins'}</b></div>`).join('');$("battleSummary").innerHTML=`<p class="empty-note">Marvel matchups use power tiers, abilities and limited support effects—not a simple sum of ratings.</p><div class="matchup-notes">${notes.map(n=>`<p>${n}</p>`).join('')}</div>`;$("cricketLeaguePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.remove('hidden');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${t.name}</b><p>${t.players.length} picks · ${money(t.spent)} spent</p><ul>${t.players.map(p=>`<li>${p.name} — ${money(p.price)}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;if(again)toast('Battle simulated again!');}
+function finish(){stopTimers();state.closed=true;state.paused=false;if(state.mode==='cricket'){const t=cricketTournament();state.fixtures=t.fixtures;state.matchDetails=t.fixtures;state.results=t.table.map(x=>({...x,players:state.teams.find(y=>y.name===x.name).players,spent:state.teams.find(y=>y.name===x.name).spent,budget:state.teams.find(y=>y.name===x.name).budget,score:x.pts}));const champion=t.table[0].name;const batAwards=new Map(),bowlAwards=new Map();t.fixtures.forEach(f=>[f.first,f.second].forEach(inn=>{inn.batStats.forEach(x=>batAwards.set(x.name,(batAwards.get(x.name)||0)+x.r));inn.bowlStats.forEach(x=>bowlAwards.set(x.name,(bowlAwards.get(x.name)||0)+x.w));}));const orange=[...batAwards].sort((a,b)=>b[1]-a[1])[0],purple=[...bowlAwards].sort((a,b)=>b[1]-a[1])[0];$("championPanel").innerHTML=`<div class="champ-left"><div class="champ-trophy-badge">🏆</div><div class="champ-info"><span class="eyebrow">TOURNAMENT WINNER · LEAGUE TABLE</span><h2>${esc(champion)}</h2><div class="champ-meta-pills"><span class="champ-pill">Top on Points &amp; NRR</span></div><p class="champ-highlight-note">🟠 Orange Cap: ${orange?`${esc(orange[0])} (${orange[1]} runs)`:'—'} · 🟣 Purple Cap: ${purple?`${esc(purple[0])} (${purple[1]} wickets)`:'—'}</p></div></div><div class="champ-score-box"><strong>${t.table[0].pts}</strong><small>LEAGUE POINTS</small></div>`;$("standings").innerHTML=t.table.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${esc(x.name)}<small>${x.played} played · ${x.w}W ${x.l}L ${x.t}T · NRR ${x.nrr.toFixed(3)}</small></span><b>${x.pts} pts</b></div>`).join('');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${esc(t.name)}</b><p>${t.players.length}/12 players · ${esc(money(t.spent))} spent · ${esc(money(t.budget))} left</p><ul>${t.players.map(p=>`<li>${esc(p.name)} · ${esc(p.role)} — ${esc(money(p.price))}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;$("cricketLeaguePanel").classList.remove('hidden');$("cricketFixtures").innerHTML=t.fixtures.map(f=>`<div class="fixture-row"><span><b>${f.stage==='FINAL'?'🏆 FINAL · ':''}${esc(f.a)} vs ${esc(f.b)}</b><small>${f.winner==='Tie'?'Match tied':esc(f.winner)+' won by '+esc(f.margin)}</small></span><button id="scoreToggle_${Number(f.id)||0}" aria-expanded="false" onclick="openCricketScorecard(${Number(f.id)||0})">View scorecard</button><div class="match-detail-slot hidden" id="matchDetail_${Number(f.id)||0}"></div></div>`).join('');$("battlePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.add('hidden');}else{state.results=state.teams.map(t=>({name:t.name,players:t.players,spent:t.spent,budget:t.budget,strength:strength(t)}));battle(false);}show('resultsScreen');localStorage.removeItem(SAVE_KEY);refreshContinueCard();}
+function battle(again=true){state.battleRun++;let r=state.results.map(x=>({...x,profile:marvelTeamProfile(x.players)}));const wins=new Map(r.map((x,i)=>[i,0])),notes=[];for(let i=0;i<r.length;i++)for(let j=i+1;j<r.length;j++){const m=marvelMatchup(r[i].profile,r[j].profile);if(m.winner===0)wins.set(i,wins.get(i)+1);else if(m.winner===1)wins.set(j,wins.get(j)+1);notes.push(`${r[i].name} vs ${r[j].name}: ${m.winner===0?r[i].profile.lead?.name||r[i].name:m.winner===1?r[j].profile.lead?.name||r[j].name:'Draw'} — ${m.reason}`);}r=r.map((x,i)=>({...x,wins:wins.get(i),score:wins.get(i)})).sort((a,b)=>b.wins-a.wins||b.profile.tier-a.profile.tier);state.results=r;const c=r[0];$("championPanel").innerHTML=`<div class="champ-left"><div class="champ-trophy-badge">🏆</div><div class="champ-info"><span class="eyebrow">ARENA CHAMPION</span><h2>${esc(c.name)}</h2><div class="champ-meta-pills"><span class="champ-pill">${c.players.length} picks</span><span class="champ-pill">${esc(money(c.spent))} spent</span><span class="champ-pill">${esc(money(c.budget))} left</span></div><p class="champ-highlight-note">⚡ Key fighter: ${esc(c.profile.lead?.name||'None')} · ${esc(c.profile.label)}</p></div></div><div class="champ-score-box"><strong>${c.wins}</strong><small>HEAD-TO-HEAD WINS</small></div>`;$("standings").innerHTML=r.map((x,i)=>`<div class="standing-row"><b>#${i+1}</b><span>${esc(x.name)}<small>Lead: ${esc(x.profile.lead?.name||'No character')} · ${esc(x.profile.label)}</small></span><b>${x.wins} ${x.wins===1?'win':'wins'}</b></div>`).join('');$("battleSummary").innerHTML=`<p class="empty-note">Marvel matchups use power tiers, abilities and limited support effects—not a simple sum of ratings.</p><div class="matchup-notes">${notes.map(n=>`<p>${esc(n)}</p>`).join('')}</div>`;$("cricketLeaguePanel").classList.add('hidden');$("toggleShowdown").closest('.standings-heading').classList.remove('hidden');$("allTeamsPanel").innerHTML=`<h3>All squads</h3><div class="team-detail-grid">${state.teams.map(t=>`<div class="team-detail"><b>${esc(t.name)}</b><p>${t.players.length} picks · ${esc(money(t.spent))} spent</p><ul>${t.players.map(p=>`<li>${esc(p.name)} — ${esc(money(p.price))}</li>`).join('')||"<li>No players won</li>"}</ul></div>`).join('')}</div>`;if(again)toast('Battle simulated again!');}
 
-seedInitialSavedGameIfNeeded();
 $("pauseGame").onclick=pauseGame;$("resumeGame").onclick=resumeGame;$("saveExit").onclick=exitPaused;$("continueGame").onclick=()=>{if(restoreProgress()){$("pauseOverlay").classList.remove('hidden');}};$("discardGame").onclick=()=>{window.__bidBaazHideSavedCard=true;localStorage.removeItem(SAVE_KEY);$("continueCard").classList.add("hidden");};refreshContinueCard();
-
-window.addEventListener("beforeunload",saveProgress);setInterval(()=>{if(state.teams.length&&!state.paused)saveProgress();},2500);
+document.addEventListener("click",e=>{if(!e.target.closest(".more-wrap")){$("auctionMenu")?.classList.add("hidden");$("moreAuction")?.setAttribute("aria-expanded","false");}});
+window.addEventListener("beforeunload",saveProgress);
   </script>
   <script>
    if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./service-worker.js").catch(err=>console.error("Service worker registration failed:",err)));}
