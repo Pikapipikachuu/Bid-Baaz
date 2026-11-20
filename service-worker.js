@@ -1,15 +1,14 @@
-
-const CACHE_NAME = "bid-baaz-pwa-v13";
+const CACHE_NAME = "bid-baaz-pwa-v14";
 
 const APP_FILES = [
   "./",
   "./index.html",
   "./privacy.html",
-  "./style.css",
-  "./script.js",
   "./manifest.json",
   "./icon-192.png",
-  "./icon-512.png"
+  "./icon-512.png",
+  "./marvel-banner.png",
+  "./ipl-auction-banner.png"
 ];
 
 self.addEventListener("install", (event) => {
